@@ -1,0 +1,1056 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "LeaveLab Authentication API",
+    "description": "Authentication and user management API for LeaveLab platform",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LeaveLab API Support",
+      "email": "api@leavelab.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://leavelab.com/api/v1",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "summary": "Create new user account",
+        "description": "Register a new user with email and password. Sends verification email.",
+        "operationId": "signup",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request (weak password, invalid email, etc.)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "An account with this email already exists"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login with email and password",
+        "description": "Authenticate user and create session. Returns 7-day session token.",
+        "operationId": "login",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "Invalid email or password"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Email not verified",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "Please verify your email before logging in"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Logout current user",
+        "description": "Invalidate current session and log out user",
+        "operationId": "logout",
+        "tags": ["Authentication"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logout successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Logged out successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/oauth/google": {
+      "get": {
+        "summary": "Initiate Google OAuth flow",
+        "description": "Redirects user to Google OAuth consent screen",
+        "operationId": "googleOAuthInit",
+        "tags": ["Authentication", "OAuth"],
+        "parameters": [
+          {
+            "name": "redirect_to",
+            "in": "query",
+            "description": "URL to redirect after successful authentication",
+            "schema": {
+              "type": "string",
+              "default": "/dashboard"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to Google OAuth"
+          }
+        }
+      }
+    },
+    "/auth/oauth/callback": {
+      "get": {
+        "summary": "OAuth callback handler",
+        "description": "Handles OAuth provider callback and completes authentication",
+        "operationId": "oauthCallback",
+        "tags": ["Authentication", "OAuth"],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "description": "OAuth authorization code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "OAuth state parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to application with session"
+          },
+          "400": {
+            "description": "Invalid OAuth callback",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "summary": "Request password reset",
+        "description": "Send password reset email to user. Link expires in 1 hour.",
+        "operationId": "requestPasswordReset",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordResetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset email sent (or email doesn't exist, for security)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "If an account exists with this email, you will receive reset instructions"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/update-password": {
+      "post": {
+        "summary": "Update password with reset token",
+        "description": "Set new password using reset token from email",
+        "operationId": "updatePassword",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Password updated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-email": {
+      "post": {
+        "summary": "Verify email address",
+        "description": "Verify user email using token from verification email",
+        "operationId": "verifyEmail",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailVerificationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email verified successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Email verified successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Get current user profile",
+        "description": "Retrieve authenticated user's profile information",
+        "operationId": "getProfile",
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update user profile",
+        "description": "Update authenticated user's profile information",
+        "operationId": "updateProfile",
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/avatar": {
+      "post": {
+        "summary": "Upload profile avatar",
+        "description": "Upload or update user's profile picture. Max 5MB, JPG/PNG/WebP only.",
+        "operationId": "uploadAvatar",
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Image file (JPG, PNG, or WebP, max 5MB)"
+                  }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Avatar uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "avatar_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://storage.leavelab.com/avatars/user-123-1696723200000.webp"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid file (wrong format, too large, etc.)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/change-password": {
+      "post": {
+        "summary": "Change password (authenticated)",
+        "description": "Change password for authenticated user. Requires current password.",
+        "operationId": "changePassword",
+        "tags": ["Account"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password changed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Password changed successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request (weak password, wrong current password, etc.)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/sessions": {
+      "get": {
+        "summary": "Get active sessions",
+        "description": "List all active sessions for the authenticated user",
+        "operationId": "getSessions",
+        "tags": ["Account"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sessions retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Session"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Logout all sessions",
+        "description": "Invalidate all active sessions except current one",
+        "operationId": "logoutAllSessions",
+        "tags": ["Account"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All sessions logged out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Logged out of all devices"
+                    },
+                    "sessions_terminated": {
+                      "type": "integer",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account": {
+      "delete": {
+        "summary": "Delete user account",
+        "description": "Soft-delete user account. Actual deletion after 30 days.",
+        "operationId": "deleteAccount",
+        "tags": ["Account"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account deletion initiated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Your account has been scheduled for deletion. You have 30 days to recover it."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/export": {
+      "get": {
+        "summary": "Export user data (GDPR)",
+        "description": "Download all user data in JSON format",
+        "operationId": "exportData",
+        "tags": ["Account"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data export successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDataExport"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "SignupRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8,
+            "example": "SecurePass123!"
+          },
+          "display_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "John Doe"
+          }
+        }
+      },
+      "SignupResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "message": {
+            "type": "string",
+            "example": "Account created. Please check your email to verify your address."
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "SecurePass123!"
+          },
+          "remember_me": {
+            "type": "boolean",
+            "default": false,
+            "description": "Extend session duration"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "session": {
+            "$ref": "#/components/schemas/Session"
+          }
+        }
+      },
+      "PasswordResetRequest": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          }
+        }
+      },
+      "UpdatePasswordRequest": {
+        "type": "object",
+        "required": ["token", "password"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Password reset token from email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8,
+            "example": "NewSecurePass123!"
+          }
+        }
+      },
+      "EmailVerificationRequest": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Email verification token from email"
+          }
+        }
+      },
+      "UpdateProfileRequest": {
+        "type": "object",
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "bio": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "timezone": {
+            "type": "string",
+            "example": "Europe/London"
+          },
+          "language": {
+            "type": "string",
+            "example": "en-GB"
+          }
+        }
+      },
+      "ChangePasswordRequest": {
+        "type": "object",
+        "required": ["current_password", "new_password"],
+        "properties": {
+          "current_password": {
+            "type": "string",
+            "format": "password"
+          },
+          "new_password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "email_confirmed": {
+            "type": "boolean",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T12:00:00Z"
+          },
+          "last_sign_in_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T14:30:00Z"
+          }
+        }
+      },
+      "UserProfile": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/User"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "example": "John Doe"
+              },
+              "avatar_url": {
+                "type": "string",
+                "format": "uri",
+                "nullable": true,
+                "example": "https://storage.leavelab.com/avatars/user-123.webp"
+              },
+              "bio": {
+                "type": "string",
+                "nullable": true,
+                "example": "Aspiring digital nomad learning to build AI agencies"
+              },
+              "timezone": {
+                "type": "string",
+                "example": "Europe/London"
+              },
+              "language": {
+                "type": "string",
+                "example": "en-GB"
+              },
+              "membership_tier": {
+                "type": "string",
+                "enum": ["free", "basic", "premium"],
+                "example": "free"
+              },
+              "onboarding_completed": {
+                "type": "boolean",
+                "example": false
+              }
+            }
+          }
+        ]
+      },
+      "Session": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "JWT access token"
+          },
+          "token_type": {
+            "type": "string",
+            "example": "bearer"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "Token expiry in seconds",
+            "example": 3600
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-15T12:00:00Z"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "UserDataExport": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "profile": {
+            "type": "object",
+            "description": "User profile data"
+          },
+          "auth_logs": {
+            "type": "array",
+            "description": "Authentication history",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Invalid email or password"
+          },
+          "code": {
+            "type": "string",
+            "example": "AUTH_INVALID_CREDENTIALS"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Additional error context"
+          }
+        },
+        "required": ["error"]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "User authentication operations (signup, login, OAuth)"
+    },
+    {
+      "name": "OAuth",
+      "description": "OAuth provider integration"
+    },
+    {
+      "name": "Profile",
+      "description": "User profile management"
+    },
+    {
+      "name": "Account",
+      "description": "Account settings and security"
+    }
+  ]
+}

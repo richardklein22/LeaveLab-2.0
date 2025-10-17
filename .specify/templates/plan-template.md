@@ -31,7 +31,20 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Review each principle from `.specify/memory/constitution.md` and verify compliance:
+
+- [ ] **Mobile-First Development**: Design and implementation prioritises mobile experience, meets performance budgets (<3s load, <5s TTI on 3G)
+- [ ] **API-First Architecture**: APIs designed and documented before UI, webhook support for n8n, versioned endpoints
+- [ ] **Security & Privacy**: RLS policies defined, authentication implemented, GDPR compliance considered, Stripe integration follows PCI standards
+- [ ] **Modular Content Architecture**: Feature can be deployed independently, follows domain-based organisation
+- [ ] **Test-Driven Development**: Tests written first, 80% coverage target, Stripe webhooks tested in CI
+- [ ] **Performance & UX**: Core Web Vitals targets met, British English copy, skeleton loaders, error boundaries
+
+**Complexity Justification Required If**:
+- Feature adds non-standard dependencies
+- Architecture deviates from established patterns
+- Performance budgets cannot be met (must document mitigation)
+- Testing coverage falls below 80% (must justify exceptions)
 
 ## Project Structure
 

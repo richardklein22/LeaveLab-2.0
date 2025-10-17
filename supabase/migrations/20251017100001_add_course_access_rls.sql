@@ -1,0 +1,322 @@
+-- ============================================================================
+-- PLACEHOLDER: Course Access RLS Policies
+-- ============================================================================
+-- This migration contains placeholder RLS policies for the courses table.
+-- The courses table does not exist yet, so this migration serves as
+-- documentation and a template for future implementation.
+--
+-- WHEN TO IMPLEMENT:
+-- When the courses table is created, uncomment and adapt the policies below.
+--
+-- SUBSCRIPTION TIER ACCESS RULES:
+-- --------------------------------
+-- Free Tier:
+--   - Can access the FIRST MODULE of EVERY course (no enrollment needed)
+--   - This allows users to try any course before upgrading
+--   - Module 1 (or lessons marked as is_preview) are always accessible
+--   - No access to modules 2+ without upgrading
+--
+-- Basic Tier:
+--   - Can ENROLL in 1 full course at a time
+--   - Full access to ALL modules and lessons in their 1 enrolled course
+--   - Can switch courses but limited to 1 active enrollment
+--   - Still gets Free tier access (first module of unenrolled courses)
+--
+-- Premium Tier:
+--   - Unlimited course enrollments
+--   - Can enroll in multiple courses simultaneously
+--   - Full access to all lessons across all courses
+--   - No restrictions
+--
+-- EXISTING DATABASE FUNCTION:
+-- The can_access_content() function is already available:
+--   can_access_content(user_uuid UUID, content_type TEXT, content_level TEXT)
+-- ============================================================================
+
+-- ============================================================================
+-- FUTURE TABLE STRUCTURE (for reference)
+-- ============================================================================
+-- When implementing, the courses table should have a structure similar to:
+--
+-- CREATE TABLE IF NOT EXISTS public.courses (
+--   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--   title TEXT NOT NULL,
+--   description TEXT,
+--   slug TEXT UNIQUE NOT NULL,
+--   is_preview BOOLEAN DEFAULT false,
+--   tier_required TEXT CHECK (tier_required IN ('free', 'basic', 'premium')),
+--   created_at TIMESTAMPTZ DEFAULT now(),
+--   updated_at TIMESTAMPTZ DEFAULT now()
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS public.course_modules (
+--   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--   course_id UUID REFERENCES public.courses(id) ON DELETE CASCADE,
+--   title TEXT NOT NULL,
+--   description TEXT,
+--   order_index INTEGER NOT NULL,
+--   is_free BOOLEAN DEFAULT false, -- TRUE for module 1 (accessible to all)
+--   created_at TIMESTAMPTZ DEFAULT now(),
+--   updated_at TIMESTAMPTZ DEFAULT now()
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS public.lessons (
+--   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--   course_id UUID REFERENCES public.courses(id) ON DELETE CASCADE,
+--   module_id UUID REFERENCES public.course_modules(id) ON DELETE CASCADE,
+--   title TEXT NOT NULL,
+--   content TEXT,
+--   order_index INTEGER NOT NULL,
+--   video_url TEXT,
+--   created_at TIMESTAMPTZ DEFAULT now(),
+--   updated_at TIMESTAMPTZ DEFAULT now()
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS public.course_enrollments (
+--   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+--   course_id UUID REFERENCES public.courses(id) ON DELETE CASCADE,
+--   enrolled_at TIMESTAMPTZ DEFAULT now(),
+--   completed_at TIMESTAMPTZ,
+--   UNIQUE(user_id, course_id)
+-- );
+
+-- ============================================================================
+-- PLACEHOLDER: Enable RLS on courses tables
+-- ============================================================================
+-- Uncomment when courses table is created:
+--
+-- ALTER TABLE public.courses ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE public.course_modules ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE public.lessons ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE public.course_enrollments ENABLE ROW LEVEL SECURITY;
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Course Viewing
+-- ============================================================================
+-- This policy determines which courses a user can view based on their tier.
+-- Premium users see all courses, Basic users see courses they can access with
+-- their tier, and Free users can only see preview content.
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can view courses based on subscription tier"
+--   ON public.courses
+--   FOR SELECT
+--   TO authenticated
+--   USING (
+--     -- Allow if user has access to this content type
+--     can_access_content(auth.uid(), 'course', tier_required)
+--     OR
+--     -- Always allow viewing preview courses
+--     is_preview = true
+--   );
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Module Access
+-- ============================================================================
+-- Controls which course modules users can view based on subscription tier.
+-- Free users can ONLY access modules marked as is_free = true (first module).
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can view modules based on subscription"
+--   ON public.course_modules
+--   FOR SELECT
+--   TO authenticated
+--   USING (
+--     -- Allow if module is marked as free (module 1 of any course)
+--     is_free = true
+--     OR
+--     -- Allow if user is enrolled in this course (Basic or Premium with enrollment)
+--     EXISTS (
+--       SELECT 1 FROM public.course_enrollments ce
+--       WHERE ce.user_id = auth.uid()
+--         AND ce.course_id = course_modules.course_id
+--     )
+--     OR
+--     -- Premium users get access to all modules even without enrollment
+--     (
+--       SELECT st.name FROM public.user_subscriptions us
+--       JOIN public.subscription_tiers st ON us.tier_id = st.id
+--       WHERE us.user_id = auth.uid()
+--         AND us.status = 'active'
+--       LIMIT 1
+--     ) = 'premium'
+--   );
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Lesson Access
+-- ============================================================================
+-- Controls access to individual lessons within modules.
+-- Users can access lessons if they can access the parent module.
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can view lessons if they can access the module"
+--   ON public.lessons
+--   FOR SELECT
+--   TO authenticated
+--   USING (
+--     -- Check if user can access the parent module
+--     EXISTS (
+--       SELECT 1 FROM public.course_modules cm
+--       WHERE cm.id = lessons.module_id
+--         AND (
+--           -- Module is free (first module)
+--           cm.is_free = true
+--           OR
+--           -- User is enrolled in the course
+--           EXISTS (
+--             SELECT 1 FROM public.course_enrollments ce
+--             WHERE ce.user_id = auth.uid()
+--               AND ce.course_id = cm.course_id
+--           )
+--           OR
+--           -- User has Premium subscription
+--           (
+--             SELECT st.name FROM public.user_subscriptions us
+--             JOIN public.subscription_tiers st ON us.tier_id = st.id
+--             WHERE us.user_id = auth.uid()
+--               AND us.status = 'active'
+--             LIMIT 1
+--           ) = 'premium'
+--         )
+--     )
+--   );
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Course Enrollments - View
+-- ============================================================================
+-- Users can view their own enrollments
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can view their own course enrollments"
+--   ON public.course_enrollments
+--   FOR SELECT
+--   TO authenticated
+--   USING (user_id = auth.uid());
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Course Enrollments - Insert
+-- ============================================================================
+-- Controls who can enroll in courses based on their subscription tier.
+-- Basic users are limited to 1 active enrollment.
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can enroll in courses based on subscription tier"
+--   ON public.course_enrollments
+--   FOR INSERT
+--   TO authenticated
+--   WITH CHECK (
+--     -- User is enrolling themselves
+--     user_id = auth.uid()
+--     AND
+--     -- User has access to course content
+--     can_access_content(auth.uid(), 'course', NULL)
+--     AND
+--     (
+--       -- Premium users can enroll in unlimited courses
+--       (
+--         SELECT tier FROM public.user_subscriptions
+--         WHERE user_id = auth.uid()
+--           AND status = 'active'
+--         LIMIT 1
+--       ) = 'premium'
+--       OR
+--       -- Basic users can only have 1 active enrollment
+--       (
+--         (
+--           SELECT tier FROM public.user_subscriptions
+--           WHERE user_id = auth.uid()
+--             AND status = 'active'
+--           LIMIT 1
+--         ) = 'basic'
+--         AND
+--         (
+--           SELECT COUNT(*) FROM public.course_enrollments
+--           WHERE user_id = auth.uid()
+--             AND completed_at IS NULL
+--         ) < 1
+--       )
+--     )
+--   );
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Course Enrollments - Update
+-- ============================================================================
+-- Users can update their own enrollments (e.g., mark as completed)
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can update their own course enrollments"
+--   ON public.course_enrollments
+--   FOR UPDATE
+--   TO authenticated
+--   USING (user_id = auth.uid())
+--   WITH CHECK (user_id = auth.uid());
+
+-- ============================================================================
+-- PLACEHOLDER: RLS Policy for Course Enrollments - Delete
+-- ============================================================================
+-- Users can unenroll from courses (delete their enrollments)
+--
+-- Uncomment and adapt when implementing:
+--
+-- CREATE POLICY "Users can delete their own course enrollments"
+--   ON public.course_enrollments
+--   FOR DELETE
+--   TO authenticated
+--   USING (user_id = auth.uid());
+
+-- ============================================================================
+-- IMPLEMENTATION NOTES
+-- ============================================================================
+-- 1. The can_access_content() function is already available in the database
+--    and should be used for tier-based access checks.
+--
+-- 2. When implementing, ensure that:
+--    - First lesson of each course has is_preview = true
+--    - Course tier_required matches subscription tier names
+--    - Enrollment tracking is accurate for Basic tier limitations
+--
+-- 3. Testing checklist when implementing:
+--    - Free users can view ALL first modules (module 1 of every course)
+--    - Free users CANNOT view modules 2+ without enrolling
+--    - Basic users can enroll in exactly 1 course at a time
+--    - Basic users get full access to their 1 enrolled course (all modules)
+--    - Basic users can switch courses after completing or unenrolling
+--    - Premium users can access all modules in all courses (no enrollment needed)
+--    - Premium users can still enroll for progress tracking
+--
+-- 4. Consider adding indexes when implementing:
+--    - CREATE INDEX idx_course_enrollments_user_id ON public.course_enrollments(user_id);
+--    - CREATE INDEX idx_course_enrollments_course_id ON public.course_enrollments(course_id);
+--    - CREATE INDEX idx_course_modules_course_id ON public.course_modules(course_id);
+--    - CREATE INDEX idx_course_modules_is_free ON public.course_modules(is_free);
+--    - CREATE INDEX idx_lessons_module_id ON public.lessons(module_id);
+--    - CREATE INDEX idx_lessons_course_id ON public.lessons(course_id);
+--
+-- 5. Tier upgrade/downgrade handling:
+--    - When downgrading from Premium to Basic:
+--      * Keep existing enrollments (if only 1 active)
+--      * If multiple enrollments exist, require user to choose 1 to keep active
+--      * Still allow access to first module of all courses
+--    - When downgrading from Basic to Free:
+--      * Keep enrollment records for progress tracking
+--      * Restrict access to first module only (lose access to enrolled course modules 2+)
+--      * User can re-upgrade to continue where they left off
+--    - When upgrading from Free to Basic:
+--      * Can now enroll in 1 course to unlock full access
+--      * Still retain first-module access to all other courses
+--    - When upgrading to Premium:
+--      * Gain instant access to all modules in all courses
+--      * No enrollment needed (but can enroll for progress tracking)
+-- ============================================================================
+
+-- Placeholder migration to track version
+-- This can be uncommented to make the migration valid even without actual changes
+SELECT 'Course access RLS policies placeholder created' AS message;
+
