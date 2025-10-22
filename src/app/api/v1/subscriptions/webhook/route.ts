@@ -264,17 +264,20 @@ async function handleCheckoutSessionCompleted(event: Stripe.Event, supabase: any
   // Set trial dates if subscription has trial
   if (session.subscription) {
     const { stripe } = await import('@/features/subscriptions/lib/stripe-server');
-    const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
     
-    if (subscription.trial_start && subscription.trial_end) {
-      subscriptionData.trial_start = new Date(subscription.trial_start * 1000).toISOString();
-      subscriptionData.trial_end = new Date(subscription.trial_end * 1000).toISOString();
-      subscriptionData.status = 'trialing';
-    }
-    
-    if ((subscription as any).current_period_start && (subscription as any).current_period_end) {
-      subscriptionData.current_period_start = new Date((subscription as any).current_period_start * 1000).toISOString();
-      subscriptionData.current_period_end = new Date((subscription as any).current_period_end * 1000).toISOString();
+    if (stripe) {
+      const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
+      
+      if (subscription.trial_start && subscription.trial_end) {
+        subscriptionData.trial_start = new Date(subscription.trial_start * 1000).toISOString();
+        subscriptionData.trial_end = new Date(subscription.trial_end * 1000).toISOString();
+        subscriptionData.status = 'trialing';
+      }
+      
+      if ((subscription as any).current_period_start && (subscription as any).current_period_end) {
+        subscriptionData.current_period_start = new Date((subscription as any).current_period_start * 1000).toISOString();
+        subscriptionData.current_period_end = new Date((subscription as any).current_period_end * 1000).toISOString();
+      }
     }
   }
   
