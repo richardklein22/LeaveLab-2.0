@@ -75,6 +75,8 @@ export async function GET(request: NextRequest) {
         cancelled_at,
         trial_start,
         trial_end,
+        created_at,
+        updated_at,
         tier:subscription_tiers!inner(
           id,
           name,

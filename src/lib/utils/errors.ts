@@ -100,61 +100,62 @@ export function formatAuthError(error: unknown): string {
   return "An unexpected error occurred";
 }
 
-export function formatStripeError(error: Stripe.StripeError): {
+export function formatStripeError(error: Stripe.StripeRawError): {
   message: string;
   statusCode: number;
   type: string;
 } {
   const baseMessage = error.message || "Payment processing error";
+  const errorType = error.type as string;
 
-  switch (error.type) {
-    case "StripeCardError":
+  switch (errorType) {
+    case "card_error":
       return {
         message: `Card error: ${baseMessage}`,
         statusCode: 400,
-        type: error.type,
+        type: errorType,
       };
 
-    case "StripeRateLimitError":
+    case "rate_limit_error":
       return {
         message: "Too many requests. Please try again shortly.",
         statusCode: 429,
-        type: error.type,
+        type: errorType,
       };
 
-    case "StripeInvalidRequestError":
+    case "invalid_request_error":
       return {
         message: "Invalid payment request. Please try again or contact support.",
         statusCode: 400,
-        type: error.type,
+        type: errorType,
       };
 
-    case "StripeAPIError":
+    case "api_error":
       return {
         message: "Payment service error. Please try again later.",
         statusCode: 502,
-        type: error.type,
+        type: errorType,
       };
 
-    case "StripeConnectionError":
+    case "api_connection_error":
       return {
         message: "Unable to connect to payment service. Please check your connection.",
         statusCode: 503,
-        type: error.type,
+        type: errorType,
       };
 
-    case "StripeAuthenticationError":
+    case "authentication_error":
       return {
         message: "Payment authentication error. Please contact support.",
         statusCode: 500,
-        type: error.type,
+        type: errorType,
       };
 
     default:
       return {
         message: baseMessage,
         statusCode: 500,
-        type: error.type || "unknown",
+        type: errorType || "unknown",
       };
   }
 }
@@ -187,7 +188,7 @@ export function isAuthError(error: unknown): error is AuthError {
   return error instanceof AuthError;
 }
 
-export function isStripeError(error: unknown): error is Stripe.StripeError {
+export function isStripeError(error: unknown): error is Stripe.StripeRawError {
   return (
     typeof error === "object" &&
     error !== null &&

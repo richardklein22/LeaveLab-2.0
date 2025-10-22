@@ -66,7 +66,7 @@ export async function waitForLoadingComplete(page: Page) {
  */
 export async function selectPricingTier(page: Page, tierName: 'free' | 'basic' | 'premium') {
   const tierCard = page.locator(`[data-tier="${tierName}"]`).or(
-    page.locator(`text=${tierName}`, { exact: false }).locator('..').locator('..')
+    page.locator(`text=${tierName}`).locator('..').locator('..')
   );
   return tierCard;
 }

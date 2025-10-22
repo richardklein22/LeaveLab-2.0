@@ -1,7 +1,16 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+
+export const metadata: Metadata = {
+  title: 'LeaveLab - Live & Work in Thailand | Online Business + Visa Support',
+  description: 'Featured in Daily Mail. Partner with Skyscanner & Worldpackers. Launch your online business, get visa support, and relocate to Thailand. Real success stories from UK & USA clients.',
+  keywords: ['digital nomad Thailand', 'online business coaching', 'Thailand visa support', 'work from Thailand', 'remote business', 'Amazon FBA Thailand', 'digital nomad courses', 'relocate to Thailand'],
+};
 import {
   Accordion,
   AccordionContent,
@@ -28,6 +37,15 @@ import {
   Shield,
   Award,
   Rocket,
+  Briefcase,
+  FileText,
+  Calendar,
+  Building,
+  Handshake,
+  Bot,
+  DollarSign,
+  Camera,
+  Newspaper,
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -114,8 +132,8 @@ export default function LandingPage() {
             {/* Badge */}
             <div className="flex justify-center mb-8 animate-float">
               <Badge className="glass-red text-brand-red-200 border-brand-red/30 px-6 py-2 text-sm hover:bg-brand-red/20 transition-colors">
-                <Zap className="w-4 h-4 mr-2 inline animate-pulse" />
-                Join 10,000+ Digital Nomads Worldwide
+                <Award className="w-4 h-4 mr-2 inline animate-pulse" />
+                Featured in Daily Mail • 2 Global Partnerships
               </Badge>
             </div>
             
@@ -135,39 +153,22 @@ export default function LandingPage() {
               </div>
         </h1>
             
-            {/* Subheadline */}
-            <p className="text-center text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Master <span className="text-white font-semibold">remote income</span>, navigate{' '}
-              <span className="text-white font-semibold">global visas</span>, and find your{' '}
-              <span className="text-brand-red font-semibold">perfect home</span> abroad. 
-              <br className="hidden md:block" />
-              Everything you need to become location-independent.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            {/* Mobile-Optimized CTA */}
+            <div className="flex flex-col items-center gap-6 mb-16">
               <Link href="/signup">
                 <Button 
                   size="lg" 
-                  className="bg-brand-red hover:bg-brand-red-600 text-lg px-10 py-7 tap-target magnetic-button relative group overflow-hidden text-white shadow-2xl shadow-brand-red/50"
+                  className="bg-brand-red hover:bg-brand-red-600 text-xl px-12 py-8 tap-target magnetic-button relative group overflow-hidden text-white shadow-2xl shadow-brand-red/50"
                 >
                   <span className="relative z-10 flex items-center gap-3">
                     <Sparkles className="w-6 h-6" />
-                    Start Free Trial
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    Start Your Free Trial Now
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 animate-glow" />
                 </Button>
               </Link>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="glass text-lg px-10 py-7 tap-target text-white border-white/20 hover:bg-white/10 hover:border-brand-red/50 magnetic-button"
-              >
-                <Play className="mr-3 h-6 w-6" />
-                Watch Demo
-              </Button>
             </div>
 
             {/* Trust Indicators with Icons */}
@@ -182,7 +183,7 @@ export default function LandingPage() {
                 <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
                   <Shield className="h-5 w-5 text-brand-red" />
                 </div>
-                <span className="group-hover:text-white transition-colors">No credit card</span>
+                <span className="group-hover:text-white transition-colors">Secure payment</span>
               </div>
               <div className="flex items-center gap-2 group">
                 <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
@@ -196,149 +197,494 @@ export default function LandingPage() {
 
         {/* Floating Elements */}
         <div className="absolute bottom-10 left-10 glass p-4 rounded-2xl animate-float hidden lg:block">
-          <div className="text-3xl font-bold text-brand-red">10K+</div>
-          <div className="text-xs text-gray-400">Members</div>
+          <div className="text-3xl font-bold text-brand-red">50+</div>
+          <div className="text-xs text-gray-400">Relocations</div>
         </div>
         <div className="absolute top-1/3 right-10 glass p-4 rounded-2xl animate-float animation-delay-2000 hidden lg:block">
           <div className="flex items-center gap-2">
-            <Star className="w-5 h-5 text-brand-red fill-brand-red" />
-            <div className="text-2xl font-bold">4.9</div>
+            <Newspaper className="w-5 h-5 text-brand-red" />
+            <div className="text-2xl font-bold">4</div>
           </div>
-          <div className="text-xs text-gray-400">Rating</div>
+          <div className="text-xs text-gray-400">Media Features</div>
         </div>
       </section>
 
-      {/* Stats Section with Glassmorphism */}
+      {/* Who This Is For Section - Mobile Optimized */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 glass-red text-brand-red-200 border-brand-red/30">
+              Perfect For You If
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-black mb-4">
+              You're Ready to <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Break Free</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Persona 1 - Mobile Optimized */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Briefcase className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Stuck in 9-5
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Ready to build your first online business.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>Perfect for beginners</span>
+              </div>
+            </div>
+
+            {/* Persona 2 - Mobile Optimized */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <TrendingUp className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Remote Worker
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Optimize your location and visa situation.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>Level up your setup</span>
+              </div>
+            </div>
+
+            {/* Persona 3 - Mobile Optimized */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Globe className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Aspiring Nomad
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Need guidance on visas and business setup.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>Complete support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Comprehensive Value Section - Mobile Optimized */}
+      <section className="py-20 relative bg-brand-dark-900/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 glass-red text-brand-red-200 border-brand-red/30">
+              Complete Solution
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-black mb-4">
+              Everything You Need to <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Live & Work Abroad</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Value 1 - Online Business Coaching */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer border-2 border-transparent hover:border-brand-red/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Briefcase className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Business Coaching
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Amazon FBA, AI agencies, remote sales with step-by-step courses.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>4 Proven Models</span>
+              </div>
+            </div>
+
+            {/* Value 2 - Visa & Relocation Support */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer border-2 border-transparent hover:border-brand-red/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <FileText className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Visa & Relocation
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Complete visa guidance and accommodation sourcing.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>50+ Countries</span>
+              </div>
+            </div>
+
+            {/* Value 3 - Travel & Lifestyle Benefits */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer border-2 border-transparent hover:border-brand-red/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Plane className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Travel Benefits
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Exclusive flight deals and accommodation discounts.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>Official Partners</span>
+              </div>
+            </div>
+
+            {/* Value 4 - Community & Support */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 group cursor-pointer border-2 border-transparent hover:border-brand-red/50">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Users className="h-6 w-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-brand-red transition-colors">
+                Community & Support
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                Join 1,000+ digital nomads and get mentorship.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-brand-red font-semibold">
+                <CheckCircle className="w-3 h-3" />
+                <span>Global Community</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Intermediate CTA */}
+          <div className="text-center mt-12">
+            <Link href="/signup">
+              <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-8 py-4 magnetic-button text-white">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Get All This + More
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Consolidated Social Proof Section */}
+      <section className="py-32 relative">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-20">
+            <Badge className="mb-6 glass-red text-brand-red-200 border-brand-red/30">
+              Trusted & Featured
+            </Badge>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
+              Join <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">1,000+</span> Successful Nomads
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Featured in major publications and trusted by global partners
+            </p>
+          </div>
+
+          {/* Featured In */}
+          <div className="glass rounded-3xl p-8 mb-12 max-w-5xl mx-auto">
+            <p className="text-center text-sm text-gray-500 uppercase tracking-wider mb-8">
+              As Featured In
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
+              <div className="group cursor-pointer transition-all duration-300 hover:scale-110">
+                <div className="flex items-center gap-2 grayscale group-hover:grayscale-0 transition-all">
+                  <Newspaper className="w-6 h-6 text-gray-400 group-hover:text-brand-red transition-colors" />
+                  <span className="text-xl font-bold text-gray-400 group-hover:text-brand-red transition-colors">
+                    Daily Mail
+                  </span>
+                </div>
+              </div>
+              <div className="group cursor-pointer transition-all duration-300 hover:scale-110">
+                <div className="flex items-center gap-2 grayscale group-hover:grayscale-0 transition-all">
+                  <Newspaper className="w-6 h-6 text-gray-400 group-hover:text-brand-red transition-colors" />
+                  <span className="text-xl font-bold text-gray-400 group-hover:text-brand-red transition-colors">
+                    The Mirror
+                  </span>
+                </div>
+              </div>
+              <div className="group cursor-pointer transition-all duration-300 hover:scale-110">
+                <div className="flex items-center gap-2 grayscale group-hover:grayscale-0 transition-all">
+                  <Newspaper className="w-6 h-6 text-gray-400 group-hover:text-brand-red transition-colors" />
+                  <span className="text-xl font-bold text-gray-400 group-hover:text-brand-red transition-colors">
+                    The Sun
+                  </span>
+                </div>
+              </div>
+              <div className="group cursor-pointer transition-all duration-300 hover:scale-110">
+                <div className="flex items-center gap-2 grayscale group-hover:grayscale-0 transition-all">
+                  <Newspaper className="w-6 h-6 text-gray-400 group-hover:text-brand-red transition-colors" />
+                  <span className="text-xl font-bold text-gray-400 group-hover:text-brand-red transition-colors">
+                    Joe.co.uk
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats */}
           <div className="glass rounded-3xl p-8 max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center group cursor-pointer">
                 <div className="text-5xl font-black bg-gradient-to-br from-brand-red to-brand-red-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
-                  10K+
+                  1,000+
                 </div>
-                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Active Members</div>
+                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Community Members</div>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="text-5xl font-black bg-gradient-to-br from-brand-red to-brand-red-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
                   50+
                 </div>
-                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Countries</div>
+                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Successful Relocations</div>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="text-5xl font-black bg-gradient-to-br from-brand-red to-brand-red-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
-                  100+
+                  20+
                 </div>
-                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Lessons</div>
+                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Hours of Content</div>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="text-5xl font-black bg-gradient-to-br from-brand-red to-brand-red-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
-                  4.9/5
+                  2
                 </div>
-                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Rating</div>
+                <div className="text-sm text-gray-400 group-hover:text-brand-red transition-colors">Global Partnerships</div>
               </div>
+            </div>
+          </div>
+
+          {/* Intermediate CTA */}
+          <div className="text-center mt-12">
+            <Link href="/signup">
+              <Button size="lg" variant="outline" className="glass border-white/20 text-white hover:bg-white/10 hover:border-brand-red/50 px-8 py-6 magnetic-button">
+                Join the Community
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Official Partners Section - NEW */}
+      <section className="py-32 relative">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-20">
+            <Badge className="mb-6 glass-red text-brand-red-200 border-brand-red/30">
+              Official Partners
+            </Badge>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
+              Trusted <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Partners</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Strategic partnerships to enhance your nomad experience
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-1 gap-8 max-w-6xl mx-auto">
+            {/* Partner 1 - Skyscanner Official Widget */}
+            <div className="glass rounded-3xl p-8 hover:scale-[1.01] transition-transform duration-500 ease-out group">
+              <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Plane className="h-8 w-8 text-brand-red" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold group-hover:text-brand-red transition-colors">
+                      Skyscanner
+                    </h3>
+                    <p className="text-lg text-gray-400">
+                      Official Flight Partner
+                    </p>
+                  </div>
+                </div>
+                <Badge variant="outline" className="text-brand-red border-brand-red/50 bg-brand-red/5">
+                  <Handshake className="w-3 h-3 mr-2 inline" />
+                  Verified Partner
+                </Badge>
+              </div>
+              
+              <p className="text-gray-400 leading-relaxed mb-6 text-center">
+                Book your flight to Thailand with exclusive LeaveLab member deals
+              </p>
+              
+              {/* Official Skyscanner Search Widget */}
+              <div
+                data-skyscanner-widget="SearchWidget"
+                data-locale="en-GB"
+                data-market="UK"
+                data-currency="GBP"
+                data-media-partner-id="6615071"
+                data-colour="#161616"
+                data-arrow-icon="true"
+                data-powered-by-logo-colour="light"
+                data-powered-by-size="1.2"
+                data-font-colour="#EF4444"
+                data-flight-button-text="LeaveLab Exclusive Deals"
+                data-button-colour="#DC2626"
+                data-responsive="true"
+                data-widget-border-radius="24"
+                data-widget-padding="32"
+                data-widget-scale="1"
+                data-button-text-size="1"
+                data-origin-iata-code="LHR"
+                data-origin-name="London Heathrow"
+                data-destination-iata-code="BKK"
+                data-destination-name="Bangkok"
+                data-hide-powered-by="false"
+              ></div>
+            </div>
+
+            {/* Partner 2 - Worldpackers */}
+            <div className="relative rounded-3xl overflow-hidden card-3d transition-all duration-500 ease-out group cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-brand-red/20 border-2 border-transparent hover:border-brand-red/30 min-h-[500px]">
+              {/* Full Card Background - Worldpackers Banner */}
+              <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+                <Image
+                  src="/partners/worldpackers-banner.jpg"
+                  alt="Worldpackers - Official Accommodation Partner"
+                  fill
+                  className="object-cover object-center"
+                  priority={false}
+                  quality={90}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+              
+              {/* Dark overlay for text readability - stronger at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-b from-brand-dark-950/60 via-brand-dark-950/70 to-brand-dark-950/85 pointer-events-none" />
+              
+              {/* Subtle color overlay to reduce brightness */}
+              <div className="absolute inset-0 bg-[#2C5F6F]/20 mix-blend-multiply pointer-events-none" />
+              
+              {/* Glow effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-red/0 via-brand-red/5 to-brand-red/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              {/* Animated gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              
+              {/* Shimmer effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500" />
+              </div>
+              
+              {/* Content Section - Centered, positioned upper portion */}
+              <div className="relative h-full flex items-start justify-center p-10 pt-20">
+                <div className="max-w-xl text-center">
+                  {/* Verified Badge with animation */}
+                  <div className="mb-4 flex items-center justify-center gap-2 animate-float">
+                    <Badge variant="outline" className="text-brand-red border-brand-red/60 bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-md px-4 py-1.5">
+                      <Handshake className="w-4 h-4 mr-2 inline animate-pulse" />
+                      Official Partner
+                    </Badge>
+                  </div>
+                  
+                  {/* Title with gradient on hover */}
+                  <h3 className="text-2xl font-black mb-2 transition-all duration-300 group-hover:scale-105">
+                    <span className="bg-gradient-to-r from-white via-white to-white group-hover:from-brand-red group-hover:via-white group-hover:to-brand-red bg-clip-text text-transparent transition-all duration-500 drop-shadow-lg">
+                      Worldpackers
+                    </span>
+                  </h3>
+                  
+                  {/* Subtitle */}
+                  <p className="text-base text-gray-300 mb-3 font-semibold group-hover:text-white transition-colors drop-shadow-md">
+                    Official Accommodation Partner
+                  </p>
+                  
+                  {/* Description */}
+                  <p className="text-gray-400 leading-relaxed text-xs group-hover:text-gray-300 transition-colors mb-6 drop-shadow-md">
+                    Exclusive accommodation deals and verified stays worldwide. Connect with hosts, exchange skills for accommodation, and travel affordably.
+                  </p>
+                  
+                  {/* Decorative elements */}
+                  <div className="flex items-center justify-center gap-3 text-xs text-gray-400 backdrop-blur-sm flex-wrap">
+                    <div className="flex items-center gap-1.5 group-hover:text-brand-red transition-colors">
+                      <Home className="w-3.5 h-3.5" />
+                      <span>Global Network</span>
+                    </div>
+                    <div className="w-1 h-1 rounded-full bg-gray-500" />
+                    <div className="flex items-center gap-1.5 group-hover:text-brand-red transition-colors">
+                      <Users className="w-3.5 h-3.5" />
+                      <span>Verified Hosts</span>
+                    </div>
+                    <div className="w-1 h-1 rounded-full bg-gray-500" />
+                    <div className="flex items-center gap-1.5 group-hover:text-brand-red transition-colors">
+                      <Globe className="w-3.5 h-3.5" />
+                      <span>140+ Countries</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Bottom glow effect */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section with 3D Cards */}
-      <section id="features" className="py-32 relative">
+      {/* Pain Points Section - Mobile Optimized */}
+      <section className="py-20 relative">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-20">
-            <Badge className="mb-6 glass-red text-brand-red-200 border-brand-red/30">
-              Everything You Need
+          <div className="text-center mb-12">
+            <Badge className="mb-4 glass-red text-brand-red-200 border-brand-red/30">
+              Common Concerns Answered
             </Badge>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
-              Your Complete
-              <br />
-              <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">
-                Freedom Toolkit
-              </span>
+            <h2 className="text-3xl md:text-4xl font-black mb-4">
+              We&apos;ve Got <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">You Covered</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Everything you need to break free from the 9-5 and live life on your terms
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Feature 1 - 3D Card */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <GraduationCap className="h-8 w-8 text-brand-red" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {/* Pain Point 1 - Mobile Optimized */}
+            <div className="glass rounded-xl p-4 hover:glass-red transition-all duration-300 group">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <Target className="h-5 w-5 text-brand-red" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">
-                Income Mastery
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Learn freelancing, remote work, and online business strategies that generate real income from anywhere.
-              </p>
+              <h3 className="text-lg font-bold mb-2 text-white">Stuck in 9-5?</h3>
+              <p className="text-brand-red font-semibold text-sm">→ Business coaching gets you income-independent</p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Plane className="h-8 w-8 text-brand-red" />
+            {/* Pain Point 2 - Mobile Optimized */}
+            <div className="glass rounded-xl p-4 hover:glass-red transition-all duration-300 group">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <FileText className="h-5 w-5 text-brand-red" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">
-                Visa Solutions
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Navigate complex visa requirements with step-by-step guides for 50+ countries worldwide.
-              </p>
+              <h3 className="text-lg font-bold mb-2 text-white">Visa Confusion?</h3>
+              <p className="text-brand-red font-semibold text-sm">→ We handle visa setup A-Z with trusted agents</p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Home className="h-8 w-8 text-brand-red" />
+            {/* Pain Point 3 - Mobile Optimized */}
+            <div className="glass rounded-xl p-4 hover:glass-red transition-all duration-300 group">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <DollarSign className="h-5 w-5 text-brand-red" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">
-                Perfect Homes
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Find your ideal accommodation with insider tips on neighborhoods, costs, and safety ratings.
-              </p>
+              <h3 className="text-lg font-bold mb-2 text-white">Income Stability?</h3>
+              <p className="text-brand-red font-semibold text-sm">→ 4 proven business models + ongoing support</p>
             </div>
 
-            {/* Feature 4 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Target className="h-8 w-8 text-brand-red" />
+            {/* Pain Point 4 - Mobile Optimized */}
+            <div className="glass rounded-xl p-4 hover:glass-red transition-all duration-300 group">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <MapPin className="h-5 w-5 text-brand-red" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">
-                Country Intel
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Deep dives into cost of living, culture, weather, and everything you need before moving.
-              </p>
+              <h3 className="text-lg font-bold mb-2 text-white">Where to Start?</h3>
+              <p className="text-brand-red font-semibold text-sm">→ Step-by-step roadmap from planning to landing</p>
             </div>
+          </div>
 
-            {/* Feature 5 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Users className="h-8 w-8 text-brand-red" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">
-                Global Community
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Connect with thousands of digital nomads, share experiences, and build lasting friendships.
-              </p>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red/20 to-brand-red/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <TrendingUp className="h-8 w-8 text-brand-red" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">
-                Expert Guidance
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Get personalized mentorship from experienced nomads who&apos;ve walked the path before you.
-              </p>
-            </div>
+          {/* Intermediate CTA */}
+          <div className="text-center mt-12">
+            <Link href="/signup">
+              <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-8 py-4 magnetic-button text-white">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Solve These Problems Today
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -358,14 +704,48 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Course 1 */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {/* Course 1 - Amazon FBA Mastery */}
             <Card className="bg-brand-dark-900 border-white/10 overflow-hidden group hover:border-brand-red/50 transition-all duration-300 card-3d">
               <div className="h-56 bg-gradient-to-br from-brand-red to-brand-red-800 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-20 h-20 rounded-full glass flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play className="w-10 h-10 text-white" />
+                    <DollarSign className="w-10 h-10 text-white" />
+                  </div>
+                </div>
+                <Badge className="absolute top-4 left-4 bg-green-600 text-white border-0 animate-pulse-scale">
+                  Complete Course
+                </Badge>
+              </div>
+              <CardHeader>
+                <div className="flex items-center justify-between mb-3">
+                  <Badge variant="outline" className="text-brand-red border-brand-red/50 bg-brand-red/5">
+                    Full Access
+                  </Badge>
+                </div>
+                <CardTitle className="text-2xl text-white group-hover:text-brand-red transition-colors">
+                  Amazon FBA Mastery
+                </CardTitle>
+                <CardDescription className="text-gray-400">
+                  Launch your profitable Amazon business from anywhere in the world
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white">
+                  Start Course
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Course 2 - AI Automation Agency */}
+            <Card className="bg-brand-dark-900 border-white/10 overflow-hidden group hover:border-brand-red/50 transition-all duration-300 card-3d">
+              <div className="h-56 bg-gradient-to-br from-brand-accent to-brand-accent-pink relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full glass flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Bot className="w-10 h-10 text-white" />
                   </div>
                 </div>
                 <Badge className="absolute top-4 left-4 bg-brand-accent text-white border-0 animate-pulse-scale">
@@ -374,77 +754,18 @@ export default function LandingPage() {
               </div>
               <CardHeader>
                 <div className="flex items-center justify-between mb-3">
-                  <Badge variant="outline" className="text-brand-red border-brand-red/50 bg-brand-red/5">
-                    12 Lessons
-                  </Badge>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-brand-red fill-brand-red" />
-                    <span className="font-bold text-white">4.9</span>
-                  </div>
-                </div>
-                <CardTitle className="text-2xl text-white group-hover:text-brand-red transition-colors">
-                  Freelancing Fundamentals
-                </CardTitle>
-                <CardDescription className="text-gray-400">
-                  Master freelancing from client acquisition to rate setting. Build a thriving independent career.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Clock className="w-4 h-4 text-brand-red" />
-                    <span>6 hours total</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Users className="w-4 h-4 text-brand-red" />
-                    <span>2,847 students</span>
-                  </div>
-                </div>
-                <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white">
-                  Start Course
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Course 2 */}
-            <Card className="bg-brand-dark-900 border-white/10 overflow-hidden group hover:border-brand-red/50 transition-all duration-300 card-3d">
-              <div className="h-56 bg-gradient-to-br from-brand-accent to-brand-accent-pink relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full glass flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play className="w-10 h-10 text-white" />
-                  </div>
-                </div>
-              </div>
-              <CardHeader>
-                <div className="flex items-center justify-between mb-3">
                   <Badge variant="outline" className="text-brand-accent border-brand-accent/50 bg-brand-accent/5">
-                    8 Lessons
+                    Tech-Focused
                   </Badge>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-brand-red fill-brand-red" />
-                    <span className="font-bold text-white">4.8</span>
-                  </div>
                 </div>
                 <CardTitle className="text-2xl text-white group-hover:text-brand-red transition-colors">
-                  Online Business Builder
+                  AI Automation Agency
                 </CardTitle>
                 <CardDescription className="text-gray-400">
-                  Create sustainable income with digital products, SaaS, or e-commerce. Build once, earn forever.
+                  Build an AI agency serving global clients with cutting-edge automation
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Clock className="w-4 h-4 text-brand-red" />
-                    <span>4.5 hours total</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Users className="w-4 h-4 text-brand-red" />
-                    <span>1,923 students</span>
-                  </div>
-                </div>
                 <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white">
                   Start Course
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -452,13 +773,44 @@ export default function LandingPage() {
               </CardContent>
             </Card>
 
-            {/* Course 3 */}
+            {/* Course 3 - Remote Sales */}
             <Card className="bg-brand-dark-900 border-white/10 overflow-hidden group hover:border-brand-red/50 transition-all duration-300 card-3d">
               <div className="h-56 bg-gradient-to-br from-brand-accent-orange to-brand-red relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-20 h-20 rounded-full glass flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play className="w-10 h-10 text-white" />
+                    <TrendingUp className="w-10 h-10 text-white" />
+                  </div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex items-center justify-between mb-3">
+                  <Badge variant="outline" className="text-brand-accent-orange border-brand-accent-orange/50 bg-brand-accent-orange/5">
+                    High Income
+                  </Badge>
+                </div>
+                <CardTitle className="text-2xl text-white group-hover:text-brand-red transition-colors">
+                  Remote Sales
+                </CardTitle>
+                <CardDescription className="text-gray-400">
+                  Master high-ticket remote sales and earn from anywhere
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white">
+                  Start Course
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Course 4 - Social Media Bootcamp */}
+            <Card className="bg-brand-dark-900 border-white/10 overflow-hidden group hover:border-brand-red/50 transition-all duration-300 card-3d">
+              <div className="h-56 bg-gradient-to-br from-pink-600 to-purple-600 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full glass flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Camera className="w-10 h-10 text-white" />
                   </div>
                 </div>
                 <Badge className="absolute top-4 left-4 bg-brand-red text-white border-0 animate-pulse-scale">
@@ -467,32 +819,18 @@ export default function LandingPage() {
               </div>
               <CardHeader>
                 <div className="flex items-center justify-between mb-3">
-                  <Badge variant="outline" className="text-brand-accent-orange border-brand-accent-orange/50 bg-brand-accent-orange/5">
-                    10 Lessons
+                  <Badge variant="outline" className="text-pink-400 border-pink-400/50 bg-pink-400/5">
+                    Content Creator
                   </Badge>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-brand-red fill-brand-red" />
-                    <span className="font-bold text-white">4.9</span>
-                  </div>
                 </div>
                 <CardTitle className="text-2xl text-white group-hover:text-brand-red transition-colors">
-                  Remote Work Mastery
+                  Social Media Bootcamp
                 </CardTitle>
                 <CardDescription className="text-gray-400">
-                  Land high-paying remote positions. Perfect your resume, ace interviews, negotiate top dollar.
+                  Build your personal brand and generate remote income via social media
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Clock className="w-4 h-4 text-brand-red" />
-                    <span>5 hours total</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Users className="w-4 h-4 text-brand-red" />
-                    <span>1,456 students</span>
-                  </div>
-                </div>
                 <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white">
                   Start Course
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -503,95 +841,132 @@ export default function LandingPage() {
 
           <div className="text-center mt-16">
             <Link href="/signup">
-              <Button size="lg" variant="outline" className="glass border-white/20 text-white hover:bg-white/10 hover:border-brand-red/50 px-8 py-6 magnetic-button">
-                Browse All Courses
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-10 py-6 magnetic-button text-white">
+                <Sparkles className="mr-3 h-5 w-5" />
+                Start Learning Today
+                <ArrowRight className="ml-3 h-5 w-5" />
               </Button>
             </Link>
+            <p className="text-sm text-gray-500 mt-4">
+              Join 1,000+ students already learning these skills
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Social Proof - Testimonials */}
-      <section className="py-32 relative">
+      {/* Real Success Stories - Mobile Optimized */}
+      <section className="py-20 relative bg-brand-dark-900/30">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-20">
-            <Badge className="mb-6 glass-red text-brand-red-200 border-brand-red/30">
-              Success Stories
+          <div className="text-center mb-12">
+            <Badge className="mb-4 glass-red text-brand-red-200 border-brand-red/30">
+              <Award className="w-4 h-4 mr-2 inline" />
+              Verified Success Stories
             </Badge>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
-              Loved by <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Nomads</span>
+            <h2 className="text-3xl md:text-4xl font-black mb-4">
+              Real People, <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Real Results</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Testimonial 1 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300">
-              <div className="flex items-center gap-2 text-brand-red mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-brand-red" />
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* UK Client Success Story - Mobile Optimized */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 border-2 border-transparent hover:border-brand-red/50">
+              {/* Journey Flags */}
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="text-4xl">🇬🇧</div>
+                <ArrowRight className="w-6 h-6 text-brand-red" />
+                <div className="text-4xl">🇹🇭</div>
               </div>
-              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                &quot;LeaveLab gave me the blueprint to quit my 9-5. I&apos;m now making 3x more while exploring Southeast Asia!&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-red to-brand-red-600 flex items-center justify-center text-2xl font-bold">
-                  S
+
+              <div className="text-center mb-4">
+                <Badge className="mb-3 bg-green-600/20 text-green-400 border-green-400/50 text-xs">
+                  <CheckCircle className="w-3 h-3 mr-1 inline" />
+                  Successfully Relocated
+                </Badge>
+                <h3 className="text-xl font-bold text-white mb-1">Sarah M.</h3>
+                <p className="text-brand-red font-semibold text-sm">London → Chiang Mai</p>
+                <p className="text-xs text-gray-400">£45k → £8k/month in 6 months</p>
+              </div>
+
+              {/* Quote - Shortened */}
+              <div className="mb-4">
+                <p className="text-gray-300 text-sm leading-relaxed italic">
+                  "LeaveLab's Amazon FBA course helped me launch my business and now I make £8k/month from Thailand. Best decision ever!"
+                </p>
+              </div>
+
+              {/* Before / After - Compact */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-brand-dark-950/50 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 uppercase mb-1">Before</p>
+                  <p className="text-white font-semibold text-sm">£45k Office Job</p>
                 </div>
-                <div>
-                  <div className="font-bold text-white">Sarah Johnson</div>
-                  <div className="text-sm text-gray-400">Designer • Bali</div>
+                <div className="bg-brand-red/10 rounded-lg p-3 border border-brand-red/30">
+                  <p className="text-xs text-brand-red uppercase mb-1">After</p>
+                  <p className="text-white font-semibold text-sm">£8k/month FBA</p>
                 </div>
               </div>
+
+              {/* CTA */}
+              <Link href="/signup">
+                <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white text-sm py-3">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
 
-            {/* Testimonial 2 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300">
-              <div className="flex items-center gap-2 text-brand-red mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-brand-red" />
-                ))}
+            {/* USA Client Success Story - Mobile Optimized */}
+            <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 border-2 border-transparent hover:border-brand-red/50">
+              {/* Journey Flags */}
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="text-4xl">🇺🇸</div>
+                <ArrowRight className="w-6 h-6 text-brand-red" />
+                <div className="text-4xl">🇹🇭</div>
               </div>
-              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                &quot;The visa guides saved me weeks and thousands in legal fees. Clear, accurate, and invaluable.&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-accent to-brand-accent-pink flex items-center justify-center text-2xl font-bold">
-                  M
-                </div>
-                <div>
-                  <div className="font-bold text-white">Marcus Chen</div>
-                  <div className="text-sm text-gray-400">Developer • Lisbon</div>
-                </div>
-              </div>
-            </div>
 
-            {/* Testimonial 3 */}
-            <div className="glass rounded-3xl p-8 card-3d hover:glass-red transition-all duration-300">
-              <div className="flex items-center gap-2 text-brand-red mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-brand-red" />
-                ))}
+              <div className="text-center mb-4">
+                <Badge className="mb-3 bg-green-600/20 text-green-400 border-green-400/50 text-xs">
+                  <CheckCircle className="w-3 h-3 mr-1 inline" />
+                  Successfully Relocated
+                </Badge>
+                <h3 className="text-xl font-bold text-white mb-1">Mike R.</h3>
+                <p className="text-brand-red font-semibold text-sm">USA → Bangkok</p>
+                <p className="text-xs text-gray-400">$120k → $15k/month in 8 months</p>
               </div>
-              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                &quot;Best investment in my nomad journey. The community alone is worth it - lifelong friends and business partners!&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-accent-orange to-brand-red flex items-center justify-center text-2xl font-bold">
-                  E
+
+              {/* Quote - Shortened */}
+              <div className="mb-4">
+                <p className="text-gray-300 text-sm leading-relaxed italic">
+                  "LeaveLab's AI agency course helped me build a $15k/month business. Now I work from Bangkok beaches and love my life!"
+                </p>
+              </div>
+
+              {/* Before / After - Compact */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-brand-dark-950/50 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 uppercase mb-1">Before</p>
+                  <p className="text-white font-semibold text-sm">$120k Corporate</p>
                 </div>
-                <div>
-                  <div className="font-bold text-white">Emma Rodriguez</div>
-                  <div className="text-sm text-gray-400">Creator • Mexico</div>
+                <div className="bg-brand-red/10 rounded-lg p-3 border border-brand-red/30">
+                  <p className="text-xs text-brand-red uppercase mb-1">After</p>
+                  <p className="text-white font-semibold text-sm">$15k/month AI</p>
                 </div>
               </div>
+
+              {/* CTA */}
+              <Link href="/signup">
+                <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white text-sm py-3">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Bold & Immersive */}
+
+      {/* CTA Section - Bold & Immersive with Thailand Focus */}
       <section className="py-32 relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-6xl mx-auto relative">
@@ -603,18 +978,35 @@ export default function LandingPage() {
             <div className="relative z-10 p-12 lg:p-20 text-center">
               <Badge className="mb-8 bg-white/20 text-white border-0 text-base px-6 py-2 animate-pulse-scale">
                 <Rocket className="w-4 h-4 mr-2 inline" />
-                Limited Time Offer
+                Start Your Journey to Thailand
               </Badge>
               
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 text-white">
-                Your Journey
+                Your Next Chapter
                 <br />
                 Starts Today
               </h2>
               
-              <p className="text-2xl mb-12 text-white/90 max-w-3xl mx-auto font-medium">
-                Join thousands of successful nomads. Try Premium free for 7 days.
+              <p className="text-2xl mb-6 text-white/90 max-w-3xl mx-auto font-medium">
+                Join our verified success stories who relocated to Thailand
               </p>
+              
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-12 text-white/70 text-sm">
+                <div className="flex items-center gap-2">
+                  <Newspaper className="h-4 w-4" />
+                  <span>Featured in Daily Mail</span>
+                </div>
+                <div className="w-1 h-1 rounded-full bg-white/50" />
+                <div className="flex items-center gap-2">
+                  <Handshake className="h-4 w-4" />
+                  <span>2 Official Partnerships</span>
+                </div>
+                <div className="w-1 h-1 rounded-full bg-white/50" />
+                <div className="flex items-center gap-2">
+                  <Award className="h-4 w-4" />
+                  <span>50+ Relocations</span>
+                </div>
+              </div>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
                 <Link href="/signup">
@@ -633,15 +1025,15 @@ export default function LandingPage() {
                     variant="outline" 
                     className="text-xl px-12 py-8 tap-target border-2 border-white text-white hover:bg-white/10 magnetic-button font-bold"
                   >
-                    View Pricing
+                    Talk to Success Coach
                   </Button>
           </Link>
               </div>
               
               <div className="flex flex-wrap items-center justify-center gap-8 text-white/80">
                 <div className="flex items-center gap-2">
-                  <Award className="h-5 w-5" />
-                  <span>No credit card</span>
+                  <CheckCircle className="h-5 w-5" />
+                  <span>7-day free trial</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5" />
@@ -649,7 +1041,7 @@ export default function LandingPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap className="h-5 w-5" />
-                  <span>Instant access</span>
+                  <span>Cancel anytime</span>
                 </div>
               </div>
             </div>
@@ -728,9 +1120,19 @@ export default function LandingPage() {
                   <div className="text-[10px] text-brand-red tracking-wider">DIGITAL FREEDOM</div>
                 </div>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 Empowering digital nomads to live and work from anywhere in the world.
               </p>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <Handshake className="w-3 h-3 text-brand-red" />
+                  <span>Official Partners: Skyscanner, Worldpackers</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <Newspaper className="w-3 h-3 text-brand-red" />
+                  <span>Featured in 4 Major Publications</span>
+                </div>
+              </div>
             </div>
             
             <div>
@@ -774,6 +1176,12 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      
+      {/* Skyscanner Widget Script */}
+      <Script 
+        src="https://widgets.skyscanner.net/widget-server/js/loader.js" 
+        strategy="afterInteractive"
+      />
       </div>
   );
 }

@@ -234,7 +234,7 @@ export async function POST(request: NextRequest) {
     logger.logResponse(
       'POST', 
       '/api/v1/subscriptions/checkout', 
-      error instanceof Error ? 500 : 500, 
+      500, 
       duration, 
       context
     );

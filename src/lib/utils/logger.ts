@@ -48,8 +48,8 @@ class Logger {
       timestamp: new Date().toISOString(),
       level,
       message,
-      ...(context && { context }),
-      ...(error && { error: getErrorDetails(error) }),
+      ...(context ? { context } : {}),
+      ...(error ? { error: getErrorDetails(error) } : {}),
     };
 
     // In development, use pretty console logging
