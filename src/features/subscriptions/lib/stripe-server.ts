@@ -1,15 +1,13 @@
 // Server-side Stripe utility
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing STRIPE_SECRET_KEY environment variable');
-}
-
-// Initialize Stripe with API version
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-09-30.clover',
-  typescript: true,
-});
+// Initialize Stripe with API version (only if key is available)
+export const stripe = process.env.STRIPE_SECRET_KEY 
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-09-30.clover',
+      typescript: true,
+    })
+  : null;
 
 // Helper functions for common Stripe operations
 
@@ -21,6 +19,10 @@ export async function getOrCreateStripeCustomer(
   email: string,
   name?: string
 ): Promise<string> {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please add STRIPE_SECRET_KEY environment variable.');
+  }
+
   // First, check if user already has a customer ID in database
   const { createClient } = await import('@/lib/supabase/server');
   const supabase = await createClient();
@@ -57,6 +59,10 @@ export async function getOrCreateStripeCustomer(
  * Get a Stripe customer by ID
  */
 export async function getStripeCustomer(customerId: string): Promise<Stripe.Customer | null> {
+  if (!stripe) {
+    return null;
+  }
+
   try {
     const customer = await stripe.customers.retrieve(customerId);
     if (customer.deleted) {
@@ -75,6 +81,10 @@ export async function getStripeCustomer(customerId: string): Promise<Stripe.Cust
 export async function getStripeSubscription(
   subscriptionId: string
 ): Promise<Stripe.Subscription | null> {
+  if (!stripe) {
+    return null;
+  }
+
   try {
     return await stripe.subscriptions.retrieve(subscriptionId);
   } catch (error) {
@@ -94,6 +104,10 @@ export async function createCheckoutSession(params: {
   metadata: Record<string, string>;
   trialDays?: number;
 }): Promise<Stripe.Checkout.Session> {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please add STRIPE_SECRET_KEY environment variable.');
+  }
+
   const sessionParams: Stripe.Checkout.SessionCreateParams = {
     customer: params.customerId,
     mode: 'subscription',
@@ -129,6 +143,10 @@ export async function createCustomerPortalSession(
   customerId: string,
   returnUrl: string
 ): Promise<Stripe.BillingPortal.Session> {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please add STRIPE_SECRET_KEY environment variable.');
+  }
+
   return await stripe.billingPortal.sessions.create({
     customer: customerId,
     return_url: returnUrl,
@@ -143,5 +161,9 @@ export function verifyWebhookSignature(
   signature: string,
   secret: string
 ): Stripe.Event {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please add STRIPE_SECRET_KEY environment variable.');
+  }
+
   return stripe.webhooks.constructEvent(payload, signature, secret);
 }
