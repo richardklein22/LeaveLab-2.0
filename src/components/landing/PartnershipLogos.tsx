@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { partners } from '@/lib/landing-data';
 
 interface PartnerLogoProps {
@@ -11,7 +10,7 @@ interface PartnerLogoProps {
   description: string;
 }
 
-function PartnerLogo({ name, logoUrl, websiteUrl, description }: PartnerLogoProps) {
+function PartnerLogo({ name, logoUrl: _logoUrl, websiteUrl, description }: PartnerLogoProps) {
   return (
     <motion.a
       href={websiteUrl}

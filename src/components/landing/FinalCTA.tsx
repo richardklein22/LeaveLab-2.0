@@ -12,7 +12,7 @@ export default function FinalCTA() {
           className="absolute inset-0" 
           style={{
             backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-            backgroundSize: window.innerWidth < 640 ? '20px 20px' : '30px 30px'
+            backgroundSize: '30px 30px'
           }} 
         />
       </div>
