@@ -32,30 +32,30 @@ function PricingCard({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative rounded-xl md:rounded-2xl p-6 md:p-8 flex flex-col 
+      className={`relative rounded-xl md:rounded-2xl p-6 md:p-8 flex flex-col card-3d
                   ${featured 
-                    ? 'bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-400 shadow-xl' 
-                    : 'bg-white border-2 border-gray-200 shadow-md'}`}
+                    ? 'glass border-2 border-brand-red/50 shadow-xl shadow-brand-red/20' 
+                    : 'glass border-2 border-white/10 shadow-md'}`}
     >
       {/* "Most Popular" badge */}
       {featured && (
         <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 
-                       bg-gradient-to-r from-green-500 to-green-600 
+                       bg-gradient-to-r from-brand-red to-brand-red-700 
                        text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full 
-                       shadow-lg">
+                       shadow-lg animate-pulse-scale">
           ⭐ Most Popular
         </div>
       )}
       
       {/* Tier name */}
-      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 uppercase tracking-wide">
+      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 uppercase tracking-wide">
         {tier}
       </h3>
       
       {/* Price */}
       <div className="mb-4 sm:mb-6">
-        <span className="text-4xl sm:text-5xl font-bold text-gray-900">{price}</span>
-        <span className="text-gray-600 text-base sm:text-lg ml-2">{period}</span>
+        <span className="text-4xl sm:text-5xl font-bold text-white">{price}</span>
+        <span className="text-gray-400 text-base sm:text-lg ml-2">{period}</span>
       </div>
       
       {/* Features list */}
@@ -63,16 +63,17 @@ function PricingCard({
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-2.5 sm:gap-3">
             <Check className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5 
-                              ${featured ? 'text-green-600' : 'text-gray-400'}`} />
-            <span className="text-gray-700 text-sm sm:text-base leading-snug">{feature}</span>
+                              ${featured ? 'text-brand-red' : 'text-gray-500'}`} />
+            <span className="text-gray-300 text-sm sm:text-base leading-snug">{feature}</span>
           </li>
         ))}
       </ul>
       
       {/* Value callout */}
       {valueCallout && (
-        <div className="bg-green-100 text-green-800 text-xs sm:text-sm font-medium 
-                       px-3 sm:px-4 py-2 rounded-lg mb-3 sm:mb-4 text-center">
+        <div className="bg-brand-red/10 text-brand-red text-xs sm:text-sm font-medium 
+                       px-3 sm:px-4 py-2 rounded-lg mb-3 sm:mb-4 text-center
+                       border border-brand-red/20">
           🎯 {valueCallout}
         </div>
       )}
@@ -81,17 +82,20 @@ function PricingCard({
       <button
         onClick={() => window.location.href = ctaLink}
         className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg 
-                   transition-all duration-200 
+                   transition-all duration-200 magnetic-button relative group overflow-hidden
                    ${featured 
-                     ? 'bg-green-500 hover:bg-green-600 active:bg-green-700 text-white shadow-lg hover:shadow-xl' 
-                     : 'border-2 border-gray-300 hover:border-green-500 active:border-green-500 text-gray-700 hover:text-green-600 hover:bg-green-50'}`}
+                     ? 'bg-brand-red hover:bg-brand-red-600 text-white shadow-lg shadow-brand-red/30' 
+                     : 'border-2 border-white/20 hover:border-brand-red text-gray-300 hover:text-brand-red hover:bg-brand-red/10'}`}
       >
-        {cta}
+        <span className="relative z-10">{cta}</span>
+        {featured && (
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
+        )}
       </button>
       
       {/* Guarantee badge (premium only) */}
       {featured && (
-        <p className="text-xs sm:text-sm text-gray-600 text-center mt-3 sm:mt-4">
+        <p className="text-xs sm:text-sm text-gray-400 text-center mt-3 sm:mt-4">
           30-day money-back guarantee
         </p>
       )}
@@ -101,16 +105,19 @@ function PricingCard({
 
 export default function PricingSection() {
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+    <section className="py-16 sm:py-20 bg-brand-dark-950 relative">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-accent/5 via-transparent to-brand-red/5 opacity-30" />
+      
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-3 sm:mb-4"
+          className="text-3xl sm:text-4xl font-bold text-center text-white mb-3 sm:mb-4"
         >
-          Start Free. Upgrade When You&apos;re Ready.
+          Start Free. Upgrade When You&apos;re <span className="text-brand-red">Ready</span>.
         </motion.h2>
         
         <motion.p
@@ -118,7 +125,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="text-base sm:text-xl text-gray-600 text-center mb-8 sm:mb-12"
+          className="text-base sm:text-xl text-gray-400 text-center mb-8 sm:mb-12"
         >
           No credit card required. Cancel anytime. Keep free access forever.
         </motion.p>
@@ -132,4 +139,3 @@ export default function PricingSection() {
     </section>
   );
 }
-

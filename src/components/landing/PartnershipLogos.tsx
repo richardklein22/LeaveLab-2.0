@@ -21,31 +21,23 @@ function PartnerLogo({ name, logoUrl: _logoUrl, websiteUrl, description }: Partn
       className="group relative block"
     >
       <div className="h-14 w-32 sm:h-16 sm:w-40 flex items-center justify-center 
-                      bg-white rounded-lg sm:rounded-xl px-4 sm:px-6 py-3 sm:py-4 
-                      shadow-sm hover:shadow-md transition-shadow duration-300 
-                      border border-gray-100">
+                      glass rounded-lg sm:rounded-xl px-4 sm:px-6 py-3 sm:py-4 
+                      hover:shadow-lg hover:shadow-brand-red/20 transition-all duration-300 
+                      border border-white/10 group-hover:border-brand-red/30">
         <div className="relative w-full h-full">
-          {/* Fallback text if image fails to load */}
-          <div className="absolute inset-0 flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-400">
+          {/* Fallback text */}
+          <div className="absolute inset-0 flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-400 group-hover:text-brand-red transition-colors">
             {name}
           </div>
-          {/* Uncomment when logos are available */}
-          {/* <Image
-            src={logoUrl}
-            alt={name}
-            fill
-            className="object-contain grayscale group-hover:grayscale-0 
-                       transition-all duration-300 opacity-60 group-hover:opacity-100"
-          /> */}
         </div>
       </div>
       
       {/* Tooltip on hover (desktop only) */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 
                       opacity-0 group-hover:opacity-100 transition-opacity duration-200 
-                      pointer-events-none hidden sm:block">
-        <div className="bg-gray-900 text-white text-xs rounded-lg py-2 px-3 
-                        whitespace-nowrap shadow-lg">
+                      pointer-events-none hidden sm:block z-10">
+        <div className="bg-brand-dark-900 text-white text-xs rounded-lg py-2 px-3 
+                        whitespace-nowrap shadow-lg border border-brand-red/30">
           {description}
         </div>
       </div>
@@ -55,16 +47,19 @@ function PartnerLogo({ name, logoUrl: _logoUrl, websiteUrl, description }: Partn
 
 export default function PartnershipLogos() {
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-12 sm:py-16 bg-brand-dark-950 relative">
+      {/* Subtle glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-accent/5 via-transparent to-brand-red/5 opacity-30" />
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-xl sm:text-2xl font-bold text-center text-gray-900 mb-2"
+          className="text-xl sm:text-2xl font-bold text-center text-white mb-2"
         >
-          Trusted Partners
+          Trusted <span className="text-brand-red">Partners</span>
         </motion.h3>
         
         <motion.p
@@ -72,7 +67,7 @@ export default function PartnershipLogos() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="text-sm sm:text-base text-gray-600 text-center mb-8 sm:mb-10"
+          className="text-sm sm:text-base text-gray-400 text-center mb-8 sm:mb-10"
         >
           Official partnerships that enhance your journey
         </motion.p>
@@ -96,4 +91,3 @@ export default function PartnershipLogos() {
     </section>
   );
 }
-

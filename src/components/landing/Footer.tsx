@@ -5,7 +5,7 @@ import { footerNavigation } from '@/lib/landing-data';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10 sm:py-12">
+    <footer className="bg-brand-dark-900 border-t border-white/10 backdrop-blur-xl py-10 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Main footer content */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
@@ -14,7 +14,7 @@ export default function Footer() {
             <h4 className="text-white font-bold text-base sm:text-lg mb-3 sm:mb-4">
               LeaveLab
             </h4>
-            <p className="text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-3 sm:mb-4">
               The all-in-one digital nomad platform for Thailand relocation
             </p>
             
@@ -22,21 +22,21 @@ export default function Footer() {
             <div className="flex gap-4">
               <a 
                 href="#" 
-                className="hover:text-green-400 transition-colors"
+                className="hover:text-brand-red transition-colors text-gray-400"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a 
                 href="#" 
-                className="hover:text-green-400 transition-colors"
+                className="hover:text-brand-red transition-colors text-gray-400"
                 aria-label="YouTube"
               >
                 <Youtube className="w-5 h-5" />
               </a>
               <a 
                 href="#" 
-                className="hover:text-green-400 transition-colors"
+                className="hover:text-brand-red transition-colors text-gray-400"
                 aria-label="Discord"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -54,7 +54,7 @@ export default function Footer() {
                 <li key={index}>
                   <a 
                     href={item.href} 
-                    className="hover:text-green-400 transition-colors"
+                    className="text-gray-400 hover:text-brand-red transition-colors"
                   >
                     {item.label}
                   </a>
@@ -73,7 +73,7 @@ export default function Footer() {
                 <li key={index}>
                   <a 
                     href={item.href} 
-                    className="hover:text-green-400 transition-colors"
+                    className="text-gray-400 hover:text-brand-red transition-colors"
                   >
                     {item.label}
                   </a>
@@ -92,7 +92,7 @@ export default function Footer() {
                 <li key={index}>
                   <a 
                     href={item.href} 
-                    className="hover:text-green-400 transition-colors"
+                    className="text-gray-400 hover:text-brand-red transition-colors"
                   >
                     {item.label}
                   </a>
@@ -103,17 +103,17 @@ export default function Footer() {
         </div>
         
         {/* Bottom bar */}
-        <div className="border-t border-gray-800 pt-6 sm:pt-8 
+        <div className="border-t border-white/10 pt-6 sm:pt-8 
                        flex flex-col items-center gap-4 text-xs sm:text-sm 
                        md:flex-row md:justify-between">
-          <p className="text-center md:text-left">
+          <p className="text-center md:text-left text-gray-400">
             © 2024 LeaveLab. All rights reserved.
           </p>
           <div className="flex gap-4 sm:gap-6">
-            <a href="#" className="hover:text-green-400 transition-colors">
+            <a href="#" className="text-gray-400 hover:text-brand-red transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-green-400 transition-colors">
+            <a href="#" className="text-gray-400 hover:text-brand-red transition-colors">
               Terms of Service
             </a>
           </div>
@@ -122,4 +122,3 @@ export default function Footer() {
     </footer>
   );
 }
-

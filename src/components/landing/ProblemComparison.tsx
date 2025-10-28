@@ -6,24 +6,25 @@ import { problemComparison } from '@/lib/landing-data';
 
 export default function ProblemComparison() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-brand-dark-900/30 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Left Column - Before (Without LeaveLab) */}
+          {/* Left Column - Before (Red tint with glass) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-red-50 to-gray-50 rounded-xl md:rounded-2xl p-6 md:p-8 
-                      border-2 border-red-100 relative"
+            className="glass rounded-xl md:rounded-2xl p-6 md:p-8 
+                      border-2 border-brand-red/20 relative card-3d
+                      hover:glass-red transition-all duration-300"
           >
             {/* Sad emoji illustration at top */}
             <div className="text-5xl md:text-6xl text-center mb-4 md:mb-6 opacity-50">
               {problemComparison.without.emoji}
             </div>
             
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 text-center">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">
               {problemComparison.without.title}
             </h3>
             
@@ -37,28 +38,29 @@ export default function ProblemComparison() {
                   viewport={{ once: true }}
                   className="flex items-start gap-3"
                 >
-                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700 text-base sm:text-lg">{item}</span>
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-brand-red flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300 text-base sm:text-lg">{item}</span>
                 </motion.li>
               ))}
             </ul>
           </motion.div>
           
-          {/* Right Column - After (With LeaveLab) */}
+          {/* Right Column - After (Purple/Cyan tint with glass) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl md:rounded-2xl p-6 md:p-8 
-                      border-2 border-green-200 relative"
+            className="glass rounded-xl md:rounded-2xl p-6 md:p-8 
+                      border-2 border-brand-accent/30 relative card-3d
+                      hover:border-brand-accent/50 transition-all duration-300"
           >
             {/* Happy emoji illustration at top */}
             <div className="text-5xl md:text-6xl text-center mb-4 md:mb-6">
               {problemComparison.with.emoji}
             </div>
             
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 text-center">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">
               {problemComparison.with.title}
             </h3>
             
@@ -72,8 +74,8 @@ export default function ProblemComparison() {
                   viewport={{ once: true }}
                   className="flex items-start gap-3"
                 >
-                  <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700 text-base sm:text-lg">{item}</span>
+                  <Check className="w-5 h-5 sm:w-6 sm:h-6 text-brand-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300 text-base sm:text-lg">{item}</span>
                 </motion.li>
               ))}
             </ul>
@@ -85,7 +87,7 @@ export default function ProblemComparison() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center text-gray-600 mt-8 text-base sm:text-lg"
+          className="text-center text-gray-400 mt-8 text-base sm:text-lg"
         >
           Stop winging it. Start with a plan.
         </motion.p>
@@ -93,4 +95,3 @@ export default function ProblemComparison() {
     </section>
   );
 }
-

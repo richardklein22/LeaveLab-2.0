@@ -25,26 +25,26 @@ function HowItWorksStep({ number, title, description, index }: StepProps) {
       className="flex items-start gap-4 sm:gap-6 relative z-10 lg:flex-col lg:items-center lg:text-center"
     >
       {/* Number circle */}
-      <div className="flex-shrink-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 
+      <div className="flex-shrink-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-brand-red to-brand-red-700 
                       flex items-center justify-center text-white font-bold text-2xl lg:text-3xl 
-                      shadow-lg relative">
+                      shadow-lg shadow-brand-red/30 relative">
         <span>{number}</span>
         
         {/* Icon overlay */}
         <div className="absolute -bottom-2 -right-2 lg:-bottom-3 lg:-right-3 
                        w-10 h-10 lg:w-12 lg:h-12 rounded-full 
-                       bg-white shadow-lg flex items-center justify-center 
-                       border-2 border-green-100">
-          <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-green-600" />
+                       glass shadow-lg flex items-center justify-center 
+                       border-2 border-brand-red/30">
+          <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-brand-red" />
         </div>
       </div>
       
       {/* Content */}
       <div className="flex-grow pt-2 lg:pt-0">
-        <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">
+        <h3 className="text-lg lg:text-xl font-bold text-white mb-2 lg:mb-3">
           {title}
         </h3>
-        <p className="text-gray-600 text-sm lg:text-base leading-relaxed">
+        <p className="text-gray-400 text-sm lg:text-base leading-relaxed">
           {description}
         </p>
       </div>
@@ -54,28 +54,28 @@ function HowItWorksStep({ number, title, description, index }: StepProps) {
 
 export default function HowItWorks() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-brand-dark-900/30">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-12 sm:mb-16"
+          className="text-3xl sm:text-4xl font-bold text-center text-white mb-12 sm:mb-16"
         >
-          How It Works
+          How It <span className="text-brand-red">Works</span>
         </motion.h2>
         
         {/* Container with connecting line */}
         <div className="relative">
           {/* Vertical connecting line (mobile/tablet) */}
           <div className="absolute left-10 top-16 bottom-16 w-0.5 
-                          bg-gradient-to-b from-green-200 via-green-300 to-green-200 
+                          bg-gradient-to-b from-brand-red/20 via-brand-red/50 to-brand-red/20 
                           lg:hidden" />
           
           {/* Horizontal connecting line (desktop) */}
           <div className="hidden lg:block absolute top-12 left-0 right-0 h-0.5 
-                          bg-gradient-to-r from-green-200 via-green-300 to-green-200" 
+                          bg-gradient-to-r from-brand-red/20 via-brand-red/50 to-brand-red/20" 
                style={{ width: 'calc(100% - 128px)', left: '64px' }} />
           
           {/* Steps */}
@@ -89,4 +89,3 @@ export default function HowItWorks() {
     </section>
   );
 }
-
