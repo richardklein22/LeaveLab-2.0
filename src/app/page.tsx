@@ -638,7 +638,7 @@ export default function LandingPage() {
                 <Target className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Stuck in 9-5?</h3>
-              <p className="text-brand-red font-semibold text-sm">ÔåÆ Business coaching gets you income-independent</p>
+              <p className="text-brand-red font-semibold text-sm">→ Business coaching gets you income-independent</p>
             </div>
 
             {/* Pain Point 2 - Mobile Optimized */}
@@ -647,7 +647,7 @@ export default function LandingPage() {
                 <FileText className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Visa Confusion?</h3>
-              <p className="text-brand-red font-semibold text-sm">ÔåÆ We handle visa setup A-Z with trusted agents</p>
+              <p className="text-brand-red font-semibold text-sm">→ We handle visa setup A-Z with trusted agents</p>
             </div>
 
             {/* Pain Point 3 - Mobile Optimized */}
@@ -656,7 +656,7 @@ export default function LandingPage() {
                 <DollarSign className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Income Stability?</h3>
-              <p className="text-brand-red font-semibold text-sm">ÔåÆ 4 proven business models + ongoing support</p>
+              <p className="text-brand-red font-semibold text-sm">→ 4 proven business models + ongoing support</p>
             </div>
 
             {/* Pain Point 4 - Mobile Optimized */}
@@ -665,7 +665,7 @@ export default function LandingPage() {
                 <MapPin className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Where to Start?</h3>
-              <p className="text-brand-red font-semibold text-sm">ÔåÆ Step-by-step roadmap from planning to landing</p>
+              <p className="text-brand-red font-semibold text-sm">→ Step-by-step roadmap from planning to landing</p>
             </div>
           </div>
 
@@ -876,14 +876,14 @@ export default function LandingPage() {
                   Successfully Relocated
                 </Badge>
                 <h3 className="text-xl font-bold text-white mb-1">Sarah M.</h3>
-                <p className="text-brand-red font-semibold text-sm">London ÔåÆ Chiang Mai</p>
-                <p className="text-xs text-gray-400">┬ú45k ÔåÆ ┬ú8k/month in 6 months</p>
+                <p className="text-brand-red font-semibold text-sm">London → Chiang Mai</p>
+                <p className="text-xs text-gray-400">£45k → £8k/month in 6 months</p>
               </div>
 
               {/* Quote - Shortened */}
               <div className="mb-4">
                 <p className="text-gray-300 text-sm leading-relaxed italic">
-                  "LeaveLab's Amazon FBA course helped me launch my business and now I make ┬ú8k/month from Thailand. Best decision ever!"
+                  "LeaveLab's Amazon FBA course helped me launch my business and now I make £8k/month from Thailand. Best decision ever!"
                 </p>
               </div>
 
@@ -891,11 +891,11 @@ export default function LandingPage() {
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="bg-brand-dark-950/50 rounded-lg p-3">
                   <p className="text-xs text-gray-500 uppercase mb-1">Before</p>
-                  <p className="text-white font-semibold text-sm">┬ú45k Office Job</p>
+                  <p className="text-white font-semibold text-sm">£45k Office Job</p>
                 </div>
                 <div className="bg-brand-red/10 rounded-lg p-3 border border-brand-red/30">
                   <p className="text-xs text-brand-red uppercase mb-1">After</p>
-                  <p className="text-white font-semibold text-sm">┬ú8k/month FBA</p>
+                  <p className="text-white font-semibold text-sm">£8k/month FBA</p>
                 </div>
               </div>
 
@@ -923,8 +923,8 @@ export default function LandingPage() {
                   Successfully Relocated
                 </Badge>
                 <h3 className="text-xl font-bold text-white mb-1">Mike R.</h3>
-                <p className="text-brand-red font-semibold text-sm">USA ÔåÆ Bangkok</p>
-                <p className="text-xs text-gray-400">$120k ÔåÆ $15k/month in 8 months</p>
+                <p className="text-brand-red font-semibold text-sm">USA → Bangkok</p>
+                <p className="text-xs text-gray-400">$120k → $15k/month in 8 months</p>
               </div>
 
               {/* Quote - Shortened */}
