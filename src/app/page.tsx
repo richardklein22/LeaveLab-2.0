@@ -5,6 +5,10 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import FounderBio from '@/components/landing/FounderBio';
+import MediaFeatures from '@/components/landing/MediaFeatures';
+import TrustBadges from '@/components/landing/TrustBadges';
+import QuickStats from '@/components/landing/QuickStats';
 
 export const metadata: Metadata = {
   title: 'LeaveLab - Live & Work in Thailand | Online Business + Visa Support',
@@ -164,27 +168,11 @@ export default function LandingPage() {
               </Link>
             </div>
 
-            {/* Trust Indicators with Icons */}
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-400">
-              <div className="flex items-center gap-2 group">
-                <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
-                  <CheckCircle className="h-5 w-5 text-brand-red" />
-                </div>
-                <span className="group-hover:text-white transition-colors">7-day free trial</span>
-              </div>
-              <div className="flex items-center gap-2 group">
-                <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
-                  <Shield className="h-5 w-5 text-brand-red" />
-                </div>
-                <span className="group-hover:text-white transition-colors">Secure payment</span>
-              </div>
-              <div className="flex items-center gap-2 group">
-                <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
-                  <Zap className="h-5 w-5 text-brand-red" />
-                </div>
-                <span className="group-hover:text-white transition-colors">Cancel anytime</span>
-              </div>
-            </div>
+            {/* Quick Stats - Hero Variant */}
+            <QuickStats variant="hero" className="mb-8" />
+            
+            {/* Trust Badges - Minimal Variant */}
+            <TrustBadges variant="minimal" showPaymentMethods={false} />
           </div>
         </div>
 
@@ -201,6 +189,12 @@ export default function LandingPage() {
           <div className="text-xs text-gray-400">Media Features</div>
         </div>
       </section>
+
+      {/* Founder Bio Section */}
+      <FounderBio />
+
+      {/* Media Features Section */}
+      <MediaFeatures />
 
       {/* Who This Is For Section - Mobile Optimized */}
       <section className="py-16 relative">
@@ -361,6 +355,10 @@ export default function LandingPage() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
+            {/* Trust Badges */}
+            <div className="mt-6">
+              <TrustBadges variant="compact" showPaymentMethods={true} />
+            </div>
           </div>
         </div>
       </section>
@@ -462,6 +460,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Stats Section */}
+      <QuickStats variant="grid" />
 
       {/* Official Partners Section - NEW */}
       <section className="py-32 relative">
@@ -1023,20 +1024,8 @@ export default function LandingPage() {
           </Link>
               </div>
               
-              <div className="flex flex-wrap items-center justify-center gap-8 text-white/80">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5" />
-                  <span>7-day free trial</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5" />
-                  <span>Money-back guarantee</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Zap className="h-5 w-5" />
-                  <span>Cancel anytime</span>
-                </div>
-              </div>
+              {/* Trust Badges in CTA */}
+              <TrustBadges variant="minimal" showPaymentMethods={false} className="text-white/80" />
             </div>
           </div>
         </div>
