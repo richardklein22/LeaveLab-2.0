@@ -76,19 +76,19 @@ export default function LandingPage() {
                 Courses
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full" />
               </Link>
-              <Link href="/pricing" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
-                Pricing
+              <a href="#contact" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
+                Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full" />
-              </Link>
+              </a>
             </div>
             
             <div className="flex items-center gap-3">
-              <Link href="/login">
+              <a href="#contact">
                 <Button variant="ghost" size="sm" className="text-white hover:text-brand-red hover:bg-white/5">
-                  Log In
+                  Contact Us
                 </Button>
-              </Link>
-              <Link href="/signup">
+              </a>
+              <a href="#cta">
                 <Button 
                   size="sm" 
                   className="bg-brand-red hover:bg-brand-red-600 tap-target magnetic-button relative group overflow-hidden"
@@ -99,7 +99,7 @@ export default function LandingPage() {
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function LandingPage() {
             
             {/* Mobile-Optimized CTA */}
             <div className="flex flex-col items-center gap-6 mb-16">
-              <Link href="/signup">
+              <a href="#cta">
                 <Button 
                   size="lg" 
                   className="bg-brand-red hover:bg-brand-red-600 text-xl px-12 py-8 tap-target magnetic-button relative group overflow-hidden text-white shadow-2xl shadow-brand-red/50"
@@ -165,7 +165,7 @@ export default function LandingPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 animate-glow" />
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* Quick Stats - Hero Variant */}
@@ -348,13 +348,13 @@ export default function LandingPage() {
 
           {/* Intermediate CTA */}
           <div className="text-center mt-12">
-            <Link href="/signup">
+            <a href="#cta">
               <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-8 py-4 magnetic-button text-white">
                 <Sparkles className="mr-2 h-4 w-4" />
                 Get All This + More
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
             {/* Trust Badges */}
             <div className="mt-6">
               <TrustBadges variant="compact" showPaymentMethods={true} />
@@ -451,12 +451,12 @@ export default function LandingPage() {
 
           {/* Intermediate CTA */}
           <div className="text-center mt-12">
-            <Link href="/signup">
+            <a href="#cta">
               <Button size="lg" variant="outline" className="glass border-white/20 text-white hover:bg-white/10 hover:border-brand-red/50 px-8 py-6 magnetic-button">
                 Join the Community
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -672,13 +672,13 @@ export default function LandingPage() {
 
           {/* Intermediate CTA */}
           <div className="text-center mt-12">
-            <Link href="/signup">
+            <a href="#cta">
               <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-8 py-4 magnetic-button text-white">
                 <Sparkles className="mr-2 h-4 w-4" />
                 Solve These Problems Today
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -834,13 +834,13 @@ export default function LandingPage() {
           </div>
 
           <div className="text-center mt-16">
-            <Link href="/signup">
+            <a href="#cta">
               <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-10 py-6 magnetic-button text-white">
                 <Sparkles className="mr-3 h-5 w-5" />
                 Start Learning Today
                 <ArrowRight className="ml-3 h-5 w-5" />
               </Button>
-            </Link>
+            </a>
             <p className="text-sm text-gray-500 mt-4">
               Join 1,000+ students already learning these skills
             </p>
@@ -901,12 +901,12 @@ export default function LandingPage() {
               </div>
 
               {/* CTA */}
-              <Link href="/signup">
+              <a href="#cta">
                 <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white text-sm py-3">
                   Start Your Journey
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* USA Client Success Story - Mobile Optimized */}
@@ -948,12 +948,12 @@ export default function LandingPage() {
               </div>
 
               {/* CTA */}
-              <Link href="/signup">
+              <a href="#cta">
                 <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white text-sm py-3">
                   Start Your Journey
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -1002,8 +1002,8 @@ export default function LandingPage() {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                <Link href="/signup">
+              <div id="cta" className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                <a href="#contact">
                   <Button 
                     size="lg" 
                     className="bg-white text-brand-red hover:bg-gray-100 text-xl px-12 py-8 tap-target magnetic-button shadow-2xl font-bold"
@@ -1012,8 +1012,8 @@ export default function LandingPage() {
                     Start Free Trial
                     <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
-          </Link>
-                <Link href="/pricing">
+          </a>
+                <a href="#contact">
                   <Button 
                     size="lg" 
                     variant="outline" 
@@ -1021,7 +1021,7 @@ export default function LandingPage() {
                   >
                     Talk to Success Coach
                   </Button>
-          </Link>
+          </a>
               </div>
               
               {/* Trust Badges in CTA */}
@@ -1088,6 +1088,31 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Contact Section - Simple */}
+      <section id="contact" className="py-20 relative bg-brand-dark-900/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <Badge className="mb-6 glass-red text-brand-red-200 border-brand-red/30">
+              Get In Touch
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-black mb-6">
+              Ready to Start Your <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Journey?</span>
+            </h2>
+            <p className="text-xl text-gray-400 mb-8">
+              Contact us to learn more about living and working from Thailand
+            </p>
+            <div className="glass rounded-2xl p-8">
+              <p className="text-gray-300 mb-4">
+                Email us at: <a href="mailto:hello@leavelab.com" className="text-brand-red hover:underline font-semibold">hello@leavelab.com</a>
+              </p>
+              <p className="text-gray-400 text-sm">
+                We typically respond within 24 hours
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer - Clean & Modern */}
       <footer className="border-t border-white/10 bg-brand-dark-900/50 backdrop-blur-xl py-12">
         <div className="container mx-auto px-4 lg:px-8">
@@ -1122,7 +1147,7 @@ export default function LandingPage() {
               <ul className="space-y-3 text-sm text-gray-400">
                 <li><Link href="#features" className="hover:text-brand-red transition-colors">Features</Link></li>
                 <li><Link href="#courses" className="hover:text-brand-red transition-colors">Courses</Link></li>
-                <li><Link href="/pricing" className="hover:text-brand-red transition-colors">Pricing</Link></li>
+                <li><a href="#contact" className="hover:text-brand-red transition-colors">Contact</a></li>
                 <li><Link href="#faq" className="hover:text-brand-red transition-colors">FAQ</Link></li>
               </ul>
             </div>

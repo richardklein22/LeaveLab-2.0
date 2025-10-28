@@ -1,8 +1,10 @@
-import { updateSession } from "@/lib/supabase/middleware";
-import { NextRequest } from "next/server";
+// DISABLED FOR LANDING PAGE BRANCH - No authentication required
+// import { updateSession } from "@/lib/supabase/middleware";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  // Simply pass through all requests without authentication
+  return NextResponse.next();
 }
 
 export const config = {
