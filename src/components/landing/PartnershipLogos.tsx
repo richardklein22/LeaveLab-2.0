@@ -47,7 +47,7 @@ function PartnerLogo({ name, logoUrl: _logoUrl, websiteUrl, description }: Partn
 
 export default function PartnershipLogos() {
   return (
-    <section className="py-12 sm:py-16 bg-brand-dark-950 relative">
+    <section className="py-12 sm:py-16 bg-brand-dark-900 relative">
       {/* Subtle glow effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-accent/5 via-transparent to-brand-red/5 opacity-30" />
       

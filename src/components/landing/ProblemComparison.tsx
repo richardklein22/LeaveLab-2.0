@@ -6,7 +6,7 @@ import { problemComparison } from '@/lib/landing-data';
 
 export default function ProblemComparison() {
   return (
-    <section className="py-16 sm:py-20 bg-brand-dark-900/30 relative">
+    <section className="py-16 sm:py-20 bg-brand-dark-950 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Before (Red tint with glass) */}

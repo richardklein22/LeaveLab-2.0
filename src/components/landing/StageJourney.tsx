@@ -92,7 +92,7 @@ export default function StageJourney() {
   }, [emblaApi]);
 
   return (
-    <section className="py-16 sm:py-20 bg-brand-dark-950 relative">
+    <section className="py-16 sm:py-20 bg-brand-dark-900 relative">
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-red/5 via-transparent to-brand-accent/5 opacity-50" />
       

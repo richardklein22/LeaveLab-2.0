@@ -105,7 +105,7 @@ function PricingCard({
 
 export default function PricingSection() {
   return (
-    <section className="py-16 sm:py-20 bg-brand-dark-950 relative">
+    <section className="py-16 sm:py-20 bg-brand-dark-900 relative">
       {/* Background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-accent/5 via-transparent to-brand-red/5 opacity-30" />
       
