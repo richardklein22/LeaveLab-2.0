@@ -1,14 +1,10 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import FounderBio from '@/components/landing/FounderBio';
-import MediaFeatures from '@/components/landing/MediaFeatures';
-import TrustBadges from '@/components/landing/TrustBadges';
-import QuickStats from '@/components/landing/QuickStats';
 
 export const metadata: Metadata = {
   title: 'LeaveLab - Live & Work in Thailand | Online Business + Visa Support',
@@ -130,7 +126,7 @@ export default function LandingPage() {
             <div className="flex justify-center mb-8 animate-float">
               <Badge className="glass-red text-brand-red-200 border-brand-red/30 px-6 py-2 text-sm hover:bg-brand-red/20 transition-colors">
                 <Award className="w-4 h-4 mr-2 inline animate-pulse" />
-                Featured in Daily Mail • 2 Global Partnerships
+                Featured in Daily Mail ÔÇó 2 Global Partnerships
               </Badge>
             </div>
             
@@ -152,7 +148,7 @@ export default function LandingPage() {
             
             {/* Mobile-Optimized CTA */}
             <div className="flex flex-col items-center gap-6 mb-16">
-              <a href="#cta">
+              <Link href="#cta">
                 <Button 
                   size="lg" 
                   className="bg-brand-red hover:bg-brand-red-600 text-xl px-12 py-8 tap-target magnetic-button relative group overflow-hidden text-white shadow-2xl shadow-brand-red/50"
@@ -165,14 +161,30 @@ export default function LandingPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 animate-glow" />
                 </Button>
-              </a>
+              </Link>
             </div>
 
-            {/* Quick Stats - Hero Variant */}
-            <QuickStats variant="hero" className="mb-8" />
-            
-            {/* Trust Badges - Minimal Variant */}
-            <TrustBadges variant="minimal" showPaymentMethods={false} />
+            {/* Trust Indicators with Icons */}
+            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-400">
+              <div className="flex items-center gap-2 group">
+                <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
+                  <CheckCircle className="h-5 w-5 text-brand-red" />
+                </div>
+                <span className="group-hover:text-white transition-colors">7-day free trial</span>
+              </div>
+              <div className="flex items-center gap-2 group">
+                <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
+                  <Shield className="h-5 w-5 text-brand-red" />
+                </div>
+                <span className="group-hover:text-white transition-colors">Secure payment</span>
+              </div>
+              <div className="flex items-center gap-2 group">
+                <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:glass-red transition-all">
+                  <Zap className="h-5 w-5 text-brand-red" />
+                </div>
+                <span className="group-hover:text-white transition-colors">Cancel anytime</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -189,12 +201,6 @@ export default function LandingPage() {
           <div className="text-xs text-gray-400">Media Features</div>
         </div>
       </section>
-
-      {/* Founder Bio Section */}
-      <FounderBio />
-
-      {/* Media Features Section */}
-      <MediaFeatures />
 
       {/* Who This Is For Section - Mobile Optimized */}
       <section className="py-16 relative">
@@ -348,17 +354,13 @@ export default function LandingPage() {
 
           {/* Intermediate CTA */}
           <div className="text-center mt-12">
-            <a href="#cta">
+            <Link href="#cta">
               <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-8 py-4 magnetic-button text-white">
                 <Sparkles className="mr-2 h-4 w-4" />
                 Get All This + More
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </a>
-            {/* Trust Badges */}
-            <div className="mt-6">
-              <TrustBadges variant="compact" showPaymentMethods={true} />
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -451,18 +453,15 @@ export default function LandingPage() {
 
           {/* Intermediate CTA */}
           <div className="text-center mt-12">
-            <a href="#cta">
+            <Link href="#cta">
               <Button size="lg" variant="outline" className="glass border-white/20 text-white hover:bg-white/10 hover:border-brand-red/50 px-8 py-6 magnetic-button">
                 Join the Community
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* Quick Stats Section */}
-      <QuickStats variant="grid" />
 
       {/* Official Partners Section - NEW */}
       <section className="py-32 relative">
@@ -639,7 +638,7 @@ export default function LandingPage() {
                 <Target className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Stuck in 9-5?</h3>
-              <p className="text-brand-red font-semibold text-sm">→ Business coaching gets you income-independent</p>
+              <p className="text-brand-red font-semibold text-sm">ÔåÆ Business coaching gets you income-independent</p>
             </div>
 
             {/* Pain Point 2 - Mobile Optimized */}
@@ -648,7 +647,7 @@ export default function LandingPage() {
                 <FileText className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Visa Confusion?</h3>
-              <p className="text-brand-red font-semibold text-sm">→ We handle visa setup A-Z with trusted agents</p>
+              <p className="text-brand-red font-semibold text-sm">ÔåÆ We handle visa setup A-Z with trusted agents</p>
             </div>
 
             {/* Pain Point 3 - Mobile Optimized */}
@@ -657,7 +656,7 @@ export default function LandingPage() {
                 <DollarSign className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Income Stability?</h3>
-              <p className="text-brand-red font-semibold text-sm">→ 4 proven business models + ongoing support</p>
+              <p className="text-brand-red font-semibold text-sm">ÔåÆ 4 proven business models + ongoing support</p>
             </div>
 
             {/* Pain Point 4 - Mobile Optimized */}
@@ -666,19 +665,19 @@ export default function LandingPage() {
                 <MapPin className="h-5 w-5 text-brand-red" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-white">Where to Start?</h3>
-              <p className="text-brand-red font-semibold text-sm">→ Step-by-step roadmap from planning to landing</p>
+              <p className="text-brand-red font-semibold text-sm">ÔåÆ Step-by-step roadmap from planning to landing</p>
             </div>
           </div>
 
           {/* Intermediate CTA */}
           <div className="text-center mt-12">
-            <a href="#cta">
+            <Link href="#cta">
               <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-8 py-4 magnetic-button text-white">
                 <Sparkles className="mr-2 h-4 w-4" />
                 Solve These Problems Today
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -834,13 +833,13 @@ export default function LandingPage() {
           </div>
 
           <div className="text-center mt-16">
-            <a href="#cta">
+            <Link href="#cta">
               <Button size="lg" className="bg-brand-red hover:bg-brand-red-600 text-lg px-10 py-6 magnetic-button text-white">
                 <Sparkles className="mr-3 h-5 w-5" />
                 Start Learning Today
                 <ArrowRight className="ml-3 h-5 w-5" />
               </Button>
-            </a>
+            </Link>
             <p className="text-sm text-gray-500 mt-4">
               Join 1,000+ students already learning these skills
             </p>
@@ -866,9 +865,9 @@ export default function LandingPage() {
             <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 border-2 border-transparent hover:border-brand-red/50">
               {/* Journey Flags */}
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="text-4xl">🇬🇧</div>
+                <div className="text-4xl">­ƒç¼­ƒçº</div>
                 <ArrowRight className="w-6 h-6 text-brand-red" />
-                <div className="text-4xl">🇹🇭</div>
+                <div className="text-4xl">­ƒç╣­ƒç¡</div>
               </div>
 
               <div className="text-center mb-4">
@@ -877,14 +876,14 @@ export default function LandingPage() {
                   Successfully Relocated
                 </Badge>
                 <h3 className="text-xl font-bold text-white mb-1">Sarah M.</h3>
-                <p className="text-brand-red font-semibold text-sm">London → Chiang Mai</p>
-                <p className="text-xs text-gray-400">£45k → £8k/month in 6 months</p>
+                <p className="text-brand-red font-semibold text-sm">London ÔåÆ Chiang Mai</p>
+                <p className="text-xs text-gray-400">┬ú45k ÔåÆ ┬ú8k/month in 6 months</p>
               </div>
 
               {/* Quote - Shortened */}
               <div className="mb-4">
                 <p className="text-gray-300 text-sm leading-relaxed italic">
-                  "LeaveLab's Amazon FBA course helped me launch my business and now I make £8k/month from Thailand. Best decision ever!"
+                  "LeaveLab's Amazon FBA course helped me launch my business and now I make ┬ú8k/month from Thailand. Best decision ever!"
                 </p>
               </div>
 
@@ -892,30 +891,30 @@ export default function LandingPage() {
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="bg-brand-dark-950/50 rounded-lg p-3">
                   <p className="text-xs text-gray-500 uppercase mb-1">Before</p>
-                  <p className="text-white font-semibold text-sm">£45k Office Job</p>
+                  <p className="text-white font-semibold text-sm">┬ú45k Office Job</p>
                 </div>
                 <div className="bg-brand-red/10 rounded-lg p-3 border border-brand-red/30">
                   <p className="text-xs text-brand-red uppercase mb-1">After</p>
-                  <p className="text-white font-semibold text-sm">£8k/month FBA</p>
+                  <p className="text-white font-semibold text-sm">┬ú8k/month FBA</p>
                 </div>
               </div>
 
               {/* CTA */}
-              <a href="#cta">
+              <Link href="#cta">
                 <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white text-sm py-3">
                   Start Your Journey
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </a>
+              </Link>
             </div>
 
             {/* USA Client Success Story - Mobile Optimized */}
             <div className="glass rounded-2xl p-6 card-3d hover:glass-red transition-all duration-300 border-2 border-transparent hover:border-brand-red/50">
               {/* Journey Flags */}
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="text-4xl">🇺🇸</div>
+                <div className="text-4xl">­ƒç║­ƒç©</div>
                 <ArrowRight className="w-6 h-6 text-brand-red" />
-                <div className="text-4xl">🇹🇭</div>
+                <div className="text-4xl">­ƒç╣­ƒç¡</div>
               </div>
 
               <div className="text-center mb-4">
@@ -924,8 +923,8 @@ export default function LandingPage() {
                   Successfully Relocated
                 </Badge>
                 <h3 className="text-xl font-bold text-white mb-1">Mike R.</h3>
-                <p className="text-brand-red font-semibold text-sm">USA → Bangkok</p>
-                <p className="text-xs text-gray-400">$120k → $15k/month in 8 months</p>
+                <p className="text-brand-red font-semibold text-sm">USA ÔåÆ Bangkok</p>
+                <p className="text-xs text-gray-400">$120k ÔåÆ $15k/month in 8 months</p>
               </div>
 
               {/* Quote - Shortened */}
@@ -948,12 +947,12 @@ export default function LandingPage() {
               </div>
 
               {/* CTA */}
-              <a href="#cta">
+              <Link href="#cta">
                 <Button className="w-full bg-brand-red hover:bg-brand-red-600 magnetic-button text-white text-sm py-3">
                   Start Your Journey
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -961,7 +960,7 @@ export default function LandingPage() {
 
 
       {/* CTA Section - Bold & Immersive with Thailand Focus */}
-      <section className="py-32 relative">
+      <section id="cta" className="py-32 relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-6xl mx-auto relative">
             {/* Background Effects */}
@@ -1002,8 +1001,8 @@ export default function LandingPage() {
                 </div>
               </div>
               
-              <div id="cta" className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                <a href="#contact">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                <Link href="#cta">
                   <Button 
                     size="lg" 
                     className="bg-white text-brand-red hover:bg-gray-100 text-xl px-12 py-8 tap-target magnetic-button shadow-2xl font-bold"
@@ -1012,8 +1011,8 @@ export default function LandingPage() {
                     Start Free Trial
                     <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
-          </a>
-                <a href="#contact">
+          </Link>
+                <Link href="#contact">
                   <Button 
                     size="lg" 
                     variant="outline" 
@@ -1021,11 +1020,23 @@ export default function LandingPage() {
                   >
                     Talk to Success Coach
                   </Button>
-          </a>
+          </Link>
               </div>
               
-              {/* Trust Badges in CTA */}
-              <TrustBadges variant="minimal" showPaymentMethods={false} className="text-white/80" />
+              <div className="flex flex-wrap items-center justify-center gap-8 text-white/80">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5" />
+                  <span>7-day free trial</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="h-5 w-5" />
+                  <span>Money-back guarantee</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Zap className="h-5 w-5" />
+                  <span>Cancel anytime</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1147,7 +1158,7 @@ export default function LandingPage() {
               <ul className="space-y-3 text-sm text-gray-400">
                 <li><Link href="#features" className="hover:text-brand-red transition-colors">Features</Link></li>
                 <li><Link href="#courses" className="hover:text-brand-red transition-colors">Courses</Link></li>
-                <li><a href="#contact" className="hover:text-brand-red transition-colors">Contact</a></li>
+                <li><Link href="#contact" className="hover:text-brand-red transition-colors">Pricing</Link></li>
                 <li><Link href="#faq" className="hover:text-brand-red transition-colors">FAQ</Link></li>
               </ul>
             </div>
@@ -1173,7 +1184,7 @@ export default function LandingPage() {
           </div>
           
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>© 2025 LeaveLab. All rights reserved.</p>
+            <p>┬® 2025 LeaveLab. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="#" className="hover:text-brand-red transition-colors">Twitter</Link>
               <Link href="#" className="hover:text-brand-red transition-colors">Instagram</Link>
