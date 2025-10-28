@@ -33,8 +33,8 @@ function HowItWorksStep({ number, title, description, index }: StepProps) {
         {/* Icon overlay */}
         <div className="absolute -bottom-2 -right-2 lg:-bottom-3 lg:-right-3 
                        w-10 h-10 lg:w-12 lg:h-12 rounded-full 
-                       glass shadow-lg flex items-center justify-center 
-                       border-2 border-brand-red/30">
+                       bg-brand-dark-900/80 backdrop-blur-xl shadow-lg flex items-center justify-center 
+                       border-2 border-brand-red/40">
           <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-brand-red" />
         </div>
       </div>

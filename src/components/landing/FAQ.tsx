@@ -16,8 +16,8 @@ function FAQItem({ question, answer }: FAQItemProps) {
   return (
     <motion.div
       initial={false}
-      className="glass rounded-lg sm:rounded-xl overflow-hidden 
-                 border border-white/10 hover:border-brand-red/30 transition-colors duration-200"
+      className="bg-brand-dark-900/60 backdrop-blur-xl rounded-lg sm:rounded-xl overflow-hidden 
+                 border border-brand-red/20 hover:border-brand-red/50 transition-colors duration-200"
     >
       {/* Question button */}
       <button

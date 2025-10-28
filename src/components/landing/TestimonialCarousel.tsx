@@ -24,10 +24,10 @@ function TestimonialCard({ quote, name, title, location, date, badge, imageUrl }
     <motion.div
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      className="glass rounded-xl sm:rounded-2xl p-5 sm:p-6 
+      className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl sm:rounded-2xl p-5 sm:p-6 
                  hover:shadow-2xl transition-all duration-300 
-                 border border-white/10 flex flex-col h-full
-                 card-3d hover:border-brand-red/30"
+                 border border-brand-accent/20 flex flex-col h-full
+                 card-3d hover:border-brand-red/50 hover:bg-brand-dark-900/80"
     >
       {/* Profile section */}
       <div className="flex items-center gap-3 sm:gap-4 mb-4">

@@ -32,10 +32,10 @@ function PricingCard({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative rounded-xl md:rounded-2xl p-6 md:p-8 flex flex-col card-3d
+      className={`relative rounded-xl md:rounded-2xl p-6 md:p-8 flex flex-col card-3d backdrop-blur-xl
                   ${featured 
-                    ? 'glass border-2 border-brand-red/50 shadow-xl shadow-brand-red/20' 
-                    : 'glass border-2 border-white/10 shadow-md'}`}
+                    ? 'bg-brand-dark-900/60 border-2 border-brand-red/50 shadow-xl shadow-brand-red/20 hover:bg-brand-dark-900/80' 
+                    : 'bg-brand-dark-900/40 border-2 border-white/10 shadow-md hover:bg-brand-dark-900/60'}`}
     >
       {/* "Most Popular" badge */}
       {featured && (

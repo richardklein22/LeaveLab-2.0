@@ -22,10 +22,10 @@ function StageCard({ icon, title, subtitle, features, ctaText, ctaLink, index }:
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       viewport={{ once: true }}
-      className="glass rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-2xl 
-                 transition-all duration-300 border border-white/10 
+      className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-2xl 
+                 transition-all duration-300 border border-brand-red/20 
                  flex flex-col h-full min-h-[340px] card-3d
-                 hover:border-brand-red/30"
+                 hover:border-brand-red/50 hover:bg-brand-dark-900/80"
     >
       {/* Icon */}
       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-accent/20 

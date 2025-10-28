@@ -15,9 +15,9 @@ export default function ProblemComparison() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="glass rounded-xl md:rounded-2xl p-6 md:p-8 
-                      border-2 border-brand-red/20 relative card-3d
-                      hover:glass-red transition-all duration-300"
+            className="bg-brand-dark-900/50 backdrop-blur-xl rounded-xl md:rounded-2xl p-6 md:p-8 
+                      border-2 border-brand-red/30 relative card-3d
+                      hover:border-brand-red/50 hover:bg-brand-dark-900/70 transition-all duration-300 shadow-lg"
           >
             {/* Sad emoji illustration at top */}
             <div className="text-5xl md:text-6xl text-center mb-4 md:mb-6 opacity-50">
@@ -51,9 +51,9 @@ export default function ProblemComparison() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="glass rounded-xl md:rounded-2xl p-6 md:p-8 
+            className="bg-brand-dark-900/50 backdrop-blur-xl rounded-xl md:rounded-2xl p-6 md:p-8 
                       border-2 border-brand-accent/30 relative card-3d
-                      hover:border-brand-accent/50 transition-all duration-300"
+                      hover:border-brand-accent/50 hover:bg-brand-dark-900/70 transition-all duration-300 shadow-lg"
           >
             {/* Happy emoji illustration at top */}
             <div className="text-5xl md:text-6xl text-center mb-4 md:mb-6">

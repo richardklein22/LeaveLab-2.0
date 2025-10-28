@@ -21,9 +21,9 @@ function PartnerLogo({ name, logoUrl: _logoUrl, websiteUrl, description }: Partn
       className="group relative block"
     >
       <div className="h-14 w-32 sm:h-16 sm:w-40 flex items-center justify-center 
-                      glass rounded-lg sm:rounded-xl px-4 sm:px-6 py-3 sm:py-4 
+                      bg-brand-dark-900/60 backdrop-blur-xl rounded-lg sm:rounded-xl px-4 sm:px-6 py-3 sm:py-4 
                       hover:shadow-lg hover:shadow-brand-red/20 transition-all duration-300 
-                      border border-white/10 group-hover:border-brand-red/30">
+                      border border-brand-red/20 group-hover:border-brand-red/50 group-hover:bg-brand-dark-900/80">
         <div className="relative w-full h-full">
           {/* Fallback text */}
           <div className="absolute inset-0 flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-400 group-hover:text-brand-red transition-colors">

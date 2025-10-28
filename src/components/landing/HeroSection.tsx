@@ -97,10 +97,10 @@ export default function HeroSection() {
               transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
               className="flex flex-col items-center group"
             >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full glass 
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-dark-900/70 backdrop-blur-xl 
                             flex items-center justify-center text-lg sm:text-2xl mb-1 sm:mb-2 
-                            border border-white/10 group-hover:glass-red transition-all duration-300
-                            group-hover:scale-110">
+                            border border-brand-red/30 group-hover:border-brand-red/60 transition-all duration-300
+                            group-hover:scale-110 group-hover:bg-brand-dark-900/90 shadow-lg">
                 {stage.icon}
               </div>
               <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-brand-red transition-colors">
