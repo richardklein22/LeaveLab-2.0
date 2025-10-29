@@ -58,28 +58,43 @@ export const stages = [
 // Testimonials Data
 export const testimonials = [
   {
-    quote: "I landed 3 teaching interviews in 2 weeks. The job board alone is worth 10x the price.",
-    name: "Sarah Mitchell",
-    title: "Freelance English Teacher",
-    location: "London → Bangkok",
+    quote: "LeaveLab's Amazon FBA course helped me launch my business and now I make £8k/month from Thailand. Best decision ever!",
+    name: "Sarah M.",
+    title: "Amazon FBA Entrepreneur",
+    location: "London → Chiang Mai",
+    fromFlag: "🇬🇧",
+    toFlag: "🇹🇭",
     date: "Moved July 2024",
-    badge: "Income Stage"
+    badge: "Income Stage",
+    beforeIncome: "£45k Office Job",
+    afterIncome: "£8k/month FBA",
+    timeframe: "6 months"
   },
   {
-    quote: "The visa quiz saved me £1,200. I was about to apply for the wrong visa type.",
-    name: "Marcus Thompson",
-    title: "Software Developer",
-    location: "Manchester → Chiang Mai",
+    quote: "LeaveLab's AI agency course helped me build a $15k/month business. Now I work from Bangkok beaches and love my life!",
+    name: "Marcus T.",
+    title: "AI Automation Specialist",
+    location: "Manchester → Bangkok",
+    fromFlag: "🇬🇧",
+    toFlag: "🇹🇭",
     date: "Moved September 2024",
-    badge: "Visa Stage"
+    badge: "Visa Stage",
+    beforeIncome: "$120k Corporate",
+    afterIncome: "$15k/month AI",
+    timeframe: "8 months"
   },
   {
-    quote: "I met my 4 roommates before I even landed. Zero loneliness.",
-    name: "Priya Kumar",
+    quote: "I met my 4 roommates before I even landed. The community is incredible and the visa guidance was perfect.",
+    name: "Priya K.",
     title: "Content Creator & Videographer",
     location: "Birmingham → Chiang Mai",
+    fromFlag: "🇬🇧",
+    toFlag: "🇹🇭",
     date: "Moved October 2024",
-    badge: "Community Stage"
+    badge: "Community Stage",
+    beforeIncome: "Freelance £3k/mo",
+    afterIncome: "£5k/month + Travel",
+    timeframe: "4 months"
   }
 ];
 

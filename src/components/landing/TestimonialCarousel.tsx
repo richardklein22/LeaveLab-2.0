@@ -11,12 +11,17 @@ interface TestimonialProps {
   name: string;
   title: string;
   location: string;
+  fromFlag?: string;
+  toFlag?: string;
   date: string;
   badge: string;
+  beforeIncome?: string;
+  afterIncome?: string;
+  timeframe?: string;
   imageUrl?: string;
 }
 
-function TestimonialCard({ quote, name, title, location, date, badge, imageUrl }: TestimonialProps) {
+function TestimonialCard({ quote, name, title, location, fromFlag, toFlag, date, badge, beforeIncome, afterIncome, timeframe, imageUrl }: TestimonialProps) {
   // Get initials for avatar placeholder
   const initials = name.split(' ').map(n => n[0]).join('');
   
@@ -25,10 +30,21 @@ function TestimonialCard({ quote, name, title, location, date, badge, imageUrl }
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
       className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl sm:rounded-2xl p-5 sm:p-6 
-                 hover:shadow-2xl transition-all duration-300 
-                 border border-brand-accent/20 flex flex-col h-full
+                 hover:shadow-2xl shadow-brand-red/10 transition-all duration-300 
+                 border-2 border-brand-accent/20 flex flex-col h-full
                  card-3d hover:border-brand-red/50 hover:bg-brand-dark-900/80"
     >
+      {/* Journey Flags */}
+      {fromFlag && toFlag && (
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="text-3xl sm:text-4xl">{fromFlag}</div>
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          <div className="text-3xl sm:text-4xl">{toFlag}</div>
+        </div>
+      )}
+
       {/* Profile section */}
       <div className="flex items-center gap-3 sm:gap-4 mb-4">
         {/* Profile image - use placeholder if imageUrl not provided */}
@@ -60,12 +76,26 @@ function TestimonialCard({ quote, name, title, location, date, badge, imageUrl }
         <p>{date}</p>
       </div>
       
+      {/* Before / After Income (if available) */}
+      {beforeIncome && afterIncome && (
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-white/10">
+            <p className="text-xs text-gray-500 uppercase mb-1">Before</p>
+            <p className="text-white font-semibold text-xs sm:text-sm">{beforeIncome}</p>
+          </div>
+          <div className="bg-brand-red/10 rounded-lg p-3 border border-brand-red/30">
+            <p className="text-xs text-brand-red uppercase mb-1">After</p>
+            <p className="text-white font-semibold text-xs sm:text-sm">{afterIncome}</p>
+          </div>
+        </div>
+      )}
+
       {/* Badge */}
       <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium 
-                     text-brand-red bg-brand-red/10 px-3 py-1.5 rounded-full w-fit
-                     border border-brand-red/20">
+                     text-green-400 bg-green-600/20 px-3 py-1.5 rounded-full w-fit
+                     border border-green-400/50">
         <Check className="w-3 h-3 sm:w-4 sm:h-4" />
-        <span>{badge}</span>
+        <span>Successfully Relocated</span>
       </div>
     </motion.div>
   );

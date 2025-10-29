@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Award, CheckCircle, Shield, Zap, Newspaper } from 'lucide-react';
 import { heroProgressStages } from '@/lib/landing-data';
+import { Badge } from '@/components/ui/badge';
 
 export default function HeroSection() {
   return (
@@ -25,7 +26,20 @@ export default function HeroSection() {
       </div>
       
       {/* Content container */}
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+        {/* Credibility Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-8 animate-float"
+        >
+          <Badge className="glass-red text-brand-red-200 border-brand-red/30 px-6 py-2 text-sm hover:bg-brand-red/20 transition-colors">
+            <Award className="w-4 h-4 mr-2 inline animate-pulse" />
+            Featured in Daily Mail • 2 Global Partnerships
+          </Badge>
+        </motion.div>
+
         {/* Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -72,15 +86,32 @@ export default function HeroSection() {
           </button>
         </motion.div>
 
-        {/* Trust badges */}
-        <motion.p
+        {/* Trust Indicators with Icons */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm text-gray-400 mb-12"
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-sm text-gray-400 mb-12"
         >
-          No credit card • 2-minute signup
-        </motion.p>
+          <div className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-all border border-brand-red/30">
+              <CheckCircle className="h-5 w-5 text-brand-red" />
+            </div>
+            <span className="group-hover:text-white transition-colors">7-day free trial</span>
+          </div>
+          <div className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-all border border-brand-red/30">
+              <Shield className="h-5 w-5 text-brand-red" />
+            </div>
+            <span className="group-hover:text-white transition-colors">Secure payment</span>
+          </div>
+          <div className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-all border border-brand-red/30">
+              <Zap className="h-5 w-5 text-brand-red" />
+            </div>
+            <span className="group-hover:text-white transition-colors">Cancel anytime</span>
+          </div>
+        </motion.div>
 
         {/* Progress Icons */}
         <motion.div
@@ -119,6 +150,29 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
       >
         <ChevronDown className="w-8 h-8 text-brand-red" />
+      </motion.div>
+
+      {/* Floating Stats Elements (Desktop only) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-10 left-10 bg-brand-dark-900/70 backdrop-blur-xl p-4 rounded-2xl animate-float hidden lg:block border border-brand-red/20"
+      >
+        <div className="text-3xl font-bold text-brand-red">50+</div>
+        <div className="text-xs text-gray-400">Relocations</div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="absolute top-1/3 right-10 bg-brand-dark-900/70 backdrop-blur-xl p-4 rounded-2xl animate-float animation-delay-2000 hidden lg:block border border-brand-red/20"
+      >
+        <div className="flex items-center gap-2">
+          <Newspaper className="w-5 h-5 text-brand-red" />
+          <div className="text-2xl font-bold text-white">4</div>
+        </div>
+        <div className="text-xs text-gray-400">Media Features</div>
       </motion.div>
     </section>
   );
