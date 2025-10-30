@@ -2,19 +2,17 @@ import { Metadata } from 'next';
 import {
   Navigation,
   HeroSection,
-  WhoThisIsFor,
-  ProblemComparison,
-  StageJourney,
-  SocialProof,
-  TestimonialCarousel,
-  PainPoints,
-  CoursesShowcase,
-  PartnershipLogos,
-  HowItWorks,
-  PricingSection,
+  RoadmapOverview,
+  IncomeStage,
+  VisaStage,
+  AccommodationStage,
+  CommunityStage,
+  OfficialPartnershipsNew,
+  MediaFeatures,
+  SuccessStoriesNew,
+  EverythingIncluded,
+  SingleCTA,
   FAQ,
-  ContactSection,
-  FinalCTA,
   Footer
 } from '@/components/landing';
 
@@ -40,19 +38,17 @@ export default function LandingPage() {
     <div className="min-h-screen bg-brand-dark-950 text-white overflow-x-hidden">
       <Navigation />
       <HeroSection />
-      <WhoThisIsFor />
-      <ProblemComparison />
-      <StageJourney />
-      <SocialProof />
-      <TestimonialCarousel />
-      <PainPoints />
-      <CoursesShowcase />
-      <PartnershipLogos />
-      <HowItWorks />
-      <PricingSection />
+      <RoadmapOverview />
+      <IncomeStage />
+      <VisaStage />
+      <AccommodationStage />
+      <CommunityStage />
+      <OfficialPartnershipsNew />
+      <MediaFeatures />
+      <SuccessStoriesNew />
+      <EverythingIncluded />
+      <SingleCTA />
       <FAQ />
-      <ContactSection />
-      <FinalCTA />
       <Footer />
     </div>
   );

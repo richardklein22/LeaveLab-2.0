@@ -16,3 +16,15 @@ export { default as ContactSection } from './ContactSection';
 export { default as FinalCTA } from './FinalCTA';
 export { default as Footer } from './Footer';
 
+// New Roadmap-Driven Components
+export { default as RoadmapOverview } from './RoadmapOverview';
+export { default as IncomeStage } from './IncomeStage';
+export { default as VisaStage } from './VisaStage';
+export { default as AccommodationStage } from './AccommodationStage';
+export { default as CommunityStage } from './CommunityStage';
+export { default as OfficialPartnershipsNew } from './OfficialPartnershipsNew';
+export { default as MediaFeatures } from './MediaFeatures';
+export { default as SuccessStoriesNew } from './SuccessStoriesNew';
+export { default as EverythingIncluded } from './EverythingIncluded';
+export { default as SingleCTA } from './SingleCTA';
+
