@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ChevronDown, Award, CheckCircle, Shield, Zap, Newspaper } from 'lucide-react';
-import { heroProgressStages } from '@/lib/landing-data';
+import { Award, CheckCircle, Shield, Zap, Newspaper } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { heroProgressStages } from '@/lib/landing-data';
 
 export default function HeroSection() {
   return (
@@ -47,14 +47,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
         >
-          <span className="inline-block hover:scale-110 transition-transform duration-300">Move</span>{' '}
-          <span className="inline-block hover:scale-110 transition-transform duration-300">to</span>{' '}
-          <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">
-            Thailand
-          </span>{' '}
-          <span className="inline-block hover:scale-110 transition-transform duration-300">in</span>{' '}
-          <span className="inline-block hover:scale-110 transition-transform duration-300">90</span>{' '}
-          <span className="inline-block hover:scale-110 transition-transform duration-300">Days</span>
+          Move to <span className="bg-gradient-to-r from-brand-red via-brand-red-400 to-brand-red-600 bg-clip-text text-transparent">Thailand</span> in 90 days
         </motion.h1>
 
         {/* Subheadline */}
@@ -64,7 +57,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
         >
-          Join 1,247 digital nomads earning £2K+/month while living their dream life
+          One account connects mentorship, visas, housing, and community into a single roadmap.
         </motion.p>
 
         {/* Primary CTA */}
@@ -113,44 +106,31 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Progress Icons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8 mt-8 sm:mt-12"
+          className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8"
         >
           {heroProgressStages.map((stage, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
+              key={stage.label}
+              initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-              className="flex flex-col items-center group"
+              className="flex flex-col items-center gap-2"
             >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-dark-900/70 backdrop-blur-xl 
-                            flex items-center justify-center text-lg sm:text-2xl mb-1 sm:mb-2 
-                            border border-brand-red/30 group-hover:border-brand-red/60 transition-all duration-300
-                            group-hover:scale-110 group-hover:bg-brand-dark-900/90 shadow-lg">
-                {stage.icon}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center border border-brand-red/30">
+                <stage.icon className="w-6 h-6 text-brand-red" aria-hidden="true" />
               </div>
-              <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-brand-red transition-colors">
+              <span className="text-xs sm:text-sm font-medium text-gray-300">
                 {stage.label}
               </span>
             </motion.div>
           ))}
         </motion.div>
-      </div>
 
-      {/* Arrow Indicator (bottom of viewport) */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <ChevronDown className="w-8 h-8 text-brand-red" />
-      </motion.div>
+      </div>
 
       {/* Floating Stats Elements (Desktop only) */}
       <motion.div

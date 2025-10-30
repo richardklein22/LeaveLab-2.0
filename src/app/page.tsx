@@ -2,21 +2,17 @@ import { Metadata } from 'next';
 import {
   Navigation,
   HeroSection,
-  WhoThisIsFor,
-  ProblemComparison,
-  StageJourney,
-  SocialProof,
-  TestimonialCarousel,
-  PainPoints,
-  CoursesShowcase,
-  PartnershipLogos,
-  HowItWorks,
-  PricingSection,
+  RoadmapOverview,
+  ProgramSection,
+  PartnershipDetails,
+  PressSection,
+  ResultsSection,
+  OfferingSummary,
   FAQ,
-  ContactSection,
   FinalCTA,
   Footer
 } from '@/components/landing';
+import { incomeProgram, visaProgram, housingProgram, communityProgram } from '@/lib/landing-data';
 
 export const metadata: Metadata = {
   title: 'LeaveLab - Move to Thailand in 90 Days | Digital Nomad Platform',
@@ -40,18 +36,16 @@ export default function LandingPage() {
     <div className="min-h-screen bg-brand-dark-950 text-white overflow-x-hidden">
       <Navigation />
       <HeroSection />
-      <WhoThisIsFor />
-      <ProblemComparison />
-      <StageJourney />
-      <SocialProof />
-      <TestimonialCarousel />
-      <PainPoints />
-      <CoursesShowcase />
-      <PartnershipLogos />
-      <HowItWorks />
-      <PricingSection />
+      <RoadmapOverview />
+      <ProgramSection section={incomeProgram} />
+      <ProgramSection section={visaProgram} />
+      <ProgramSection section={housingProgram} />
+      <ProgramSection section={communityProgram} />
+      <PartnershipDetails />
+      <PressSection />
+      <ResultsSection />
+      <OfferingSummary />
       <FAQ />
-      <ContactSection />
       <FinalCTA />
       <Footer />
     </div>

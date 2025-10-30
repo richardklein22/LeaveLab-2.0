@@ -1,6 +1,4 @@
 'use client';
-
-import Link from 'next/link';
 import { Globe, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -27,27 +25,26 @@ export default function Navigation() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#stages" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
+            <a href="#roadmap" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
               Roadmap
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full" />
             </a>
-            <a href="#testimonials" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
-              Success Stories
+            <a href="#income" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
+              Income
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full" />
             </a>
-            <a href="#pricing" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
-              Pricing
+            <a href="#visa" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
+              Visa
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full" />
+            </a>
+            <a href="#community" className="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors relative group">
+              Community
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full" />
             </a>
           </div>
           
           {/* CTA Buttons */}
           <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden sm:block">
-              <Button variant="ghost" size="sm" className="text-white hover:text-brand-red hover:bg-white/5">
-                Contact Us
-              </Button>
-            </a>
             <a href="/signup">
               <Button 
                 size="sm" 

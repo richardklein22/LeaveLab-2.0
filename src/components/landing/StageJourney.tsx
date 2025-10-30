@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import useEmblaCarousel from 'embla-carousel-react';
 import { stages } from '@/lib/landing-data';
 import { useEffect, useState } from 'react';
+import type { LucideIcon } from 'lucide-react';
 
 interface StageCardProps {
-  icon: string;
+  icon: LucideIcon;
   title: string;
   subtitle: string;
   features: string[];
@@ -16,6 +17,7 @@ interface StageCardProps {
 }
 
 function StageCard({ icon, title, subtitle, features, ctaText, ctaLink, index }: StageCardProps) {
+  const Icon = icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -29,8 +31,8 @@ function StageCard({ icon, title, subtitle, features, ctaText, ctaLink, index }:
     >
       {/* Icon */}
       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-brand-red/20 to-brand-accent/20 
-                      flex items-center justify-center text-2xl sm:text-3xl mb-4 border border-brand-red/20">
-        {icon}
+                      flex items-center justify-center mb-4 border border-brand-red/20">
+        <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-brand-red" aria-hidden="true" />
       </div>
       
       {/* Title */}

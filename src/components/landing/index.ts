@@ -15,4 +15,10 @@ export { default as FAQ } from './FAQ';
 export { default as ContactSection } from './ContactSection';
 export { default as FinalCTA } from './FinalCTA';
 export { default as Footer } from './Footer';
+export { default as RoadmapOverview } from './RoadmapOverview';
+export { default as ProgramSection } from './ProgramSection';
+export { default as PartnershipDetails } from './PartnershipDetails';
+export { default as PressSection } from './PressSection';
+export { default as ResultsSection } from './ResultsSection';
+export { default as OfferingSummary } from './OfferingSummary';
 
