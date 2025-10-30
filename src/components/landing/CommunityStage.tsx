@@ -1,43 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CalendarDays, Network, MessageCircle } from 'lucide-react';
-
-const communityOptions = [
-  {
-    icon: CalendarDays,
-    title: 'Events & Meetups',
-    description: 'Weekly meetups across Thailand',
-    features: [
-      'Boat parties (Bangkok)',
-      'Coworking sessions',
-      'Road trips',
-      'Skill workshops'
-    ]
-  },
-  {
-    icon: Network,
-    title: 'Online Networking',
-    description: 'Connect before you arrive',
-    features: [
-      'Profile matching',
-      'City-based groups',
-      'Skill-based matching',
-      'Direct messaging'
-    ]
-  },
-  {
-    icon: MessageCircle,
-    title: 'Discord Community',
-    description: '24/7 Discord server with 1,247 nomads',
-    features: [
-      'City channels',
-      'Visa questions',
-      'Job opportunities',
-      'Social events'
-    ]
-  }
-];
+import { CalendarDays, Network, MessageCircle, Users } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 export default function CommunityStage() {
   return (
@@ -51,7 +16,6 @@ export default function CommunityStage() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          {/* Stage badge */}
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-full bg-brand-accent-pink flex items-center justify-center text-white font-bold text-lg">
               4
@@ -68,50 +32,339 @@ export default function CommunityStage() {
         </motion.div>
       </div>
 
-      {/* Community Options Grid */}
+      {/* Bento Grid Layout */}
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {communityOptions.map((option, index) => {
-            const Icon = option.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20 
-                           hover:border-brand-accent-pink/50 hover:bg-brand-dark-900/80 transition-all duration-300 
-                           card-3d flex flex-col h-full"
-              >
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
-                                flex items-center justify-center mb-4 border border-brand-accent-pink/20">
-                  <Icon className="h-7 w-7 text-brand-accent-pink" />
+        {/* Desktop: Bento Grid */}
+        <div className="hidden lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-6 max-w-6xl mx-auto">
+          {/* Large Card: Events (spans 2 rows) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="lg:row-span-2 bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl p-8 border border-brand-accent-pink/30 
+                       hover:border-brand-accent-pink/50 transition-all duration-300 card-3d"
+          >
+            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                            flex items-center justify-center mb-6 border border-brand-accent-pink/20">
+              <CalendarDays className="h-8 w-8 text-brand-accent-pink" />
+            </div>
+            
+            <h3 className="text-2xl font-bold text-white mb-3">
+              Events & Meetups
+            </h3>
+            <p className="text-gray-400 mb-6">
+              Weekly in-person gatherings across Thailand
+            </p>
+
+            <div className="space-y-4">
+              <div className="bg-brand-dark-950/50 rounded-lg p-4 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Boat Parties</p>
+                <p className="text-xs text-gray-400">Weekly in Bangkok, meet 30+ nomads</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-4 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Coworking Sessions</p>
+                <p className="text-xs text-gray-400">Daily across all major cities</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-4 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Road Trips</p>
+                <p className="text-xs text-gray-400">Monthly adventures to islands & mountains</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-4 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Workshops</p>
+                <p className="text-xs text-gray-400">Skill-sharing sessions every week</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Top Right: Discord */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2 bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl p-6 border border-brand-accent-pink/20 
+                       hover:border-brand-accent-pink/50 transition-all duration-300 card-3d"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <MessageCircle className="h-7 w-7 text-brand-accent-pink" />
+              </div>
+              <div className="flex-grow">
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-xl font-bold text-white">Discord Community</h3>
+                  <Badge className="bg-brand-accent-pink/20 text-brand-accent-pink border-brand-accent-pink/30">
+                    <Users className="w-3 h-3 mr-1 inline" />
+                    1,247 Members
+                  </Badge>
                 </div>
-                
-                {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-2">
-                  {option.title}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-sm text-gray-400 mb-4">
-                  {option.description}
+                <p className="text-gray-400 text-sm">24/7 active community with channels for every need</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-4 gap-3">
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400 mb-1">City</p>
+                <p className="text-sm font-semibold text-white">Channels</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400 mb-1">Visa</p>
+                <p className="text-sm font-semibold text-white">Help</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400 mb-1">Job</p>
+                <p className="text-sm font-semibold text-white">Board</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400 mb-1">Social</p>
+                <p className="text-sm font-semibold text-white">Events</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Bottom Right: Networking */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2 bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl p-6 border border-brand-accent-pink/20 
+                       hover:border-brand-accent-pink/50 transition-all duration-300 card-3d"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <Network className="h-7 w-7 text-brand-accent-pink" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2">Online Networking</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Connect with future roommates, travel buddies, and collaborators before you arrive
                 </p>
-                
-                {/* Features */}
-                <ul className="space-y-2 flex-grow">
-                  {option.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
-                      <span className="w-1 h-1 rounded-full bg-brand-accent-pink mt-1.5 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            );
-          })}
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                    Profile Matching
+                  </Badge>
+                  <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                    City Groups
+                  </Badge>
+                  <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                    Skill Matching
+                  </Badge>
+                  <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                    Direct Messages
+                  </Badge>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Mobile: Stacked Cards */}
+        <div className="lg:hidden space-y-6 max-w-2xl mx-auto">
+          {/* Events */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/30"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <CalendarDays className="h-6 w-6 text-brand-accent-pink" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-1">Events & Meetups</h3>
+                <p className="text-sm text-gray-400">Weekly gatherings across Thailand</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Boat Parties</p>
+                <p className="text-xs text-gray-400">Weekly in Bangkok</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Coworking</p>
+                <p className="text-xs text-gray-400">Daily sessions</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Discord */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <MessageCircle className="h-6 w-6 text-brand-accent-pink" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-lg font-bold text-white">Discord</h3>
+                  <Badge className="bg-brand-accent-pink/20 text-brand-accent-pink border-brand-accent-pink/30 text-xs">
+                    1,247 Members
+                  </Badge>
+                </div>
+                <p className="text-sm text-gray-400">24/7 active community</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">City Channels</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">Visa Help</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">Job Board</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">Events</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Networking */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <Network className="h-6 w-6 text-brand-accent-pink" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-1">Online Networking</h3>
+                <p className="text-sm text-gray-400">Connect before you arrive</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                Profile Matching
+              </Badge>
+              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                City Groups
+              </Badge>
+              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                DM System
+              </Badge>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Mobile: Stacked Cards */}
+        <div className="lg:hidden space-y-6 max-w-2xl mx-auto">
+          {/* Events */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/30"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <CalendarDays className="h-6 w-6 text-brand-accent-pink" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-1">Events & Meetups</h3>
+                <p className="text-sm text-gray-400">Weekly gatherings across Thailand</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Boat Parties</p>
+                <p className="text-xs text-gray-400">Weekly in Bangkok</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-brand-accent-pink/20">
+                <p className="text-sm font-semibold text-white mb-1">Coworking & Workshops</p>
+                <p className="text-xs text-gray-400">Daily sessions + road trips</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Discord */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <MessageCircle className="h-6 w-6 text-brand-accent-pink" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-lg font-bold text-white">Discord</h3>
+                  <Badge className="bg-brand-accent-pink/20 text-brand-accent-pink border-brand-accent-pink/30 text-xs">
+                    1,247 Members
+                  </Badge>
+                </div>
+                <p className="text-sm text-gray-400">24/7 active community</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">City Channels</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">Visa Help</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">Job Board</p>
+              </div>
+              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
+                <p className="text-xs text-gray-400">Events</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Networking */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                <Network className="h-6 w-6 text-brand-accent-pink" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-1">Online Networking</h3>
+                <p className="text-sm text-gray-400">Connect before you arrive</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                Profile Matching
+              </Badge>
+              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                City Groups
+              </Badge>
+              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
+                DM System
+              </Badge>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
