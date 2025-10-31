@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-dark-950">
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-brand-dark-950">
       {/* Animated Background Blobs */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-96 h-96 bg-brand-red/20 rounded-full blur-3xl animate-blob" />
@@ -88,12 +88,12 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Arrow Indicator (bottom of viewport) */}
+      {/* Arrow Indicator (positioned between CTA and bottom, centered) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+        className="absolute bottom-[15vh] left-1/2 transform -translate-x-1/2 animate-bounce"
       >
         <ChevronDown className="w-8 h-8 text-brand-red" />
       </motion.div>

@@ -34,7 +34,7 @@ export default function CommunityStage() {
 
       {/* Bento Grid Layout */}
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Desktop: Bento Grid */}
+        {/* Desktop & Mobile: Bento Grid */}
         <div className="hidden lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-6 max-w-6xl mx-auto">
           {/* Large Card: Events (spans 2 rows) */}
           <motion.div

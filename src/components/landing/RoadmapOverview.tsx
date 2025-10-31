@@ -11,7 +11,10 @@ const stages = [
     title: 'INCOME',
     subtitle: 'Lock in £2K+/month',
     timeline: 'Days 1-30',
-    color: 'from-brand-red/20 to-brand-red/5'
+    bgColor: 'from-brand-red/20 to-brand-red/5',
+    borderColor: 'border-brand-red/30',
+    iconColor: 'text-brand-red',
+    badgeColor: 'bg-brand-red'
   },
   {
     icon: FileText,
@@ -19,7 +22,10 @@ const stages = [
     title: 'VISA',
     subtitle: 'Secure your visa',
     timeline: 'Days 31-60',
-    color: 'from-brand-accent/20 to-brand-accent/5'
+    bgColor: 'from-brand-accent/20 to-brand-accent/5',
+    borderColor: 'border-brand-accent/30',
+    iconColor: 'text-brand-accent',
+    badgeColor: 'bg-brand-accent'
   },
   {
     icon: Home,
@@ -27,7 +33,10 @@ const stages = [
     title: 'HOUSING',
     subtitle: 'Find your home',
     timeline: 'Days 61-75',
-    color: 'from-brand-accent-orange/20 to-brand-accent-orange/5'
+    bgColor: 'from-brand-accent-orange/20 to-brand-accent-orange/5',
+    borderColor: 'border-brand-accent-orange/30',
+    iconColor: 'text-brand-accent-orange',
+    badgeColor: 'bg-brand-accent-orange'
   },
   {
     icon: Users,
@@ -35,7 +44,10 @@ const stages = [
     title: 'COMMUNITY',
     subtitle: 'Join 1,247 nomads',
     timeline: 'Days 76-90',
-    color: 'from-brand-accent-pink/20 to-brand-accent-pink/5'
+    bgColor: 'from-brand-accent-pink/20 to-brand-accent-pink/5',
+    borderColor: 'border-brand-accent-pink/30',
+    iconColor: 'text-brand-accent-pink',
+    badgeColor: 'bg-brand-accent-pink'
   }
 ];
 
@@ -81,19 +93,19 @@ export default function RoadmapOverview() {
                 viewport={{ once: true }}
                 className="relative z-10"
               >
-                <div className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-red/20 
-                                hover:border-brand-red/50 transition-all duration-300 card-3d hover:bg-brand-dark-900/80">
+                <div className={`bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border ${stage.borderColor} 
+                                hover:border-opacity-80 transition-all duration-300 card-3d hover:bg-brand-dark-900/80`}>
                   {/* Stage number badge */}
-                  <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-brand-red 
-                                  flex items-center justify-center text-white font-bold text-sm">
+                  <div className={`absolute -top-4 left-6 w-8 h-8 rounded-full ${stage.badgeColor} 
+                                  flex items-center justify-center text-white font-bold text-sm`}>
                     {stage.number}
                   </div>
                   
                   {/* Icon */}
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${stage.color} 
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${stage.bgColor} 
                                   flex items-center justify-center mb-4 mx-auto mt-2 
-                                  border border-brand-red/20`}>
-                    <Icon className="h-8 w-8 text-brand-red" />
+                                  border ${stage.borderColor}`}>
+                    <Icon className={`h-8 w-8 ${stage.iconColor}`} />
                   </div>
                   
                   {/* Content */}
@@ -129,16 +141,16 @@ export default function RoadmapOverview() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-4 border border-brand-red/20 h-full">
-                  <div className="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-brand-red 
-                                  flex items-center justify-center text-white font-bold text-xs">
+                <div className={`bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-4 border ${stage.borderColor} h-full`}>
+                  <div className={`absolute -top-2 -left-2 w-7 h-7 rounded-full ${stage.badgeColor} 
+                                  flex items-center justify-center text-white font-bold text-xs`}>
                     {stage.number}
                   </div>
                   
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stage.color} 
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stage.bgColor} 
                                   flex items-center justify-center mb-3 mx-auto mt-1 
-                                  border border-brand-red/20`}>
-                    <Icon className="h-6 w-6 text-brand-red" />
+                                  border ${stage.borderColor}`}>
+                    <Icon className={`h-6 w-6 ${stage.iconColor}`} />
                   </div>
                   
                   <h3 className="text-sm font-bold text-white text-center mb-1">

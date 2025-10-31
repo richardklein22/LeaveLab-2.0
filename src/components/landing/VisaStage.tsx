@@ -70,17 +70,17 @@ export default function VisaStage() {
 
     const scrollWidth = container.scrollWidth;
     const clientWidth = container.clientWidth;
-    let scrollPos = 0;
+    let scrollPos = container.scrollLeft || 0;
 
     const autoScroll = setInterval(() => {
       if (container && !isPaused) {
-        scrollPos += 1;
+        scrollPos += 2; // Faster scroll (was 1)
         if (scrollPos >= scrollWidth - clientWidth) {
           scrollPos = 0;
         }
-        container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+        container.scrollTo({ left: scrollPos, behavior: 'auto' }); // Changed from 'smooth' to 'auto' for better performance
       }
-    }, 50); // Slow scroll
+    }, 30); // Faster interval (was 50)
 
     return () => clearInterval(autoScroll);
   }, [isPaused]);
@@ -266,7 +266,7 @@ export default function VisaStage() {
         </div>
       </div>
 
-      {/* Visa Services - Simple Icons Row */}
+      {/* Visa Services - Enlarged Cards */}
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {visaServices.map((service, index) => {
@@ -278,16 +278,15 @@ export default function VisaStage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-start gap-4 bg-brand-dark-900/40 backdrop-blur-xl rounded-xl p-4 border border-brand-accent/20"
+                className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent/30 
+                           hover:border-brand-accent/50 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent/20 to-brand-accent/5 
-                                flex items-center justify-center flex-shrink-0 border border-brand-accent/20">
-                  <Icon className="h-5 w-5 text-brand-accent" />
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-accent/20 to-brand-accent/5 
+                                flex items-center justify-center mx-auto mb-4 border border-brand-accent/20">
+                  <Icon className="h-7 w-7 text-brand-accent" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">{service.title}</h4>
-                  <p className="text-xs text-gray-400">{service.description}</p>
-                </div>
+                <h4 className="text-base font-bold text-white mb-2 text-center">{service.title}</h4>
+                <p className="text-sm text-gray-400 text-center leading-relaxed">{service.description}</p>
               </motion.div>
             );
           })}

@@ -24,6 +24,7 @@ export { default as AccommodationStage } from './AccommodationStage';
 export { default as CommunityStage } from './CommunityStage';
 export { default as OfficialPartnershipsNew } from './OfficialPartnershipsNew';
 export { default as OfficialPartnershipsScalable } from './OfficialPartnershipsScalable';
+export { default as OfficialPartnershipsCarousel } from './OfficialPartnershipsCarousel';
 export { default as MediaFeatures } from './MediaFeatures';
 export { default as SuccessStoriesNew } from './SuccessStoriesNew';
 export { default as EverythingIncluded } from './EverythingIncluded';
