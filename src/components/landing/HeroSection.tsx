@@ -86,17 +86,17 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
           </button>
         </motion.div>
-      </div>
 
-      {/* Arrow Indicator (positioned between CTA and bottom, centered) */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute bottom-[15vh] left-1/2 transform -translate-x-1/2 animate-bounce"
-      >
-        <ChevronDown className="w-8 h-8 text-brand-red" />
-      </motion.div>
+        {/* Arrow Indicator - Directly below CTA, perfectly centered */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex justify-center mt-8 animate-bounce"
+        >
+          <ChevronDown className="w-8 h-8 text-brand-red" />
+        </motion.div>
+      </div>
 
       {/* Floating Stats Elements (Desktop only) */}
       <motion.div

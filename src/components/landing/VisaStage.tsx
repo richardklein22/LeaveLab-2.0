@@ -62,27 +62,56 @@ const visaServices = [
 export default function VisaStage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll effect for mobile
   useEffect(() => {
     const container = scrollContainerRef.current;
-    if (!container || isPaused) return;
+    if (!container) return;
 
-    const scrollWidth = container.scrollWidth;
-    const clientWidth = container.clientWidth;
-    let scrollPos = container.scrollLeft || 0;
+    // Only run on mobile
+    if (window.innerWidth >= 1024) return;
 
-    const autoScroll = setInterval(() => {
-      if (container && !isPaused) {
-        scrollPos += 2; // Faster scroll (was 1)
-        if (scrollPos >= scrollWidth - clientWidth) {
-          scrollPos = 0;
-        }
-        container.scrollTo({ left: scrollPos, behavior: 'auto' }); // Changed from 'smooth' to 'auto' for better performance
+    const startAutoScroll = () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
       }
-    }, 30); // Faster interval (was 50)
 
-    return () => clearInterval(autoScroll);
+      if (isPaused) return;
+
+      autoScrollRef.current = setInterval(() => {
+        if (!container || isPaused) return;
+
+        const scrollWidth = container.scrollWidth;
+        const clientWidth = container.clientWidth;
+        const maxScroll = scrollWidth - clientWidth;
+
+        if (maxScroll <= 0) return;
+
+        let scrollPos = container.scrollLeft || 0;
+        scrollPos += 1.5; // Scroll speed
+
+        if (scrollPos >= maxScroll) {
+          scrollPos = 0; // Loop back to start
+        }
+
+        container.scrollLeft = scrollPos; // Direct assignment for smooth scroll
+      }, 50);
+    };
+
+    // Start auto-scroll
+    startAutoScroll();
+
+    // Restart if paused state changes
+    if (!isPaused) {
+      startAutoScroll();
+    }
+
+    return () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+    };
   }, [isPaused]);
 
   return (
