@@ -112,51 +112,48 @@ export default function RoadmapOverview() {
           })}
         </div>
 
-        {/* Mobile: Horizontal scroll */}
-        <div className="lg:hidden overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory">
-          <div className="flex gap-4 min-w-max">
-            {stages.map((stage, index) => {
-              const Icon = stage.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="w-[280px] snap-start flex-shrink-0 relative"
-                >
-                  <div className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-red/20 h-full">
-                    <div className="absolute -top-2 left-6 w-8 h-8 rounded-full bg-brand-red 
-                                    flex items-center justify-center text-white font-bold text-sm">
-                      {stage.number}
-                    </div>
-                    
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${stage.color} 
-                                    flex items-center justify-center mb-4 mx-auto mt-2 
-                                    border border-brand-red/20`}>
-                      <Icon className="h-8 w-8 text-brand-red" />
-                    </div>
-                    
-                    <h3 className="text-lg font-bold text-white text-center mb-2">
-                      {stage.title}
-                    </h3>
-                    <p className="text-sm text-gray-400 text-center mb-2">
-                      {stage.subtitle}
-                    </p>
-                    <p className="text-xs text-gray-500 text-center">
-                      {stage.timeline}
-                    </p>
+        {/* Mobile: 2x2 Grid - All Visible */}
+        <div className="lg:hidden grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+          {stages.map((stage, index) => {
+            const Icon = stage.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.15,
+                  ease: "easeOut"
+                }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-4 border border-brand-red/20 h-full">
+                  <div className="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-brand-red 
+                                  flex items-center justify-center text-white font-bold text-xs">
+                    {stage.number}
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Scroll indicator (mobile only) */}
-        <div className="lg:hidden text-center mt-6">
-          <p className="text-xs text-gray-500">← Swipe to see all stages →</p>
+                  
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stage.color} 
+                                  flex items-center justify-center mb-3 mx-auto mt-1 
+                                  border border-brand-red/20`}>
+                    <Icon className="h-6 w-6 text-brand-red" />
+                  </div>
+                  
+                  <h3 className="text-sm font-bold text-white text-center mb-1">
+                    {stage.title}
+                  </h3>
+                  <p className="text-xs text-gray-400 text-center mb-1">
+                    {stage.subtitle}
+                  </p>
+                  <p className="text-[10px] text-gray-500 text-center">
+                    {stage.timeline}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

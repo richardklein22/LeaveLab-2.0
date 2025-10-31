@@ -8,19 +8,21 @@ const features = [
   {
     icon: DollarSign,
     title: 'INCOME',
+    color: 'brand-red',
     items: [
-      '4 Complete courses',
-      '1-on-1 Mentorship',
+      '4 Complete mentorship programs',
+      '1-on-1 Expert coaching',
       '200+ Job positions',
-      'Priority listings'
+      'Priority partner listings'
     ]
   },
   {
     icon: FileText,
     title: 'VISA',
+    color: 'brand-accent',
     items: [
       '9 Visa type guides',
-      'Interactive quiz',
+      'Verified agency setup',
       'Agent contacts',
       'Document templates'
     ]
@@ -28,41 +30,45 @@ const features = [
   {
     icon: Home,
     title: 'HOUSING',
+    color: 'brand-accent-orange',
     items: [
-      'Agent matching',
+      'Agent matching service',
       '50+ Hostel directory',
-      'Sourcing guide',
-      'Worldpackers discount'
+      'Complete sourcing guide',
+      'Worldpackers 20% discount'
     ]
   },
   {
     icon: Users,
     title: 'COMMUNITY',
+    color: 'brand-accent-pink',
     items: [
       'Discord (1,247 members)',
-      'Weekly events',
+      'Weekly events & meetups',
       'Networking platform',
-      'City meetups'
+      'City-based groups'
     ]
   },
   {
     icon: Headphones,
     title: 'SUPPORT',
+    color: 'cyan-500',
     items: [
       '24/7 Chat support',
       'Email assistance',
-      'Priority help',
-      'Expert advice'
+      'Priority help desk',
+      'Expert guidance'
     ]
   },
   {
     icon: Gift,
     title: 'BONUSES',
+    color: 'green-500',
     items: [
-      'Partner discounts',
+      'Partner exclusive discounts',
       'Contract templates',
       'Travel checklists',
-      'Exclusive deals'
+      'Member-only deals'
     ]
   }
 ];
@@ -91,9 +97,12 @@ export default function EverythingIncluded() {
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
+            const itemsLeft = feature.items.slice(0, 2);
+            const itemsRight = feature.items.slice(2, 4);
+            
             return (
               <motion.div
                 key={index}
@@ -101,53 +110,46 @@ export default function EverythingIncluded() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-red/20 
-                           hover:border-brand-red/50 hover:bg-brand-dark-900/80 transition-all duration-300 
-                           card-3d"
+                className={`bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border-2 border-${feature.color}/30 
+                           hover:border-${feature.color}/50 hover:bg-brand-dark-900/80 transition-all duration-300 
+                           card-3d`}
               >
                 {/* Icon & Title */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red/20 to-brand-red/5 
-                                  flex items-center justify-center border border-brand-red/20">
-                    <Icon className="h-5 w-5 text-brand-red" />
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br from-${feature.color}/20 to-${feature.color}/5 
+                                  flex items-center justify-center border border-${feature.color}/20`}>
+                    <Icon className={`h-5 w-5 text-${feature.color}`} />
                   </div>
-                  <h3 className="text-lg font-bold text-white">
+                  <h3 className={`text-lg font-bold text-${feature.color}`}>
                     {feature.title}
                   </h3>
                 </div>
 
-                {/* Items */}
-                <ul className="space-y-2">
-                  {feature.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-400">
-                      <span className="w-1 h-1 rounded-full bg-brand-red mt-2 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Items - 2 Column Layout */}
+                <div className="grid grid-cols-2 gap-x-3 gap-y-2">
+                  {/* Left Column */}
+                  <div className="space-y-2">
+                    {itemsLeft.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <span className={`w-1.5 h-1.5 rounded-full bg-${feature.color} mt-1.5 flex-shrink-0`} />
+                        <span className="text-xs text-gray-300">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Right Column */}
+                  <div className="space-y-2">
+                    {itemsRight.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <span className={`w-1.5 h-1.5 rounded-full bg-${feature.color} mt-1.5 flex-shrink-0`} />
+                        <span className="text-xs text-gray-300">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             );
           })}
         </div>
-
-        {/* Value Prop */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl p-8 border-2 border-brand-red/30 max-w-3xl mx-auto"
-        >
-          <p className="text-2xl font-bold text-white mb-2">
-            Worth <span className="line-through text-gray-500">£2,100+</span> if purchased separately
-          </p>
-          <p className="text-4xl font-black text-brand-red mb-4">
-            Your Price: £79 one-time
-          </p>
-          <p className="text-sm text-gray-400">
-            No monthly fees. Pay once, access forever.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

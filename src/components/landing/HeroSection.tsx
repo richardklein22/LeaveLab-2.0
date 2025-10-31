@@ -34,9 +34,9 @@ export default function HeroSection() {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-8 animate-float"
         >
-          <Badge className="glass-red text-brand-red-200 border-brand-red/30 px-6 py-2 text-sm hover:bg-brand-red/20 transition-colors">
-            <Award className="w-4 h-4 mr-2 inline animate-pulse" />
-            Featured in Daily Mail • 2 Global Partnerships
+          <Badge className="glass-red text-brand-red-200 border-brand-red/30 px-4 py-1.5 text-xs hover:bg-brand-red/20 transition-colors">
+            <Award className="w-3 h-3 mr-1.5 inline animate-pulse" />
+            Featured in Major Publications
           </Badge>
         </motion.div>
 
@@ -62,9 +62,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
+          className="text-base md:text-lg lg:text-xl text-gray-400 mb-8 max-w-xl mx-auto"
         >
-          Join 1,247 digital nomads earning £2K+/month while living their dream life
+          Complete platform for income, visa, housing & community
         </motion.p>
 
         {/* Primary CTA */}
@@ -72,6 +72,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-12"
         >
           <button 
             onClick={() => window.location.href = '/signup'}
@@ -79,66 +80,11 @@ export default function HeroSection() {
                      px-8 py-3 sm:px-10 sm:py-4 rounded-lg text-base sm:text-lg 
                      shadow-2xl shadow-brand-red/50
                      hover:shadow-brand-red/70 transition-all duration-300 
-                     hover:scale-105 mb-4 magnetic-button relative group overflow-hidden"
+                     hover:scale-105 magnetic-button relative group overflow-hidden"
           >
             <span className="relative z-10">Start Free Trial</span>
             <div className="absolute inset-0 bg-gradient-to-r from-brand-red-600 to-brand-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
           </button>
-        </motion.div>
-
-        {/* Trust Indicators with Icons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-sm text-gray-400 mb-12"
-        >
-          <div className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-all border border-brand-red/30">
-              <CheckCircle className="h-5 w-5 text-brand-red" />
-            </div>
-            <span className="group-hover:text-white transition-colors">7-day free trial</span>
-          </div>
-          <div className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-all border border-brand-red/30">
-              <Shield className="h-5 w-5 text-brand-red" />
-            </div>
-            <span className="group-hover:text-white transition-colors">Secure payment</span>
-          </div>
-          <div className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-brand-dark-900/70 backdrop-blur-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-all border border-brand-red/30">
-              <Zap className="h-5 w-5 text-brand-red" />
-            </div>
-            <span className="group-hover:text-white transition-colors">Cancel anytime</span>
-          </div>
-        </motion.div>
-
-        {/* Progress Icons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8 mt-8 sm:mt-12"
-        >
-          {heroProgressStages.map((stage, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-              className="flex flex-col items-center group"
-            >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-dark-900/70 backdrop-blur-xl 
-                            flex items-center justify-center text-lg sm:text-2xl mb-1 sm:mb-2 
-                            border border-brand-red/30 group-hover:border-brand-red/60 transition-all duration-300
-                            group-hover:scale-110 group-hover:bg-brand-dark-900/90 shadow-lg">
-                {stage.icon}
-              </div>
-              <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-brand-red transition-colors">
-                {stage.label}
-              </span>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
 

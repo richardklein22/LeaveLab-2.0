@@ -264,107 +264,99 @@ export default function CommunityStage() {
           </motion.div>
         </div>
 
-        {/* Mobile: Stacked Cards */}
-        <div className="lg:hidden space-y-6 max-w-2xl mx-auto">
-          {/* Events */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/30"
-          >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
-                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
-                <CalendarDays className="h-6 w-6 text-brand-accent-pink" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">Events & Meetups</h3>
-                <p className="text-sm text-gray-400">Weekly gatherings across Thailand</p>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-brand-accent-pink/20">
-                <p className="text-sm font-semibold text-white mb-1">Boat Parties</p>
-                <p className="text-xs text-gray-400">Weekly in Bangkok</p>
-              </div>
-              <div className="bg-brand-dark-950/50 rounded-lg p-3 border border-brand-accent-pink/20">
-                <p className="text-sm font-semibold text-white mb-1">Coworking & Workshops</p>
-                <p className="text-xs text-gray-400">Daily sessions + road trips</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Discord */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20"
-          >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
-                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
-                <MessageCircle className="h-6 w-6 text-brand-accent-pink" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-lg font-bold text-white">Discord</h3>
-                  <Badge className="bg-brand-accent-pink/20 text-brand-accent-pink border-brand-accent-pink/30 text-xs">
-                    1,247 Members
-                  </Badge>
+        {/* Mobile: Bento Grid */}
+        <div className="lg:hidden max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 gap-4">
+            {/* Events - Full Width (spans 2 columns) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="col-span-2 bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-5 border border-brand-accent-pink/30"
+            >
+              <div className="flex items-start gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                                flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                  <CalendarDays className="h-6 w-6 text-brand-accent-pink" />
                 </div>
-                <p className="text-sm text-gray-400">24/7 active community</p>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1">Events & Meetups</h3>
+                  <p className="text-sm text-gray-400">Weekly gatherings across Thailand</p>
+                </div>
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
-                <p className="text-xs text-gray-400">City Channels</p>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-brand-dark-950/50 rounded-lg p-2 border border-brand-accent-pink/20">
+                  <p className="text-xs font-semibold text-white">Boat Parties</p>
+                  <p className="text-[10px] text-gray-400">Weekly</p>
+                </div>
+                <div className="bg-brand-dark-950/50 rounded-lg p-2 border border-brand-accent-pink/20">
+                  <p className="text-xs font-semibold text-white">Coworking</p>
+                  <p className="text-[10px] text-gray-400">Daily</p>
+                </div>
+                <div className="bg-brand-dark-950/50 rounded-lg p-2 border border-brand-accent-pink/20">
+                  <p className="text-xs font-semibold text-white">Road Trips</p>
+                  <p className="text-[10px] text-gray-400">Monthly</p>
+                </div>
+                <div className="bg-brand-dark-950/50 rounded-lg p-2 border border-brand-accent-pink/20">
+                  <p className="text-xs font-semibold text-white">Workshops</p>
+                  <p className="text-[10px] text-gray-400">Weekly</p>
+                </div>
               </div>
-              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
-                <p className="text-xs text-gray-400">Visa Help</p>
-              </div>
-              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
-                <p className="text-xs text-gray-400">Job Board</p>
-              </div>
-              <div className="bg-brand-dark-950/50 rounded-lg p-2 text-center border border-brand-accent-pink/20">
-                <p className="text-xs text-gray-400">Events</p>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Networking */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-6 border border-brand-accent-pink/20"
-          >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
-                              flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
-                <Network className="h-6 w-6 text-brand-accent-pink" />
+            {/* Discord - Bottom Left */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-4 border border-brand-accent-pink/20"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                                flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                  <MessageCircle className="h-5 w-5 text-brand-accent-pink" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white">Discord</h3>
+                  <p className="text-[10px] text-brand-accent-pink font-semibold">1,247 Members</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">Online Networking</h3>
-                <p className="text-sm text-gray-400">Connect before you arrive</p>
+              <p className="text-xs text-gray-400 mb-2">24/7 active community</p>
+              <div className="space-y-1">
+                <p className="text-[10px] text-gray-500">• City channels</p>
+                <p className="text-[10px] text-gray-500">• Visa help</p>
+                <p className="text-[10px] text-gray-500">• Job board</p>
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
-                Profile Matching
-              </Badge>
-              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
-                City Groups
-              </Badge>
-              <Badge variant="outline" className="text-brand-accent-pink border-brand-accent-pink/50 bg-brand-accent-pink/5 text-xs">
-                DM System
-              </Badge>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Networking - Bottom Right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-brand-dark-900/60 backdrop-blur-xl rounded-xl p-4 border border-brand-accent-pink/20"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent-pink/20 to-brand-accent-pink/5 
+                                flex items-center justify-center flex-shrink-0 border border-brand-accent-pink/20">
+                  <Network className="h-5 w-5 text-brand-accent-pink" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white">Networking</h3>
+                  <p className="text-[10px] text-gray-400">Pre-arrival</p>
+                </div>
+              </div>
+              <p className="text-xs text-gray-400 mb-2">Connect before you arrive</p>
+              <div className="space-y-1">
+                <p className="text-[10px] text-gray-500">• Profile matching</p>
+                <p className="text-[10px] text-gray-500">• City groups</p>
+                <p className="text-[10px] text-gray-500">• DM system</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

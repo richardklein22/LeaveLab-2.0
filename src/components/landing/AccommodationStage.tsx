@@ -75,7 +75,7 @@ export default function AccommodationStage() {
                 STAGE 3: <span className="text-brand-accent-orange">ACCOMMODATION</span>
               </h2>
               <p className="text-lg text-gray-400 mt-1">
-                From hostels to apartments in 11 days average
+                Step by step from arrival to settled
               </p>
             </div>
           </div>
@@ -84,20 +84,6 @@ export default function AccommodationStage() {
 
       {/* Journey Steps */}
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            Your <span className="text-brand-accent-orange">Housing Journey</span>
-          </h3>
-          <p className="text-gray-400">
-            Step-by-step from arrival to settled
-          </p>
-        </motion.div>
 
         {/* Desktop: Horizontal Flow */}
         <div className="hidden lg:block max-w-7xl mx-auto relative">

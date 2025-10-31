@@ -145,7 +145,7 @@ export default function IncomeStage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-7xl mx-auto">
           {mentorshipPrograms.map((program, index) => {
             const Icon = program.icon;
             return (
@@ -153,11 +153,11 @@ export default function IncomeStage() {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
                 viewport={{ once: true }}
               >
                 <Card className="bg-brand-dark-900 border-white/10 overflow-hidden group hover:border-brand-red/50 transition-all duration-300 card-3d h-full">
-                  <div className={`h-48 bg-gradient-to-br ${program.gradientFrom} ${program.gradientTo} relative overflow-hidden`}>
+                  <div className={`h-32 lg:h-48 bg-gradient-to-br ${program.gradientFrom} ${program.gradientTo} relative overflow-hidden`}>
                     <div className="absolute inset-0 opacity-20" 
                          style={{
                            backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
@@ -166,19 +166,19 @@ export default function IncomeStage() {
                          }} 
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon className="w-10 h-10 text-white" />
+                      <div className="w-12 h-12 lg:w-20 lg:h-20 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Icon className="w-6 h-6 lg:w-10 lg:h-10 text-white" />
                       </div>
                     </div>
-                    <Badge className={`absolute top-4 left-4 ${program.badgeColor} text-white border-0 animate-pulse-scale`}>
+                    <Badge className={`absolute top-2 left-2 lg:top-4 lg:left-4 ${program.badgeColor} text-white border-0 text-[10px] lg:text-xs px-2 py-0.5`}>
                       {program.badge}
                     </Badge>
                   </div>
-                  <CardHeader>
-                    <CardTitle className="text-lg text-white group-hover:text-brand-red transition-colors">
+                  <CardHeader className="p-3 lg:p-6">
+                    <CardTitle className="text-sm lg:text-lg text-white group-hover:text-brand-red transition-colors line-clamp-2">
                       {program.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-400 text-sm">
+                    <CardDescription className="text-gray-400 text-xs lg:text-sm line-clamp-2">
                       {program.description}
                     </CardDescription>
                   </CardHeader>
@@ -214,20 +214,20 @@ export default function IncomeStage() {
           className="max-w-4xl mx-auto bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl border border-brand-red/20 overflow-hidden"
         >
           {/* Tabs */}
-          <div className="flex border-b border-white/10 overflow-x-auto">
+          <div className="flex border-b border-white/10">
             {jobCategories.map((category) => {
               const Icon = category.icon;
               return (
                 <button
                   key={category.id}
                   onClick={() => setActiveJobTab(category.id)}
-                  className={`flex-1 min-w-[120px] px-4 py-4 flex items-center justify-center gap-2 transition-all
+                  className={`flex-1 px-2 lg:px-4 py-3 lg:py-4 flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-2 transition-all
                              ${activeJobTab === category.id 
                                ? 'bg-brand-red/20 border-b-2 border-brand-red text-white' 
                                : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                 >
                   <Icon className="w-4 h-4" />
-                  <span className="text-sm font-semibold">{category.title}</span>
+                  <span className="text-[10px] lg:text-sm font-semibold whitespace-nowrap">{category.title}</span>
                 </button>
               );
             })}

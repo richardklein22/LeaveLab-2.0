@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Check, X, Calendar, FileCheck, Handshake } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { useEffect, useRef, useState } from 'react';
 
 const visaTypes = [
   {
@@ -42,23 +43,48 @@ const visaTypes = [
 
 const visaServices = [
   {
-    icon: Calendar,
-    title: 'Short-term Visas',
-    description: 'Tourist, exemption, visa on arrival options for 1-3 months'
+    icon: Handshake,
+    title: 'Full Setup with Verified Agencies',
+    description: 'ISA Compass & ATA Thailand handle your entire application process'
   },
   {
     icon: FileCheck,
-    title: 'Long-term Visas',
-    description: 'DTV, Non-B, Elite, Education, Retirement, Marriage options'
+    title: 'Visa Comparison Breakdowns',
+    description: 'Detailed guides comparing all visa types for your situation'
   },
   {
-    icon: Handshake,
-    title: 'Setup Partners',
-    description: 'ISA Compass (DTV) & ATA Thailand (Non-B) handle everything'
+    icon: Calendar,
+    title: 'Full Visa Consultation',
+    description: 'Expert guidance to determine the perfect visa for your needs'
   }
 ];
 
 export default function VisaStage() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-scroll effect for mobile
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container || isPaused) return;
+
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    let scrollPos = 0;
+
+    const autoScroll = setInterval(() => {
+      if (container && !isPaused) {
+        scrollPos += 1;
+        if (scrollPos >= scrollWidth - clientWidth) {
+          scrollPos = 0;
+        }
+        container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+      }
+    }, 50); // Slow scroll
+
+    return () => clearInterval(autoScroll);
+  }, [isPaused]);
+
   return (
     <section id="visa" className="py-16 sm:py-20 bg-brand-dark-900 relative">
       {/* Stage Header */}
@@ -173,8 +199,14 @@ export default function VisaStage() {
           </div>
         </motion.div>
 
-        {/* Mobile: Swipeable Cards */}
-        <div className="lg:hidden overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory">
+        {/* Mobile: Swipeable Cards with Auto-scroll */}
+        <div 
+          ref={scrollContainerRef}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setTimeout(() => setIsPaused(false), 2000)}
+          className="lg:hidden overflow-x-auto overflow-y-hidden pb-4 -mx-4 px-4 snap-x snap-mandatory touch-pan-x"
+          style={{ overscrollBehaviorY: 'none' }}
+        >
           <div className="flex gap-4 min-w-max">
             {visaTypes.map((visa, index) => (
               <motion.div
