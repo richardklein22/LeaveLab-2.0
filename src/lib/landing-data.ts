@@ -416,14 +416,6 @@ export const faqs = [
   }
 ];
 
-// Progress icons for hero section
-export const heroProgressStages = [
-  { icon: '💰', label: 'Income' },
-  { icon: '🛂', label: 'Visa' },
-  { icon: '🏠', label: 'Housing' },
-  { icon: '👥', label: 'Community' }
-];
-
 // Problem comparison data
 export const problemComparison = {
   without: {
