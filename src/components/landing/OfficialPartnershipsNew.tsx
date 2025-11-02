@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Home, FileText, Briefcase } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 const partners = [
   {
@@ -17,7 +18,9 @@ const partners = [
       'Community verified hosts',
       'Global network access'
     ],
-    memberBenefit: '20% discount on subscriptions',
+    memberBenefit: 'Members get 20% off',
+    logoUrl: '/partners/worldpackers.svg',
+    websiteUrl: 'https://www.worldpackers.com',
     color: 'brand-accent-orange'
   },
   {
@@ -32,7 +35,9 @@ const partners = [
       'Document preparation',
       'Embassy booking assistance'
     ],
-    memberBenefit: '£100 discount on service',
+    memberBenefit: 'Official DTV Visa Provider',
+    logoUrl: '/logos/isa-compass.svg',
+    websiteUrl: 'https://www.isacompass.com',
     color: 'brand-accent'
   },
   {
@@ -47,7 +52,9 @@ const partners = [
       'Embassy connections',
       'Priority processing'
     ],
-    memberBenefit: 'Priority processing',
+    memberBenefit: 'Official Non-B Visa Provider',
+    logoUrl: '/logos/ata-thailand.svg',
+    websiteUrl: '#',
     color: 'brand-accent'
   },
   {
@@ -62,14 +69,93 @@ const partners = [
       'Accommodation included',
       'Community integration'
     ],
-    memberBenefit: 'Guaranteed interview',
+    memberBenefit: 'Official Employer Sponsor Provider',
+    logoUrl: '/logos/revolutions-hostel.svg',
+    websiteUrl: '#',
     color: 'brand-red'
   }
 ];
 
-export default function OfficialPartnershipsNew() {
+interface PartnerCardProps {
+  name: string;
+  logoUrl?: string;
+  websiteUrl: string;
+  memberBenefit: string;
+  icon?: any;
+}
+
+function PartnerCard({ name, logoUrl, websiteUrl, memberBenefit, icon: Icon }: PartnerCardProps) {
   return (
-    <section className="py-16 sm:py-20 bg-brand-dark-950 relative">
+    <motion.a
+      href={websiteUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{ scale: 1.05, y: -2 }}
+      transition={{ duration: 0.2 }}
+      className="group relative flex-shrink-0 w-48 sm:w-56 mx-3"
+    >
+      <div className="h-full flex flex-col items-center justify-center 
+                      bg-brand-dark-900/60 backdrop-blur-xl rounded-lg px-4 py-5 
+                      hover:shadow-lg hover:shadow-brand-red/20 transition-all duration-300 
+                      border border-brand-red/20 group-hover:border-brand-red/50 group-hover:bg-brand-dark-900/80">
+        
+        {/* Logo/Picture Placeholder */}
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-3 flex items-center justify-center
+                        bg-brand-dark-800/50 rounded-lg overflow-hidden">
+          {logoUrl && logoUrl !== '#' ? (
+            <Image
+              src={logoUrl}
+              alt={name}
+              width={96}
+              height={96}
+              className="object-contain p-2"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                const target = e.target as HTMLImageElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  target.style.display = 'none';
+                  const placeholder = document.createElement('div');
+                  placeholder.className = 'w-full h-full flex items-center justify-center text-3xl text-gray-500';
+                  placeholder.textContent = name.charAt(0);
+                  parent.appendChild(placeholder);
+                }
+              }}
+            />
+          ) : Icon ? (
+            <Icon className="w-10 h-10 text-gray-400" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-3xl text-gray-500">
+              {name.charAt(0)}
+            </div>
+          )}
+        </div>
+        
+        {/* Brand Name */}
+        <h4 className="text-sm sm:text-base font-semibold text-white text-center mb-2 line-clamp-2">
+          {name}
+        </h4>
+        
+        {/* Benefit Button */}
+        <div className="w-full px-3 py-1.5 rounded-md 
+                        bg-brand-red/20 border border-brand-red/30 
+                        group-hover:bg-brand-red/30 group-hover:border-brand-red/50
+                        transition-all duration-300">
+          <p className="text-xs sm:text-sm text-brand-red-200 text-center font-medium line-clamp-2">
+            {memberBenefit}
+          </p>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+export default function OfficialPartnershipsNew() {
+  // Duplicate partners array for seamless infinite scroll
+  const duplicatedPartners = [...partners, ...partners, ...partners];
+  
+  return (
+    <section className="py-16 sm:py-20 bg-brand-dark-950 relative overflow-hidden">
       {/* Subtle glow effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-accent/5 via-transparent to-brand-red/5 opacity-30" />
       
@@ -93,74 +179,43 @@ export default function OfficialPartnershipsNew() {
           </p>
         </motion.div>
 
-        {/* Partners Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {partners.map((partner, index) => {
-            const Icon = partner.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl p-6 border-2 border-brand-red/20 
-                           hover:border-brand-red/50 hover:bg-brand-dark-900/80 transition-all duration-300 
-                           card-3d"
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br from-${partner.color}/20 to-${partner.color}/5 
-                                    flex items-center justify-center border border-${partner.color}/20`}>
-                      <Icon className={`h-7 w-7 text-${partner.color}`} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-brand-red transition-colors">
-                        {partner.name}
-                      </h3>
-                      <p className="text-sm text-gray-400">{partner.category}</p>
-                      <p className="text-xs text-brand-red font-semibold">{partner.stage}</p>
-                    </div>
-                  </div>
-                  <Badge className="bg-green-600/20 text-green-400 border-green-400/50 text-xs">
-                    <CheckCircle className="w-3 h-3 mr-1 inline" />
-                    Verified
-                  </Badge>
-                </div>
-
-                {/* Description */}
-                <p className="text-sm text-gray-400 mb-4">
-                  {partner.description}
-                </p>
-
-                {/* Benefits */}
-                <div className="mb-4">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                    What they help with:
-                  </p>
-                  <ul className="space-y-2">
-                    {partner.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs text-gray-400">
-                        <CheckCircle className="w-3 h-3 text-brand-red flex-shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Member Benefit */}
-                <div className="bg-brand-red/10 rounded-lg px-4 py-2 border border-brand-red/30">
-                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
-                    Member Benefit
-                  </p>
-                  <p className="text-sm font-semibold text-brand-red">
-                    {partner.memberBenefit}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Two-row scrolling container with fade edges */}
+        <div className="space-y-6 max-w-7xl mx-auto relative">
+          {/* Fade overlays for left and right edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-r from-brand-dark-950 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-l from-brand-dark-950 to-transparent z-20 pointer-events-none" />
+          
+          {/* Top row - scrolling right to left */}
+          <div className="relative overflow-hidden scroll-row">
+            <div className="flex animate-scroll-right">
+              {duplicatedPartners.map((partner, index) => (
+                <PartnerCard 
+                  key={`top-${index}`} 
+                  name={partner.name}
+                  logoUrl={partner.logoUrl}
+                  websiteUrl={partner.websiteUrl}
+                  memberBenefit={partner.memberBenefit}
+                  icon={partner.icon}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Bottom row - scrolling left to right */}
+          <div className="relative overflow-hidden scroll-row">
+            <div className="flex animate-scroll-left">
+              {duplicatedPartners.map((partner, index) => (
+                <PartnerCard 
+                  key={`bottom-${index}`} 
+                  name={partner.name}
+                  logoUrl={partner.logoUrl}
+                  websiteUrl={partner.websiteUrl}
+                  memberBenefit={partner.memberBenefit}
+                  icon={partner.icon}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Bottom Note */}
@@ -177,4 +232,3 @@ export default function OfficialPartnershipsNew() {
     </section>
   );
 }
-
