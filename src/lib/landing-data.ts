@@ -104,31 +104,36 @@ export const partners = [
     name: 'Worldpackers',
     logoUrl: '/partners/worldpackers.svg',
     websiteUrl: 'https://www.worldpackers.com',
-    description: 'Official Accommodation Partner'
+    description: 'Official Accommodation Partner',
+    benefit: 'Members get 20% off'
   },
   {
     name: 'Flight Partner',
     logoUrl: '/logos/flight-partner.svg',
     websiteUrl: '#',
-    description: 'Exclusive Flight Deals'
+    description: 'Exclusive Flight Deals',
+    benefit: 'Official Flight Partner Provider'
   },
   {
     name: 'ISA Compass',
     logoUrl: '/logos/isa-compass.svg',
     websiteUrl: 'https://www.isacompass.com',
-    description: 'DTV Visa Service'
+    description: 'DTV Visa Service',
+    benefit: 'Official DTV Visa Provider'
   },
   {
     name: 'ATA Thailand',
     logoUrl: '/logos/ata-thailand.svg',
     websiteUrl: '#',
-    description: 'Non-B Visa Service'
+    description: 'Non-B Visa Service',
+    benefit: 'Official Non-B Visa Provider'
   },
   {
     name: 'Revolutions Hostel',
     logoUrl: '/logos/revolutions-hostel.svg',
     websiteUrl: '#',
-    description: 'Employer Sponsor Partner'
+    description: 'Employer Sponsor Partner',
+    benefit: 'Official Employer Sponsor Provider'
   }
 ];
 

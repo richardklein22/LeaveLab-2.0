@@ -297,4 +297,9 @@
   .safe-area-right {
     padding-right: env(safe-area-inset-right);
   }
+  
+  /* Partnership scrolling pause on hover */
+  .scroll-row:hover > div {
+    animation-play-state: paused !important;
+  }
 }
