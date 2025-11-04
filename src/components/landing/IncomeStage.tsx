@@ -112,18 +112,13 @@ export default function IncomeStage() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-full bg-brand-red flex items-center justify-center text-white font-bold text-lg">
               1
             </div>
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
-                STAGE 1: <span className="text-brand-red">INCOME</span>
-              </h2>
-              <p className="text-lg text-gray-400 mt-1">
-                Lock in £2K+/month before you fly
-              </p>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              STAGE 1: <span className="text-brand-red">INCOME</span>
+            </h2>
           </div>
         </motion.div>
       </div>

@@ -66,18 +66,13 @@ export default function AccommodationStage() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-full bg-brand-accent-orange flex items-center justify-center text-white font-bold text-lg">
               3
             </div>
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
-                STAGE 3: <span className="text-brand-accent-orange">ACCOMMODATION</span>
-              </h2>
-              <p className="text-lg text-gray-400 mt-1">
-                Step by step from arrival to settled
-              </p>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              STAGE 3: <span className="text-brand-accent-orange">ACCOMMODATION</span>
+            </h2>
           </div>
         </motion.div>
       </div>
