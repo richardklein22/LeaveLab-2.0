@@ -62,6 +62,7 @@ const visaServices = [
 export default function VisaStage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll effect for mobile
@@ -160,13 +161,24 @@ export default function VisaStage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="hidden lg:block max-w-6xl mx-auto bg-brand-dark-900/60 backdrop-blur-xl rounded-2xl border border-brand-accent/20 overflow-hidden"
+          onMouseLeave={() => setHoveredColumn(null)}
         >
           {/* Table Header */}
           <div className="grid grid-cols-5 gap-4 p-6 border-b border-white/10 bg-brand-dark-900/80">
             <div className="font-semibold text-gray-400 text-sm uppercase tracking-wider">Attribute</div>
-            {visaTypes.map((visa) => (
-              <div key={visa.name} className={`text-center ${visa.popular ? 'bg-brand-accent/10 rounded-lg p-2 border border-brand-accent/30' : ''}`}>
-                <p className="font-bold text-white">{visa.name}</p>
+            {visaTypes.map((visa, index) => (
+              <div 
+                key={visa.name} 
+                className={`text-center transition-all duration-200 rounded-lg p-2 ${
+                  hoveredColumn === index 
+                    ? 'bg-brand-accent/20 border-2 border-brand-accent/50 shadow-lg shadow-brand-accent/20' 
+                    : visa.popular 
+                      ? 'bg-brand-accent/10 border border-brand-accent/30' 
+                      : ''
+                }`}
+                onMouseEnter={() => setHoveredColumn(index)}
+              >
+                <p className={`font-bold transition-colors ${hoveredColumn === index ? 'text-brand-accent' : 'text-white'}`}>{visa.name}</p>
                 {visa.popular && <Badge className="mt-1 bg-brand-accent text-white text-xs border-0">Popular</Badge>}
               </div>
             ))}
@@ -175,32 +187,68 @@ export default function VisaStage() {
           {/* Duration Row */}
           <div className="grid grid-cols-5 gap-4 p-6 border-b border-white/10 hover:bg-white/5 transition-colors">
             <div className="font-medium text-white">Duration</div>
-            {visaTypes.map((visa) => (
-              <div key={visa.name} className="text-center text-gray-300 text-sm">{visa.duration}</div>
+            {visaTypes.map((visa, index) => (
+              <div 
+                key={visa.name} 
+                className={`text-center text-sm transition-all duration-200 rounded-lg p-2 ${
+                  hoveredColumn === index 
+                    ? 'bg-brand-accent/15 text-white font-semibold' 
+                    : 'text-gray-300'
+                }`}
+                onMouseEnter={() => setHoveredColumn(index)}
+              >
+                {visa.duration}
+              </div>
             ))}
           </div>
 
           {/* Cost Row */}
           <div className="grid grid-cols-5 gap-4 p-6 border-b border-white/10 hover:bg-white/5 transition-colors">
             <div className="font-medium text-white">Cost</div>
-            {visaTypes.map((visa) => (
-              <div key={visa.name} className="text-center text-gray-300 text-sm">{visa.cost}</div>
+            {visaTypes.map((visa, index) => (
+              <div 
+                key={visa.name} 
+                className={`text-center text-sm transition-all duration-200 rounded-lg p-2 ${
+                  hoveredColumn === index 
+                    ? 'bg-brand-accent/15 text-white font-semibold' 
+                    : 'text-gray-300'
+                }`}
+                onMouseEnter={() => setHoveredColumn(index)}
+              >
+                {visa.cost}
+              </div>
             ))}
           </div>
 
           {/* Best For Row */}
           <div className="grid grid-cols-5 gap-4 p-6 border-b border-white/10 hover:bg-white/5 transition-colors">
             <div className="font-medium text-white">Best For</div>
-            {visaTypes.map((visa) => (
-              <div key={visa.name} className="text-center text-gray-300 text-sm">{visa.bestFor}</div>
+            {visaTypes.map((visa, index) => (
+              <div 
+                key={visa.name} 
+                className={`text-center text-sm transition-all duration-200 rounded-lg p-2 ${
+                  hoveredColumn === index 
+                    ? 'bg-brand-accent/15 text-white font-semibold' 
+                    : 'text-gray-300'
+                }`}
+                onMouseEnter={() => setHoveredColumn(index)}
+              >
+                {visa.bestFor}
+              </div>
             ))}
           </div>
 
           {/* Difficulty Row */}
           <div className="grid grid-cols-5 gap-4 p-6 border-b border-white/10 hover:bg-white/5 transition-colors">
             <div className="font-medium text-white">Difficulty</div>
-            {visaTypes.map((visa) => (
-              <div key={visa.name} className="text-center">
+            {visaTypes.map((visa, index) => (
+              <div 
+                key={visa.name} 
+                className={`text-center transition-all duration-200 rounded-lg p-2 ${
+                  hoveredColumn === index ? 'bg-brand-accent/15' : ''
+                }`}
+                onMouseEnter={() => setHoveredColumn(index)}
+              >
                 <span className={`text-sm font-semibold ${visa.difficulty === 'Easy' ? 'text-green-400' : visa.difficulty === 'Medium' ? 'text-yellow-400' : 'text-orange-400'}`}>
                   {visa.difficulty}
                 </span>
@@ -211,8 +259,14 @@ export default function VisaStage() {
           {/* Renewable Row */}
           <div className="grid grid-cols-5 gap-4 p-6 hover:bg-white/5 transition-colors">
             <div className="font-medium text-white">Renewable</div>
-            {visaTypes.map((visa) => (
-              <div key={visa.name} className="flex justify-center">
+            {visaTypes.map((visa, index) => (
+              <div 
+                key={visa.name} 
+                className={`flex justify-center transition-all duration-200 rounded-lg p-2 ${
+                  hoveredColumn === index ? 'bg-brand-accent/15' : ''
+                }`}
+                onMouseEnter={() => setHoveredColumn(index)}
+              >
                 {visa.renewable ? (
                   <Check className="w-5 h-5 text-green-400" />
                 ) : (
