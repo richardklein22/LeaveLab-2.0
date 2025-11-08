@@ -92,23 +92,23 @@ function PartnerCard({ name, logoUrl, websiteUrl, memberBenefit, icon: Icon }: P
       rel="noopener noreferrer"
       whileHover={{ scale: 1.05, y: -2 }}
       transition={{ duration: 0.2 }}
-      className="group relative flex-shrink-0 w-40 sm:w-44 mx-2"
+      className="group relative flex-shrink-0 w-28 sm:w-36 lg:w-44 mx-1.5 lg:mx-2"
     >
       <div className="h-full flex flex-col items-center justify-center 
-                      bg-brand-dark-900/60 backdrop-blur-xl rounded-lg px-3 py-3.5 
+                      bg-brand-dark-900/60 backdrop-blur-xl rounded-lg px-2.5 py-3 
                       hover:shadow-lg hover:shadow-brand-red/20 transition-all duration-300 
                       border border-brand-red/20 group-hover:border-brand-red/50 group-hover:bg-brand-dark-900/80">
         
         {/* Logo/Picture Placeholder */}
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-2.5 flex items-center justify-center
+        <div className="relative w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 mb-2 flex items-center justify-center
                         bg-brand-dark-800/50 rounded-lg overflow-hidden">
           {logoUrl && logoUrl !== '#' ? (
             <Image
               src={logoUrl}
               alt={name}
-              width={72}
-              height={72}
-              className="object-contain p-1.5"
+              width={64}
+              height={64}
+              className="object-contain p-1.5 lg:p-2"
               onError={(e) => {
                 // Fallback to placeholder if image fails to load
                 const target = e.target as HTMLImageElement;
@@ -116,23 +116,23 @@ function PartnerCard({ name, logoUrl, websiteUrl, memberBenefit, icon: Icon }: P
                 if (parent) {
                   target.style.display = 'none';
                   const placeholder = document.createElement('div');
-                  placeholder.className = 'w-full h-full flex items-center justify-center text-2xl text-gray-500';
+                  placeholder.className = 'w-full h-full flex items-center justify-center text-xl text-gray-500';
                   placeholder.textContent = name.charAt(0);
                   parent.appendChild(placeholder);
                 }
               }}
             />
           ) : Icon ? (
-            <Icon className="w-8 h-8 text-gray-400" />
+            <Icon className="w-7 h-7 text-gray-400" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-2xl text-gray-500">
+            <div className="w-full h-full flex items-center justify-center text-xl text-gray-500">
               {name.charAt(0)}
             </div>
           )}
         </div>
         
         {/* Brand Name */}
-        <h4 className="text-xs sm:text-sm font-semibold text-white text-center mb-1.5 line-clamp-2">
+        <h4 className="text-[11px] sm:text-sm font-semibold text-white text-center mb-1.5 line-clamp-2 leading-tight">
           {name}
         </h4>
         
@@ -141,7 +141,7 @@ function PartnerCard({ name, logoUrl, websiteUrl, memberBenefit, icon: Icon }: P
                         bg-brand-red/20 border border-brand-red/30 
                         group-hover:bg-brand-red/30 group-hover:border-brand-red/50
                         transition-all duration-300">
-          <p className="text-[10px] sm:text-xs text-brand-red-200 text-center font-medium line-clamp-2 leading-tight">
+          <p className="text-[9px] sm:text-xs text-brand-red-200 text-center font-medium line-clamp-2 leading-tight">
             {memberBenefit}
           </p>
         </div>
