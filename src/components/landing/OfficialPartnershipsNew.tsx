@@ -182,8 +182,8 @@ export default function OfficialPartnershipsNew() {
         {/* Two-row scrolling container with fade edges */}
         <div className="space-y-6 max-w-7xl mx-auto relative">
           {/* Fade overlays for left and right edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-r from-brand-dark-950 to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-l from-brand-dark-950 to-transparent z-20 pointer-events-none" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 lg:w-40 bg-gradient-to-r from-brand-dark-950 to-transparent z-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 lg:w-40 bg-gradient-to-l from-brand-dark-950 to-transparent z-20" />
           
           {/* Top row - scrolling right to left */}
           <div className="relative overflow-hidden scroll-row">

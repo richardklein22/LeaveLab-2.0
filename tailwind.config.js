@@ -123,8 +123,8 @@ module.exports = {
 			'accordion-down': 'accordion-down 0.2s ease-out',
 			'accordion-up': 'accordion-up 0.2s ease-out',
 			'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
-			'scroll-right': 'scroll-right 32s linear infinite',
-			'scroll-left': 'scroll-left 32s linear infinite',
+			'scroll-right': 'scroll-right 21s linear infinite',
+			'scroll-left': 'scroll-left 21s linear infinite',
 		},
 		fontFamily: {
 			sans: ['Inter', 'system-ui', 'sans-serif'],
