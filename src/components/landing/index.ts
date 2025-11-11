@@ -33,6 +33,7 @@ export { default as FooterTraveler } from './FooterTraveler';
 export { default as OfficialPartnershipsNew } from './OfficialPartnershipsNew';
 export { default as OfficialPartnershipsTraveler } from './OfficialPartnershipsTraveler';
 export { default as MediaFeatures } from './MediaFeatures';
+export { default as MediaFeaturesTraveler } from './MediaFeaturesTraveler';
 export { default as SuccessStoriesNew } from './SuccessStoriesNew';
 export { default as EverythingIncluded } from './EverythingIncluded';
 export { default as SingleCTA } from './SingleCTA';

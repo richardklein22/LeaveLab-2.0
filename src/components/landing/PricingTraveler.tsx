@@ -57,15 +57,14 @@ export default function PricingTraveler() {
 
               <div className="space-y-4 mb-8">
                 {[
-                  'Direct access to founders & nomads',
-                  'Exclusive partner discounts (Skyscanner, Hostel World, Genki, Worldpacker)',
+                  'Community chat with fellow travelers',
                   'Automatic visa expiry reminders',
-                  'Personalized travel itineraries',
-                  'Hostel & accommodation recommendations',
-                  'Member-only activity discounts',
-                  'Private community chat',
-                  'Travel insurance guidance',
-                  '24/7 support from Thailand experts'
+                  'Travel guides & recommendations',
+                  'Upgrade for: Direct founder access',
+                  'Upgrade for: Personalized itineraries',
+                  'Upgrade for: Partner discounts',
+                  'Upgrade for: Priority support',
+                  'Upgrade for: Insider tips & hidden gems'
                 ].map((feature, index) => (
                   <motion.div
                     key={index}

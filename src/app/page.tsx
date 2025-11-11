@@ -19,6 +19,7 @@ import {
   OfficialPartnershipsNew,
   OfficialPartnershipsTraveler,
   MediaFeatures,
+  MediaFeaturesTraveler,
   SuccessStoriesNew,
   EverythingIncluded,
   SingleCTA,
@@ -71,6 +72,7 @@ function LandingPageContent() {
           <VisaRemindersTraveler />
           <CommunityAccessTraveler />
           <OfficialPartnershipsTraveler />
+          <MediaFeaturesTraveler />
           <PricingTraveler />
         </>
       )}
@@ -81,14 +83,6 @@ function LandingPageContent() {
           <OfficialPartnershipsNew />
           <MediaFeatures />
           <SuccessStoriesNew />
-          <EverythingIncluded />
-        </>
-      )}
-      
-      {/* Traveler minimal shared sections */}
-      {isTraveler && (
-        <>
-          <MediaFeatures />
           <EverythingIncluded />
         </>
       )}
