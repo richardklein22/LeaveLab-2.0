@@ -1,12 +1,21 @@
-import { Metadata } from 'next';
+'use client';
+
 import {
   Navigation,
   HeroSection,
+  HeroSectionTraveler,
   RoadmapOverview,
+  RoadmapOverviewTraveler,
   IncomeStage,
   VisaStage,
+  VisaRemindersTraveler,
   AccommodationStage,
   CommunityStage,
+  CommunityAccessTraveler,
+  PartnerBenefits,
+  PricingTraveler,
+  FAQTraveler,
+  FooterTraveler,
   OfficialPartnershipsNew,
   MediaFeatures,
   SuccessStoriesNew,
@@ -15,41 +24,78 @@ import {
   FAQ,
   Footer
 } from '@/components/landing';
+import { TravelerTypeProvider, useTravelerType } from '@/contexts/TravelerTypeContext';
+import { useEffect } from 'react';
 
-export const metadata: Metadata = {
-  title: 'LeaveLab - Move to Thailand in 90 Days | Digital Nomad Platform',
-  description: 'Featured in Daily Mail. Join 1,247 digital nomads earning £2K+/month while living their dream life in Thailand. Complete roadmap: Income → Visa → Housing → Community',
-  keywords: [
-    'digital nomad Thailand',
-    'move to Thailand',
-    'Thailand visa',
-    'remote work Thailand',
-    'digital nomad visa',
-    'Thailand relocation',
-    'work from Thailand',
-    'Thailand expat',
-    'Amazon FBA Thailand',
-    'online business coaching'
-  ],
-};
+function LandingPageContent() {
+  const { travelerType } = useTravelerType();
+  const isNomad = travelerType === 'nomad';
+  const isTraveler = travelerType === 'traveler';
 
-export default function LandingPage() {
+  // Update page title based on type
+  useEffect(() => {
+    if (isNomad) {
+      document.title = 'LeaveLab - Move to Thailand in 90 Days | Digital Nomad Platform';
+    } else {
+      document.title = 'LeaveLab - Your Ultimate Thailand Travel Guide';
+    }
+  }, [isNomad]);
+
   return (
-    <div className="min-h-screen bg-brand-dark-950 text-white overflow-x-hidden">
+    <div className={`min-h-screen ${isNomad ? 'bg-brand-dark-950 text-white' : 'bg-white text-gray-900'} overflow-x-hidden`}>
       <Navigation />
-      <HeroSection />
-      <RoadmapOverview />
-      <IncomeStage />
-      <VisaStage />
-      <AccommodationStage />
-      <CommunityStage />
+      
+      {/* Hero Section - Different for each type */}
+      {isNomad && <HeroSection />}
+      {isTraveler && <HeroSectionTraveler />}
+      
+      {/* Roadmap - Different for each type */}
+      {isNomad && <RoadmapOverview />}
+      {isTraveler && <RoadmapOverviewTraveler />}
+      
+      {/* Nomad-specific sections */}
+      {isNomad && (
+        <>
+          <IncomeStage />
+          <VisaStage />
+          <AccommodationStage />
+          <CommunityStage />
+        </>
+      )}
+      
+      {/* Traveler-specific sections */}
+      {isTraveler && (
+        <>
+          <PartnerBenefits />
+          <VisaRemindersTraveler />
+          <CommunityAccessTraveler />
+          <PricingTraveler />
+        </>
+      )}
+      
+      {/* Shared sections */}
       <OfficialPartnershipsNew />
       <MediaFeatures />
       <SuccessStoriesNew />
       <EverythingIncluded />
-      <SingleCTA />
-      <FAQ />
-      <Footer />
+      
+      {isNomad && <SingleCTA />}
+      
+      {/* FAQ - Different for each type */}
+      {isNomad && <FAQ />}
+      {isTraveler && <FAQTraveler />}
+      
+      {/* Footer - Different for each type */}
+      {isNomad && <Footer />}
+      {isTraveler && <FooterTraveler />}
     </div>
+  );
+}
+
+export default function LandingPage() {
+  return (
+    <TravelerTypeProvider>
+      <LandingPageContent />
+    </TravelerTypeProvider>
   );
 }

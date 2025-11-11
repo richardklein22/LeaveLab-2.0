@@ -51,7 +51,7 @@ export default function PartnershipLogos() {
       {/* Subtle glow effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-accent/5 via-transparent to-brand-red/5 opacity-30" />
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
