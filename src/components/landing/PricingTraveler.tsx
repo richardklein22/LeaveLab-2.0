@@ -46,13 +46,13 @@ export default function PricingTraveler() {
             
             <div className="relative">
               <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Traveler Premium</h3>
-                <p className="text-gray-600 mb-6">Everything you need for an amazing Thailand trip</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Start Free Today</h3>
+                <p className="text-gray-600 mb-6">Get access to our community and upgrade for premium features when you're ready</p>
                 <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-5xl md:text-6xl font-bold text-gray-900">£29</span>
-                  <span className="text-gray-600">/month</span>
+                  <span className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Free</span>
+                  <span className="text-gray-600">to start</span>
                 </div>
-                <p className="text-sm text-gray-500 mt-2">Cancel anytime • No commitment</p>
+                <p className="text-sm text-gray-500 mt-2">Upgrade to premium in-app • Unlock all partner benefits</p>
               </div>
 
               <div className="space-y-4 mb-8">

@@ -31,6 +31,7 @@ export { default as PricingTraveler } from './PricingTraveler';
 export { default as FAQTraveler } from './FAQTraveler';
 export { default as FooterTraveler } from './FooterTraveler';
 export { default as OfficialPartnershipsNew } from './OfficialPartnershipsNew';
+export { default as OfficialPartnershipsTraveler } from './OfficialPartnershipsTraveler';
 export { default as MediaFeatures } from './MediaFeatures';
 export { default as SuccessStoriesNew } from './SuccessStoriesNew';
 export { default as EverythingIncluded } from './EverythingIncluded';

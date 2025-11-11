@@ -17,6 +17,7 @@ import {
   FAQTraveler,
   FooterTraveler,
   OfficialPartnershipsNew,
+  OfficialPartnershipsTraveler,
   MediaFeatures,
   SuccessStoriesNew,
   EverythingIncluded,
@@ -69,15 +70,28 @@ function LandingPageContent() {
           <PartnerBenefits />
           <VisaRemindersTraveler />
           <CommunityAccessTraveler />
+          <OfficialPartnershipsTraveler />
           <PricingTraveler />
         </>
       )}
       
-      {/* Shared sections */}
-      <OfficialPartnershipsNew />
-      <MediaFeatures />
-      <SuccessStoriesNew />
-      <EverythingIncluded />
+      {/* Nomad-specific shared sections */}
+      {isNomad && (
+        <>
+          <OfficialPartnershipsNew />
+          <MediaFeatures />
+          <SuccessStoriesNew />
+          <EverythingIncluded />
+        </>
+      )}
+      
+      {/* Traveler minimal shared sections */}
+      {isTraveler && (
+        <>
+          <MediaFeatures />
+          <EverythingIncluded />
+        </>
+      )}
       
       {isNomad && <SingleCTA />}
       
