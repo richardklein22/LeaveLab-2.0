@@ -46,13 +46,13 @@ export default function PricingTraveler() {
             
             <div className="relative">
               <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Start Free Today</h3>
-                <p className="text-gray-600 mb-6">Get access to our community and upgrade for premium features when you're ready</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Join LeaveLab</h3>
+                <p className="text-gray-600 mb-6">Get access to our community, resources, and Thailand travel support</p>
                 <div className="flex items-baseline justify-center gap-2">
                   <span className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Free</span>
-                  <span className="text-gray-600">to start</span>
+                  <span className="text-gray-600">to join</span>
                 </div>
-                <p className="text-sm text-gray-500 mt-2">Upgrade to premium in-app • Unlock all partner benefits</p>
+                <p className="text-sm text-gray-500 mt-2">No credit card required • Cancel anytime</p>
               </div>
 
               <div className="space-y-4 mb-8">
@@ -60,11 +60,11 @@ export default function PricingTraveler() {
                   'Community chat with fellow travelers',
                   'Automatic visa expiry reminders',
                   'Travel guides & recommendations',
-                  'Upgrade for: Direct founder access',
-                  'Upgrade for: Personalized itineraries',
-                  'Upgrade for: Partner discounts',
-                  'Upgrade for: Priority support',
-                  'Upgrade for: Insider tips & hidden gems'
+                  'Connect with experienced travelers',
+                  'Thailand travel resources',
+                  'Partner discounts & deals',
+                  'Community support',
+                  'Insider tips & local insights'
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
@@ -88,11 +88,11 @@ export default function PricingTraveler() {
                          text-white font-bold py-4 rounded-xl shadow-lg
                          hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
-                Start Your Journey
+                Join Free
               </button>
 
               <p className="text-center text-sm text-gray-500 mt-4">
-                🎉 Join 5,000+ happy travelers exploring Thailand
+                🎉 Join 5,000+ travelers exploring Thailand
               </p>
             </div>
           </div>
