@@ -80,57 +80,120 @@ export default function VisaRemindersTraveler() {
           </p>
         </motion.div>
 
-        {/* Visa Comparison Cards */}
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {visaTypes.map((visa, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={`${visa.bgColor} rounded-xl p-6 border-2 ${visa.borderColor} 
-                         hover:shadow-xl transition-all duration-300 relative`}
-            >
-              {visa.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white border-0">
-                  Most Popular
-                </Badge>
-              )}
-              
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${visa.color} 
-                              flex items-center justify-center mb-4 mx-auto shadow-lg`}>
-                <Calendar className="h-7 w-7 text-white" />
-              </div>
+        {/* Visa Comparison Cards - Horizontal Scroll on Mobile */}
+        <div className="max-w-5xl mx-auto mb-12">
+          {/* Desktop: Grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6">
+            {visaTypes.map((visa, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`${visa.bgColor} rounded-xl p-6 border-2 ${visa.borderColor} 
+                           hover:shadow-xl transition-all duration-300 relative`}
+              >
+                {visa.popular && (
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white border-0 text-xs">
+                    Most Popular
+                  </Badge>
+                )}
+                
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${visa.color} 
+                                flex items-center justify-center mb-4 mx-auto shadow-lg`}>
+                  <Calendar className="h-7 w-7 text-white" />
+                </div>
 
-              <h4 className="text-lg font-bold text-gray-900 text-center mb-3">
-                {visa.name}
-              </h4>
+                <h4 className="text-lg font-bold text-gray-900 text-center mb-3">
+                  {visa.name}
+                </h4>
 
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Duration:</span>
-                  <span className="font-semibold text-gray-900">{visa.duration}</span>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Duration:</span>
+                    <span className="font-semibold text-gray-900">{visa.duration}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Extension:</span>
+                    <span className="font-semibold text-gray-900">{visa.extension}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Difficulty:</span>
+                    <span className={`font-semibold ${
+                      visa.difficulty === 'Easy' ? 'text-green-600' : 'text-yellow-600'
+                    }`}>
+                      {visa.difficulty}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                    <span className="text-gray-600">Best for:</span>
+                    <span className="font-semibold text-gray-900">{visa.bestFor}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Extension:</span>
-                  <span className="font-semibold text-gray-900">{visa.extension}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Difficulty:</span>
-                  <span className={`font-semibold ${
-                    visa.difficulty === 'Easy' ? 'text-green-600' : 'text-yellow-600'
-                  }`}>
-                    {visa.difficulty}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center pt-2 border-t border-gray-200">
-                  <span className="text-gray-600">Best for:</span>
-                  <span className="font-semibold text-gray-900">{visa.bestFor}</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile: Horizontal Scroll */}
+          <div className="md:hidden overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+            <div className="flex gap-4 min-w-max">
+              {visaTypes.map((visa, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`${visa.bgColor} rounded-xl p-6 border-2 ${visa.borderColor} 
+                             w-[280px] flex-shrink-0 snap-center relative shadow-lg`}
+                >
+                  {visa.popular && (
+                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white border-0 text-xs">
+                      Most Popular
+                    </Badge>
+                  )}
+                  
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${visa.color} 
+                                  flex items-center justify-center mb-4 mx-auto shadow-lg`}>
+                    <Calendar className="h-7 w-7 text-white" />
+                  </div>
+
+                  <h4 className="text-lg font-bold text-gray-900 text-center mb-3">
+                    {visa.name}
+                  </h4>
+
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Duration:</span>
+                      <span className="font-semibold text-gray-900">{visa.duration}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Extension:</span>
+                      <span className="font-semibold text-gray-900">{visa.extension}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Difficulty:</span>
+                      <span className={`font-semibold ${
+                        visa.difficulty === 'Easy' ? 'text-green-600' : 'text-yellow-600'
+                      }`}>
+                        {visa.difficulty}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                      <span className="text-gray-600">Best for:</span>
+                      <span className="font-semibold text-gray-900">{visa.bestFor}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll indicator (mobile) */}
+          <div className="md:hidden text-center mt-4">
+            <p className="text-xs text-gray-500">← Swipe to compare visa types →</p>
+          </div>
         </div>
 
         {/* Reminder Features */}
