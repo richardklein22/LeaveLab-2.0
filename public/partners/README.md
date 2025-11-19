@@ -30,3 +30,13 @@ If you have the official Worldpackers banner image:
 - No need to manually optimize - Next.js handles this automatically
 
 
+
+
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+
+
+
+

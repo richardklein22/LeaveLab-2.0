@@ -76,28 +76,59 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-  		keyframes: {
-  			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
-  			},
-  			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
-  			}
-  		},
-  		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+		// Landing page green colors
+		green: {
+			50: '#f0fdf4',
+			100: '#dcfce7',
+			200: '#bbf7d0',
+			300: '#86efac',
+			400: '#4ade80',
+			500: '#10B981', // Primary brand color for landing page
+			600: '#059669',
+			700: '#047857',
+			800: '#065f46',
+			900: '#064e3b',
+		},
+		keyframes: {
+			'accordion-down': {
+				from: {
+					height: '0'
+				},
+				to: {
+					height: 'var(--radix-accordion-content-height)'
+				}
+			},
+			'accordion-up': {
+				from: {
+					height: 'var(--radix-accordion-content-height)'
+				},
+				to: {
+					height: '0'
+				}
+			},
+			'pulse-subtle': {
+				'0%, 100%': { transform: 'scale(1)' },
+				'50%': { transform: 'scale(1.03)' },
+			},
+			'scroll-right': {
+				'0%': { transform: 'translateX(0)' },
+				'100%': { transform: 'translateX(-33.333%)' },
+			},
+			'scroll-left': {
+				'0%': { transform: 'translateX(-33.333%)' },
+				'100%': { transform: 'translateX(0)' },
+			}
+		},
+		animation: {
+			'accordion-down': 'accordion-down 0.2s ease-out',
+			'accordion-up': 'accordion-up 0.2s ease-out',
+			'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
+			'scroll-right': 'scroll-right 21s linear infinite',
+			'scroll-left': 'scroll-left 21s linear infinite',
+		},
+		fontFamily: {
+			sans: ['Inter', 'system-ui', 'sans-serif'],
+		}
   	}
   },
   plugins: [],
