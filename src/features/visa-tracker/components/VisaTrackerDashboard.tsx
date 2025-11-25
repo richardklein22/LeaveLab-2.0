@@ -14,7 +14,6 @@ import { useVisaCalculation } from '../hooks/useVisaCalculation';
 import { VisaStatusCard } from './VisaStatusCard';
 import { CreateEntryForm } from './CreateEntryForm';
 import { ExtensionCard } from './ExtensionCard';
-import { getInitialStayDays, getExtensionDays } from '../lib/visa-calculations';
 import type { CreateVisaEntryInput } from '../types';
 
 export function VisaTrackerDashboard() {
@@ -30,14 +29,7 @@ export function VisaTrackerDashboard() {
   const [showCreateForm, setShowCreateForm] = useState(false);
 
   const handleCreateEntry = async (input: CreateVisaEntryInput) => {
-    const initialDays = getInitialStayDays(input.visaType, input.passportCountry);
-    const extensionDays = getExtensionDays(input.visaType, input.passportCountry);
-
-    await createEntry({
-      ...input,
-      // These will be calculated server-side, but we can pass them
-    });
-
+    await createEntry(input);
     setShowCreateForm(false);
   };
 

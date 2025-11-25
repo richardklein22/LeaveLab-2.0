@@ -9,13 +9,13 @@ import { createClient } from '@/lib/supabase/server';
 import { getExtensionDays } from '@/features/visa-tracker/lib/visa-calculations';
 import type { VisaType, PassportCountry } from '@/features/visa-tracker/types';
 
-interface RouteParams {
-  params: {
+interface RouteContext {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export async function PATCH(request: Request, { params }: RouteParams) {
+export async function PATCH(request: Request, context: RouteContext) {
   try {
     const supabase = await createClient();
 
@@ -29,7 +29,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await context.params;
 
     // Parse request body
     const body = await request.json();
@@ -48,7 +48,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     }
 
     // Prepare update data
-    const updateData: any = {};
+    const updateData: Record<string, unknown> = {};
 
     if (extensionDate !== undefined) {
       const extensionDaysAvailable = getExtensionDays(
@@ -114,7 +114,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(request: Request, { params }: RouteParams) {
+export async function DELETE(request: Request, context: RouteContext) {
   try {
     const supabase = await createClient();
 
@@ -128,7 +128,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await context.params;
 
     // Delete entry
     const { error: deleteError } = await supabase

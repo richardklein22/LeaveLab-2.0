@@ -98,12 +98,6 @@ export async function POST(request: Request) {
       passportCountry as PassportCountry | undefined
     );
 
-    // Calculate extension days available
-    const extensionDaysAvailable = getExtensionDays(
-      visaType as VisaType,
-      passportCountry as PassportCountry | undefined
-    );
-
     // Insert new entry
     const { data: entry, error: insertError } = await supabase
       .from('visa_tracker_entries')
