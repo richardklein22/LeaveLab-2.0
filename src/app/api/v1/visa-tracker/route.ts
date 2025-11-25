@@ -6,7 +6,7 @@
 
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
-import { getInitialStayDays, getExtensionDays } from '@/features/visa-tracker/lib/visa-calculations';
+import { getInitialStayDays } from '@/features/visa-tracker/lib/visa-calculations';
 import type { VisaType, PassportCountry } from '@/features/visa-tracker/types';
 
 export async function GET() {

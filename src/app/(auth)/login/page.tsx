@@ -1,10 +1,22 @@
+import { Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { LoginForm } from '@/features/auth/components/LoginForm';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const metadata = {
   title: 'Log In | LeaveLab',
   description: 'Log in to your LeaveLab account',
 };
+
+function LoginFormSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Skeleton className="h-12 w-full bg-white/5" />
+      <Skeleton className="h-12 w-full bg-white/5" />
+      <Skeleton className="h-12 w-full bg-white/5" />
+    </div>
+  );
+}
 
 export default function LoginPage() {
   return (
@@ -19,7 +31,9 @@ export default function LoginPage() {
         </CardDescription>
       </CardHeader>
       <CardContent className="relative z-10">
-        <LoginForm />
+        <Suspense fallback={<LoginFormSkeleton />}>
+          <LoginForm />
+        </Suspense>
       </CardContent>
     </Card>
   );
