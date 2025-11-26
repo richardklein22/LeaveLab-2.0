@@ -1,13 +1,12 @@
 /**
- * Visa Tracker Page
- * Accessible route: /visa-tracker
+ * Simplified Visa Tracker Page
  */
 
-import { VisaTrackerDashboard } from '@/features/visa-tracker';
+import { VisaTrackerDashboard } from '@/features/visa-tracker/components/VisaTrackerDashboard';
 
 export const metadata = {
-  title: 'Thailand Visa Tracker | LeaveLab',
-  description: 'Track your Thailand visa status, monitor remaining days, and never miss your extension deadline',
+  title: 'Visa Tracker | LeaveLab',
+  description: 'Track your Thailand visa status',
 };
 
 export default function VisaTrackerPage() {
