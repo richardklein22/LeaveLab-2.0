@@ -1,11 +1,23 @@
+import { Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { SignupForm } from '@/features/auth/components/SignupForm';
 import { Sparkles } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const metadata = {
   title: 'Create Account | LeaveLab',
   description: 'Create your LeaveLab account to start your digital nomad journey',
 };
+
+function SignupFormSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Skeleton className="h-12 w-full bg-white/5" />
+      <Skeleton className="h-12 w-full bg-white/5" />
+      <Skeleton className="h-12 w-full bg-white/5" />
+    </div>
+  );
+}
 
 export default function SignupPage() {
   return (
@@ -26,7 +38,9 @@ export default function SignupPage() {
         </CardDescription>
       </CardHeader>
       <CardContent className="relative z-10">
-        <SignupForm />
+        <Suspense fallback={<SignupFormSkeleton />}>
+          <SignupForm />
+        </Suspense>
       </CardContent>
     </Card>
   );
