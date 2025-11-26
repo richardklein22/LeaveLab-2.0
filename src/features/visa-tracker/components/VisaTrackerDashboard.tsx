@@ -1,5 +1,5 @@
 /**
- * Minimal Visa Tracker Dashboard - No Auth Required
+ * Minimal Visa Tracker Dashboard - Debug Version
  */
 
 'use client';
@@ -14,153 +14,150 @@ interface VisaEntry {
   id: string;
   entryDate: string;
   initialStayDays: number;
-  visaType: string;
 }
 
 export function VisaTrackerDashboard() {
-  const [entries, setEntries] = useState<VisaEntry[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [entry, setEntry] = useState<VisaEntry | null>(null);
   const [entryDate, setEntryDate] = useState('');
-  const [error, setError] = useState('');
 
   // Load from localStorage on mount
   useEffect(() => {
-    const saved = localStorage.getItem('visaTrackerEntries');
+    console.log('Loading from localStorage...');
+    const saved = localStorage.getItem('visaEntry');
     if (saved) {
       try {
-        setEntries(JSON.parse(saved));
+        const loaded = JSON.parse(saved);
+        console.log('Loaded entry:', loaded);
+        setEntry(loaded);
       } catch (e) {
-        console.error('Failed to load entries:', e);
+        console.error('Failed to load:', e);
       }
     }
   }, []);
 
-  // Save to localStorage whenever entries change
-  useEffect(() => {
-    if (entries.length > 0) {
-      localStorage.setItem('visaTrackerEntries', JSON.stringify(entries));
-    }
-  }, [entries]);
-
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLoading(true);
-    setError('');
+    console.log('Form submitted with date:', entryDate);
 
     if (!entryDate) {
-      setError('Please select an entry date');
-      setLoading(false);
+      alert('Please select a date');
       return;
     }
 
-    try {
-      const newEntry: VisaEntry = {
-        id: Date.now().toString(),
-        entryDate: new Date(entryDate).toISOString(),
-        initialStayDays: 60, // UK passport
-        visaType: 'visa_exemption',
-      };
+    const newEntry: VisaEntry = {
+      id: Date.now().toString(),
+      entryDate: entryDate,
+      initialStayDays: 60,
+    };
 
-      setEntries([newEntry, ...entries]);
-      setEntryDate('');
-    } catch (err) {
-      setError('Failed to create entry');
-      console.error('Error:', err);
-    } finally {
-      setLoading(false);
-    }
+    console.log('Creating entry:', newEntry);
+
+    // Save to state
+    setEntry(newEntry);
+
+    // Save to localStorage
+    localStorage.setItem('visaEntry', JSON.stringify(newEntry));
+
+    console.log('Entry saved!');
+    alert('Entry created! Refresh if countdown doesn\'t appear.');
   }
 
-  function calculateDaysRemaining(entry: VisaEntry): number {
+  function calculateDaysRemaining(): number {
+    if (!entry) return 0;
+
     const entryTime = new Date(entry.entryDate).getTime();
     const expiryTime = entryTime + (entry.initialStayDays * 24 * 60 * 60 * 1000);
     const now = Date.now();
     const daysRemaining = Math.floor((expiryTime - now) / (24 * 60 * 60 * 1000));
+
+    console.log('Days remaining:', daysRemaining);
     return Math.max(0, daysRemaining);
   }
 
   function handleReset() {
-    if (confirm('Delete all entries?')) {
-      setEntries([]);
-      localStorage.removeItem('visaTrackerEntries');
-    }
+    console.log('Resetting...');
+    setEntry(null);
+    localStorage.removeItem('visaEntry');
+    setEntryDate('');
+    alert('Reset complete!');
   }
 
-  const currentEntry = entries[0];
-  const daysRemaining = currentEntry ? calculateDaysRemaining(currentEntry) : null;
+  const daysRemaining = entry ? calculateDaysRemaining() : null;
+
+  console.log('Current state:', { entry, daysRemaining });
 
   return (
     <div className="min-h-screen bg-brand-dark py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-8">
+        {/* Header */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-2">
             Thailand Visa Tracker
           </h1>
           <p className="text-white/70">
-            Track your visa days remaining (UK Passport - 60 days)
+            UK Passport - 60 days visa exemption
           </p>
         </div>
 
-        {/* Current Status */}
-        {currentEntry && daysRemaining !== null && (
+        {/* Debug Info */}
+        <Card className="bg-blue-900/20 border-blue-500/30 p-4">
+          <div className="text-xs text-blue-300 font-mono">
+            <div>Entry exists: {entry ? 'YES' : 'NO'}</div>
+            <div>Entry date: {entry?.entryDate || 'none'}</div>
+            <div>Days remaining: {daysRemaining ?? 'N/A'}</div>
+          </div>
+        </Card>
+
+        {/* Countdown Display */}
+        {entry && daysRemaining !== null ? (
           <Card className="bg-brand-dark-900 border-brand-red/30 p-8">
-            <div className="text-center">
-              <div className="text-7xl font-bold text-brand-red mb-4">
+            <div className="text-center space-y-4">
+              <div className="text-8xl font-bold text-brand-red">
                 {daysRemaining}
               </div>
-              <div className="text-2xl text-white/80 mb-2">
+              <div className="text-3xl text-white">
                 Days Remaining
               </div>
-              <div className="text-sm text-white/60 mb-4">
-                Entry: {new Date(currentEntry.entryDate).toLocaleDateString('en-GB')}
-              </div>
-              <div className="text-sm text-white/60">
-                Expires: {new Date(new Date(currentEntry.entryDate).getTime() + currentEntry.initialStayDays * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB')}
+              <div className="text-white/60 space-y-1">
+                <div>Entry: {new Date(entry.entryDate).toLocaleDateString('en-GB')}</div>
+                <div>Expires: {new Date(new Date(entry.entryDate).getTime() + 60 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB')}</div>
               </div>
               <Button
                 onClick={handleReset}
-                variant="outline"
-                className="mt-4 border-white/20 text-white hover:bg-white/10"
-                size="sm"
+                className="mt-4 bg-white/10 hover:bg-white/20 text-white"
               >
-                Reset
+                Reset / Start Over
               </Button>
             </div>
           </Card>
-        )}
-
-        {/* Create Entry Form */}
-        {!currentEntry && (
-          <Card className="bg-brand-dark-900 border-white/10 p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                Record Thailand Entry
+        ) : (
+          /* Entry Form */
+          <Card className="bg-brand-dark-900 border-white/10 p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <h2 className="text-3xl font-bold text-white text-center">
+                When did you arrive in Thailand?
               </h2>
 
-              {error && (
-                <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-3 rounded">
-                  {error}
-                </div>
-              )}
-
-              <div>
-                <Label className="text-white">When did you arrive in Thailand?</Label>
+              <div className="space-y-2">
+                <Label className="text-white text-lg">Entry Date</Label>
                 <Input
                   type="date"
                   value={entryDate}
-                  onChange={(e) => setEntryDate(e.target.value)}
+                  onChange={(e) => {
+                    console.log('Date changed:', e.target.value);
+                    setEntryDate(e.target.value);
+                  }}
                   required
                   max={new Date().toISOString().split('T')[0]}
-                  className="bg-brand-dark-800 border-white/20 text-white mt-2"
+                  className="bg-brand-dark-800 border-brand-red/30 text-white text-lg h-14"
                 />
               </div>
 
               <Button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-brand-red hover:bg-brand-red/80 text-white font-semibold"
+                className="w-full bg-brand-red hover:bg-brand-red/80 text-white text-xl font-bold h-16"
               >
-                {loading ? 'Creating...' : 'Start Tracking'}
+                Start Tracking →
               </Button>
             </form>
           </Card>
@@ -172,10 +169,10 @@ export function VisaTrackerDashboard() {
             Information
           </h3>
           <ul className="space-y-2 text-sm text-white/70">
-            <li>✓ UK passport: 60 days visa exemption</li>
-            <li>✓ Can extend for 30 days at immigration office</li>
-            <li>✓ Data saved in your browser only</li>
-            <li>⚠️ This is for tracking purposes only - verify with official sources</li>
+            <li>✓ 60 days visa exemption on entry</li>
+            <li>✓ Can extend 30 days at immigration</li>
+            <li>✓ Data saved in browser only</li>
+            <li>✓ Check browser console for debug info</li>
           </ul>
         </Card>
       </div>
